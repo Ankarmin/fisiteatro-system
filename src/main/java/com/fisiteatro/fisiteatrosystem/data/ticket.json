@@ -1,0 +1,26 @@
+[
+  {
+    "cliente": {
+      "nombres": "Juan",
+      "apellidos": "Perez",
+      "dni": "12345678",
+      "contrasena": "password123"
+    },
+    "asiento": {
+      "fila": "A",
+      "numero": 1
+    }
+  },
+  {
+    "cliente": {
+      "nombres": "Maria",
+      "apellidos": "Gomez",
+      "dni": "87654321",
+      "contrasena": "password456"
+    },
+    "asiento": {
+      "fila": "B",
+      "numero": 2
+    }
+  }
+]

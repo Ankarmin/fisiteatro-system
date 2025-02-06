@@ -1,0 +1,14 @@
+[
+  {
+    "nombres": "Juan",
+    "apellidos": "Perez",
+    "dni": "12345678",
+    "contrasena": "password123"
+  },
+  {
+    "nombres": "Maria",
+    "apellidos": "Gomez",
+    "dni": "87654321",
+    "contrasena": "password456"
+  }
+]

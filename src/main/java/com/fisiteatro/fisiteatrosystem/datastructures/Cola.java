@@ -1,5 +1,9 @@
 package com.fisiteatro.fisiteatrosystem.datastructures;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.NoSuchElementException;
 
 public class Cola<T> {
@@ -43,5 +47,21 @@ public class Cola<T> {
 
     public boolean isEmpty() {
         return frente == null;
+    }
+
+    public void cargarDesdeJson(String filePath, Class<T[]> clazz) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        T[] datos = mapper.readValue(new File(filePath), clazz);
+        for (T dato : datos) {
+            offer(dato);
+        }
+    }
+
+    public void imprimir() {
+        Nodo<T> actual = frente;
+        while (actual != null) {
+            System.out.println(actual.dato);
+            actual = actual.siguiente;
+        }
     }
 }

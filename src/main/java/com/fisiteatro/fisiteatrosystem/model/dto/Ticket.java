@@ -27,4 +27,12 @@ public class Ticket {
     public void setAsiento(Asiento asiento) {
         this.asiento = asiento;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "cliente=" + cliente +
+                ", asiento=" + asiento +
+                '}';
+    }
 }

@@ -1,6 +1,6 @@
 package com.fisiteatro.fisiteatrosystem.model.dao;
 
-public class AsientoDAO {
+public class AsientoDAO implements IAsientoDAO {
 
 
 }

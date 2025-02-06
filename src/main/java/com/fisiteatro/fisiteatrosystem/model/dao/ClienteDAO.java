@@ -1,6 +1,6 @@
 package com.fisiteatro.fisiteatrosystem.model.dao;
 
-public class ClienteDAO {
+public class ClienteDAO implements IClienteDAO {
 
 
 }

@@ -1,0 +1,16 @@
+[
+  {
+    "nombre": "Concierto de Rock",
+    "fecha": "2023-12-01",
+    "hora": "20:00",
+    "precio": 50.0,
+    "capacidad": 200
+  },
+  {
+    "nombre": "Obra de Teatro",
+    "fecha": "2023-12-05",
+    "hora": "18:00",
+    "precio": 30.0,
+    "capacidad": 150
+  }
+]

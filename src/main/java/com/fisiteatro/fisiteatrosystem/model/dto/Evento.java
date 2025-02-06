@@ -57,4 +57,15 @@ public class Evento {
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
+
+    @Override
+    public String toString() {
+        return "Evento{" +
+                "nombre='" + nombre + '\'' +
+                ", fecha='" + fecha + '\'' +
+                ", hora='" + hora + '\'' +
+                ", precio=" + precio +
+                ", capacidad=" + capacidad +
+                '}';
+    }
 }

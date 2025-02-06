@@ -1,6 +1,6 @@
 package com.fisiteatro.fisiteatrosystem.model.dao;
 
-public class AdministradorDAO {
+public class AdministradorDAO implements IAdministradorDAO {
 
 
 }
