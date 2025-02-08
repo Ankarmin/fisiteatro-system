@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class Cola<T> {
@@ -49,9 +51,24 @@ public class Cola<T> {
         return frente == null;
     }
 
+    public List<T> toList() {
+        List<T> list = new ArrayList<>();
+        Nodo<T> actual = frente;
+        while (actual != null) {
+            list.add(actual.dato);
+            actual = actual.siguiente;
+        }
+        return list;
+    }
+
     public void cargarDesdeJson(String filePath, Class<T[]> clazz) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        T[] datos = mapper.readValue(new File(filePath), clazz);
+        File file = new File(filePath);
+        if (file.length() == 0) {
+            System.out.println("Archivo " + filePath + " vacío. Inicialización con valores por defecto.");
+            return;
+        }
+        T[] datos = mapper.readValue(file, clazz);
         for (T dato : datos) {
             offer(dato);
         }

@@ -1,6 +1,6 @@
 package com.fisiteatro.fisiteatrosystem.model.dto;
 
-public class Asiento {
+public class Asiento implements Comparable<Asiento> {
     private String fila;
     private int numero;
     private boolean estado;
@@ -45,5 +45,14 @@ public class Asiento {
                 ", numero=" + numero +
                 ", estado=" + estado +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Asiento o) {
+        int filaComparison = this.fila.compareTo(o.fila);
+        if (filaComparison != 0) {
+            return filaComparison;
+        }
+        return Integer.compare(this.numero, o.numero);
     }
 }

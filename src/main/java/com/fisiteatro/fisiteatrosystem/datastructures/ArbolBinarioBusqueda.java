@@ -1,5 +1,11 @@
 package com.fisiteatro.fisiteatrosystem.datastructures;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.function.Consumer;
+
 public class ArbolBinarioBusqueda<T extends Comparable<T>> {
     private Nodo<T> raiz;
 
@@ -68,15 +74,28 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> {
         return nodo;
     }
 
-    public void imprimirEnOrden() {
-        imprimirEnOrdenRecursivo(raiz);
+    public void cargarDesdeJson(String filePath, Class<T[]> clazz) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        File file = new File(filePath);
+        if (file.length() == 0) {
+            System.out.println("Archivo " + filePath + " vacío. Inicialización con valores por defecto.");
+            return;
+        }
+        T[] datos = mapper.readValue(file, clazz);
+        for (T dato : datos) {
+            insertar(dato);
+        }
     }
 
-    private void imprimirEnOrdenRecursivo(Nodo<T> nodo) {
+    public void imprimirEnOrden(Consumer<T> consumer) {
+        imprimirEnOrdenRecursivo(raiz, consumer);
+    }
+
+    private void imprimirEnOrdenRecursivo(Nodo<T> nodo, Consumer<T> consumer) {
         if (nodo != null) {
-            imprimirEnOrdenRecursivo(nodo.izquierdo);
-            System.out.println(nodo.dato);
-            imprimirEnOrdenRecursivo(nodo.derecho);
+            imprimirEnOrdenRecursivo(nodo.izquierdo, consumer);
+            consumer.accept(nodo.dato);
+            imprimirEnOrdenRecursivo(nodo.derecho, consumer);
         }
     }
 }
