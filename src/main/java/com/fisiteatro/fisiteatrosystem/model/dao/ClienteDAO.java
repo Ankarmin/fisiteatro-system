@@ -65,7 +65,7 @@ public class ClienteDAO implements IClienteDAO {
 
     private void saveToFile() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(new File(FILE_PATH), clientes.toList());
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILE_PATH), clientes.toList());
     }
 
     private void loadFromFile() {
