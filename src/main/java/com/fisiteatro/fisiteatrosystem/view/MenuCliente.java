@@ -16,11 +16,11 @@ public class MenuCliente {
             System.out.println("1. Ver eventos");
             System.out.println("2. Anulación de compra");
             System.out.println("3. Historial de compra");
-            System.out.println("4. Regresar al menú principal");
+            System.out.println("4. Cerrar sesion");
             System.out.print("Seleccione una opción: ");
 
             opcion = scanner.nextInt();
-            scanner.nextLine(); // Consumir el salto de línea
+            scanner.nextLine();
 
             switch (opcion) {
                 case 1:

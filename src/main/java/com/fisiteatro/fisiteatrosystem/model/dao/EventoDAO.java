@@ -51,6 +51,6 @@ public class EventoDAO implements IEventoDAO {
 
     private void saveToFile() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(new File(FILE_PATH), eventos.toList());
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILE_PATH), eventos.toList());
     }
 }

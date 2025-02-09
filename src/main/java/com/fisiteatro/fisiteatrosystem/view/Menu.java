@@ -28,7 +28,7 @@ public class Menu {
             System.out.print("Seleccione una opción: ");
 
             opcion = scanner.nextInt();
-            scanner.nextLine(); // Consumir salto de línea
+            scanner.nextLine();
 
             switch (opcion) {
                 case 1:
@@ -61,7 +61,7 @@ public class Menu {
         if (dni.equals("99999999") && contrasena.equals("admin")) {
             System.out.println("¡Inicio de sesión exitoso! Bienvenido Administrador.");
             MenuAdmin menuAdmin = new MenuAdmin();
-            //Aqui le pones la funcion donde esta tu menu owo
+            menuAdmin.mostrarMenu();
             return;
         }
         if (cliente != null) {
