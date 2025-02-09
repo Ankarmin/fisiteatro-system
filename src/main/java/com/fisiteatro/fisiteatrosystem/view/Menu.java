@@ -1,19 +1,25 @@
 package com.fisiteatro.fisiteatrosystem.view;
-
+//para el catalogo
+import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
+import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
+import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
+//para el cliente
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
 import com.fisiteatro.fisiteatrosystem.model.dao.ClienteDAO;
 import com.fisiteatro.fisiteatrosystem.model.dto.Cliente;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
 
     private ClienteDAO clienteDAO;
     private Scanner scanner;
-
+    private EventoDAO eventoDAO;
     public Menu() {
         this.clienteDAO = new ClienteDAO(new Cola<>());
+        this.eventoDAO = new EventoDAO(new ListaEnlazada<>());
         this.scanner = new Scanner(System.in);
     }
 
@@ -28,7 +34,7 @@ public class Menu {
             System.out.print("Seleccione una opción: ");
 
             opcion = scanner.nextInt();
-            scanner.nextLine(); // Consumir salto de línea
+            scanner.nextLine();
 
             switch (opcion) {
                 case 1:
@@ -61,7 +67,7 @@ public class Menu {
         if (dni.equals("99999999") && contrasena.equals("admin")) {
             System.out.println("¡Inicio de sesión exitoso! Bienvenido Administrador.");
             MenuAdmin menuAdmin = new MenuAdmin();
-            //Aqui le pones la funcion donde esta tu menu owo
+            menuAdmin.mostrarMenu();
             return;
         }
         if (cliente != null) {
@@ -101,8 +107,21 @@ public class Menu {
     }
 
     private void verCatalogo() {
-        System.out.println("Mostrando el catálogo de eventos...");
+        List<Evento> eventos = eventoDAO.readAll();
+        if (eventos.isEmpty()) {
+            System.out.println("No hay eventos disponibles.");
+            return;
+        }
 
+        System.out.println("\n--- CATALOGO DE EVENTOS ---");
+        System.out.printf("%-5s %-20s %-12s %-8s %-10s %-10s%n", "ID", "Nombre", "Fecha", "Hora", "Precio", "Capacidad");
+        System.out.println("--------------------------------------------------------------");
+
+        int index = 1;
+        for (Evento evento : eventos) {
+            System.out.printf("%-5d %-20s %-12s %-8s %-10.2f %-10d%n",
+                    index++, evento.getNombre(), evento.getFecha(), evento.getHora(), evento.getPrecio(), evento.getCapacidad());
+        }
     }
 
     public static void main(String[] args) {

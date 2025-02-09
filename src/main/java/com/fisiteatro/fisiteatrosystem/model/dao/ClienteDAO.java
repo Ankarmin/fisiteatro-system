@@ -16,7 +16,13 @@ public class ClienteDAO implements IClienteDAO {
     public ClienteDAO(Cola<Cliente> clientes) {
 
         this.clientes = clientes;
-        loadFromFile();
+
+        try {
+            clientes.cargarDesdeJson(FILE_PATH, Cliente[].class);
+            System.out.println("Clientes cargados correctamente desde JSON.");
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo JSON: " + e.getMessage());
+        }
     }
 
     public void create(Cliente cliente) throws IOException {
@@ -68,21 +74,6 @@ public class ClienteDAO implements IClienteDAO {
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILE_PATH), clientes.toList());
     }
 
-    private void loadFromFile() {
-        ObjectMapper mapper = new ObjectMapper();
-        File file = new File(FILE_PATH);
-        if (file.exists()) {
-            try {
-                List<Cliente> listaClientes = mapper.readValue(file, new TypeReference<List<Cliente>>() {});
-                clientes = new Cola<>();
-                for (Cliente cliente : listaClientes) {
-                    clientes.offer(cliente);
-                }
-            } catch (IOException e) {
-                System.err.println("Error al cargar clientes desde el archivo JSON: " + e.getMessage());
-            }
-        }
-    }
 
     public Cliente obtenerPorDni(String dni) {
         for (Cliente cliente : clientes.toList()) {

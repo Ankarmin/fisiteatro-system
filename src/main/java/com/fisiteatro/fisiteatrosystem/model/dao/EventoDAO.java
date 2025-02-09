@@ -1,5 +1,6 @@
 package com.fisiteatro.fisiteatrosystem.model.dao;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
 import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
@@ -13,7 +14,16 @@ public class EventoDAO implements IEventoDAO {
     private ListaEnlazada<Evento> eventos;
 
     public EventoDAO(ListaEnlazada<Evento> eventos) {
+
         this.eventos = eventos;
+
+        try {
+            eventos.cargarDesdeJson(FILE_PATH, Evento[].class); // Usa el método de ListaEnlazada
+            System.out.println("Eventos cargados correctamente desde JSON.");
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo JSON: " + e.getMessage());
+        }
+
     }
 
     public void create(Evento evento) throws IOException {
@@ -51,6 +61,6 @@ public class EventoDAO implements IEventoDAO {
 
     private void saveToFile() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(new File(FILE_PATH), eventos.toList());
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILE_PATH), eventos.toList());
     }
 }
