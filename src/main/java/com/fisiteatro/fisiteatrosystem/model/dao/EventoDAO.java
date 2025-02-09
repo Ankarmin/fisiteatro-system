@@ -1,5 +1,6 @@
 package com.fisiteatro.fisiteatrosystem.model.dao;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
 import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
@@ -13,7 +14,27 @@ public class EventoDAO implements IEventoDAO {
     private ListaEnlazada<Evento> eventos;
 
     public EventoDAO(ListaEnlazada<Evento> eventos) {
+
         this.eventos = eventos;
+        cargarEventosDesdeArchivo();
+    }
+    private void cargarEventosDesdeArchivo() {
+        File file = new File(FILE_PATH);
+        if (!file.exists()) {
+            System.out.println("Archivo de eventos no encontrado. Se inicializa vacío.");
+            return;
+        }
+
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            List<Evento> listaEventos = mapper.readValue(file, new TypeReference<List<Evento>>() {});
+            for (Evento evento : listaEventos) {
+                eventos.add(evento);
+            }
+            System.out.println("Eventos cargados correctamente desde JSON.");
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo JSON: " + e.getMessage());
+        }
     }
 
     public void create(Evento evento) throws IOException {
