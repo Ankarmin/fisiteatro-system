@@ -57,8 +57,17 @@ public class Menu {
         String contrasena = scanner.nextLine();
 
         Cliente cliente = clienteDAO.iniciarSesion(dni, contrasena);
+
+        if (dni.equals("99999999") && contrasena.equals("admin")) {
+            System.out.println("¡Inicio de sesión exitoso! Bienvenido Administrador.");
+            MenuAdmin menuAdmin = new MenuAdmin();
+            //Aqui le pones la funcion donde esta tu menu owo
+            return;
+        }
         if (cliente != null) {
             System.out.println("¡Inicio de sesión exitoso! Bienvenido, " + cliente.getNombres());
+            MenuCliente menuCliente = new MenuCliente();
+            menuCliente.mostrarMenu();
         } else {
             System.out.println("DNI o contraseña incorrectos. Intente nuevamente.");
         }
@@ -93,7 +102,7 @@ public class Menu {
 
     private void verCatalogo() {
         System.out.println("Mostrando el catálogo de eventos...");
-        // Aquí puedes agregar la funcionalidad para mostrar eventos
+
     }
 
     public static void main(String[] args) {
