@@ -16,25 +16,14 @@ public class EventoDAO implements IEventoDAO {
     public EventoDAO(ListaEnlazada<Evento> eventos) {
 
         this.eventos = eventos;
-        cargarEventosDesdeArchivo();
-    }
-    private void cargarEventosDesdeArchivo() {
-        File file = new File(FILE_PATH);
-        if (!file.exists()) {
-            System.out.println("Archivo de eventos no encontrado. Se inicializa vacío.");
-            return;
-        }
 
         try {
-            ObjectMapper mapper = new ObjectMapper();
-            List<Evento> listaEventos = mapper.readValue(file, new TypeReference<List<Evento>>() {});
-            for (Evento evento : listaEventos) {
-                eventos.add(evento);
-            }
+            eventos.cargarDesdeJson(FILE_PATH, Evento[].class); // Usa el método de ListaEnlazada
             System.out.println("Eventos cargados correctamente desde JSON.");
         } catch (IOException e) {
             System.out.println("Error al leer el archivo JSON: " + e.getMessage());
         }
+
     }
 
     public void create(Evento evento) throws IOException {
