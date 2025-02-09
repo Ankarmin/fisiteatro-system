@@ -31,10 +31,10 @@ public class ClienteDAO implements IClienteDAO {
     public Cliente iniciarSesion(String dni, String contrasena) {
         for (Cliente cliente : clientes.toList()) {
             if (cliente.getDni().equals(dni) && cliente.getContrasena().equals(contrasena)) {
-                return cliente; // Retorna el cliente si las credenciales son correctas
+                return cliente;
             }
         }
-        return null; // Retorna null si no se encuentra el cliente
+        return null;
     }
 
     public void update(Cliente cliente) throws IOException {
@@ -50,7 +50,7 @@ public class ClienteDAO implements IClienteDAO {
         clientes = temp;
         saveToFile();
     }
-
+    //se puede mejorar
     public void delete(String dni) throws IOException {
         Cola<Cliente> temp = new Cola<>();
         while (!clientes.isEmpty()) {
