@@ -1,1 +1,13 @@
-[{"nombre":"Nuevo DA c9b6d490-bbc0-4372-aff4-bb1b7ad51972","fecha":"2023-12-31","hora":"23:59","precio":100.0,"capacidad":500},{"nombre":"Nuevo DA bb28fa01-d3d0-49c6-a450-76726a00e9f0","fecha":"2023-12-31","hora":"23:59","precio":100.0,"capacidad":500}]
+[ {
+  "nombre":"Nuevo DA c9b6d490-bbc0-4372-aff4-bb1b7ad51972",
+  "fecha":"2023-12-31",
+  "hora":"23:59",
+  "precio":100.0,
+  "capacidad":500
+}, {
+  "nombre":"Nuevo DA bb28fa01-d3d0-49c6-a450-76726a00e9f0",
+  "fecha":"2023-12-31",
+  "hora":"23:59",
+  "precio":100.0,
+  "capacidad":500
+} ]

@@ -18,4 +18,9 @@
   "apellidos" : "gomez",
   "dni" : "23456789",
   "contrasena" : "maria123"
+}, {
+  "nombres" : "Achli",
+  "apellidos" : "GA",
+  "dni" : "66666666",
+  "contrasena" : "ola123"
 } ]
