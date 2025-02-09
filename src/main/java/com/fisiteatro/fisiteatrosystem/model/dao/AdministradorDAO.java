@@ -53,6 +53,6 @@ public class AdministradorDAO implements IAdministradorDAO {
 
     private void saveToFile() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(new File(FILE_PATH), administradores.toList());
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILE_PATH), administradores.toList());
     }
 }

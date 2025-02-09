@@ -1,1 +1,6 @@
-[{"nombres":"DA","apellidos":"Admin","dni":"90857458-2fbe-4741-ae9f-9dcb501952ca","contrasena":"newpass"},{"nombres":"DA","apellidos":"Admin","dni":"d2246996-f0fd-4c79-acf2-c61df82a4cb5","contrasena":"newpass"}]
+[ {
+  "nombres":"DA",
+  "apellidos":"Admin",
+  "dni":"99999999",
+  "contrasena":"admin"
+} ]
