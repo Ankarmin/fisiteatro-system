@@ -74,4 +74,62 @@ public class ListaEnlazada<T> {
             actual = actual.siguiente;
         }
     }
+
+    public T get(int index){
+        if (index < 0) {
+            throw new IndexOutOfBoundsException("Posición inválida");
+        }
+
+        Nodo<T> actual = cabeza;
+        for (int i = 0; i < index; i++) {
+            if (actual == null) {
+                throw new IndexOutOfBoundsException("Posición inválida");
+            }
+            actual = actual.siguiente;
+        }
+
+        if (actual == null) {
+            throw new IndexOutOfBoundsException("Posición inválida");
+        }
+
+        return actual.dato;
+    }
+
+    public void remove(int posicion) throws IOException {
+        if (posicion < 0) {
+            throw new IndexOutOfBoundsException("Posición inválida");
+        }
+
+        // eliminar primer nodo
+        if (posicion == 0) {
+            if (cabeza == null) {
+                throw new IndexOutOfBoundsException("La lista está vacía");
+            }
+            cabeza = cabeza.siguiente;  // Elimina el primer nodo
+            return;
+        }
+
+        Nodo<T> actual = cabeza;
+        for (int i = 0; i < posicion - 1; i++) {
+            if (actual == null || actual.siguiente == null) {
+                throw new IndexOutOfBoundsException("Posición inválida");
+            }
+            actual = actual.siguiente;
+        }
+
+        if (actual.siguiente == null) {
+            throw new IndexOutOfBoundsException("Posición inválida");
+        }
+        actual.siguiente = actual.siguiente.siguiente;
+    }
+
+    public boolean validarIndex(int index){
+        Nodo<T> current = cabeza;
+        int n = 0;
+        while (current != null){
+            n++;
+            current = current.siguiente;
+        }
+        return index >= 0 && index < n;
+    }
 }

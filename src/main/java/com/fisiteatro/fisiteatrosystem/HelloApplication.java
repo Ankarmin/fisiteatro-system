@@ -33,14 +33,14 @@ public class HelloApplication extends Application {
 
     private void comprobarCRUD() throws IOException {
         // Administrador
-        Cola<Administrador> administradores = new Cola<>();
-        administradores.cargarDesdeJson("src/main/java/com/fisiteatro/fisiteatrosystem/data/administrador.json", Administrador[].class);
-        AdministradorDAO administradorDAO = new AdministradorDAO(administradores);
-        Administrador admin = new Administrador("DA", "Admin", UUID.randomUUID().toString(), "newpass");
-        administradorDAO.create(admin);
-        List<Administrador> adminList = administradorDAO.readAll();
-        System.out.println("Administradores después de crear:");
-        adminList.forEach(System.out::println);
+//        Cola<Administrador> administradores = new Cola<>();
+//        administradores.cargarDesdeJson("src/main/java/com/fisiteatro/fisiteatrosystem/data/administrador.json", Administrador[].class);
+//        AdministradorDAO administradorDAO = new AdministradorDAO(administradores);
+//        Administrador admin = new Administrador("DA", "Admin", UUID.randomUUID().toString(), "newpass");
+//        administradorDAO.create(admin);
+//        List<Administrador> adminList = administradorDAO.readAll();
+//        System.out.println("Administradores después de crear:");
+//        adminList.forEach(System.out::println);
 
         // Cliente
         Cola<Cliente> clientes = new Cola<>();

@@ -12,8 +12,18 @@ public class AdministradorDAO implements IAdministradorDAO {
     private static final String FILE_PATH = "src/main/java/com/fisiteatro/fisiteatrosystem/data/administrador.json";
     private Cola<Administrador> administradores;
 
-    public AdministradorDAO(Cola<Administrador> administradores) {
-        this.administradores = administradores;
+//    public AdministradorDAO(Cola<Administrador> administradores) {
+//        this.administradores = administradores;
+//    }
+
+    public AdministradorDAO() {
+        this.administradores = new Cola<>();
+        try {
+            administradores.cargarDesdeJson(FILE_PATH, Administrador[].class);
+            System.out.println("Administradores cargados correctamente desde JSON.");
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo JSON: " + e.getMessage());
+        }
     }
 
     public void create(Administrador administrador) throws IOException {
@@ -49,6 +59,20 @@ public class AdministradorDAO implements IAdministradorDAO {
         }
         administradores = temp;
         saveToFile();
+    }
+
+    public boolean verificarContrasenia (String contrasenia){
+        if(!administradores.isEmpty()){
+            Administrador administrador = administradores.peek();
+            return administrador.getContrasena().equals(contrasenia);
+        }
+        return false;
+    }
+
+    public Administrador cambiarContrasenia(String contrasenia){
+        Administrador administrador = administradores.peek();
+        administrador.setContrasena(contrasenia);
+        return administrador;
     }
 
     private void saveToFile() throws IOException {
