@@ -119,4 +119,17 @@ public class EventoDAO implements IEventoDAO {
                     index++, evento.getNombre(), evento.getFecha(), evento.getHora(), evento.getPrecio(), evento.getCapacidad());
         }
     }
+
+    public void reducirCapacidad(Evento evento) throws IOException {
+        List<Evento> eventos = readAll();
+        for (Evento e : eventos) {
+            if (e.equals(evento)) {  // Comparar por atributos
+                e.setCapacidad(e.getCapacidad() - 1);
+                saveToFile();
+                return;
+            }
+        }
+    }
+
+
 }

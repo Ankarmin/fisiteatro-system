@@ -13,6 +13,10 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> {
         this.raiz = null;
     }
 
+    public Nodo<T> getRaiz() {
+        return raiz;
+    }
+
     public void insertar(T dato) {
         raiz = insertarRecursivo(raiz, dato);
     }
@@ -97,5 +101,16 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> {
             consumer.accept(nodo.dato);
             imprimirEnOrdenRecursivo(nodo.derecho, consumer);
         }
+    }
+    public T getDato(Nodo<T> nodo) {
+        return (nodo != null) ? nodo.dato : null;
+    }
+
+    public Nodo<T> getIzquierdo(Nodo<T> nodo) {
+        return (nodo != null) ? nodo.izquierdo : null;
+    }
+
+    public Nodo<T> getDerecho(Nodo<T> nodo) {
+        return (nodo != null) ? nodo.derecho : null;
     }
 }

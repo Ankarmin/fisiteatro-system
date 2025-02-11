@@ -72,7 +72,7 @@ public class Menu {
         }
         if (cliente != null) {
             System.out.println("¡Inicio de sesión exitoso! Bienvenido, " + cliente.getNombres());
-            MenuCliente menuCliente = new MenuCliente();
+            MenuCliente menuCliente = new MenuCliente(cliente.getDni());
             menuCliente.mostrarMenu();
         } else {
             System.out.println("DNI o contraseña incorrectos. Intente nuevamente.");
@@ -114,7 +114,7 @@ public class Menu {
         }
 
         System.out.println("\n--- CATALOGO DE EVENTOS ---");
-        System.out.printf("%-5s %-20s %-12s %-8s %-10s %-10s%n", "ID", "Nombre", "Fecha", "Hora", "Precio", "Capacidad");
+        System.out.printf("%-5s %-20s %-12s %-8s %-10s %-10s%n", "N°", "Nombre", "Fecha", "Hora", "Precio", "Capacidad");
         System.out.println("--------------------------------------------------------------");
 
         int index = 1;

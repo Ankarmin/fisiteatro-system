@@ -66,18 +66,18 @@ public class HelloApplication extends Application {
         Pila<Ticket> tickets = new Pila<>();
         tickets.cargarDesdeJson("src/main/java/com/fisiteatro/fisiteatrosystem/data/ticket.json", Ticket[].class);
         TicketDAO ticketDAO = new TicketDAO(tickets);
-        Ticket ticket = new Ticket(cliente, new Asiento("D", 3, true));
-        ticketDAO.create(ticket);
-        List<Ticket> ticketList = ticketDAO.readAll();
-        System.out.println("Tickets después de crear:");
-        ticketList.forEach(System.out::println);
+        //Ticket ticket = new Ticket(cliente, new Asiento("D", 3, true));
+        //ticketDAO.create(ticket);
+        //List<Ticket> ticketList = ticketDAO.readAll();
+        //System.out.println("Tickets después de crear:");
+        //ticketList.forEach(System.out::println);
 
         // Asiento
         ArbolBinarioBusqueda<Asiento> asientos = new ArbolBinarioBusqueda<>();
         asientos.cargarDesdeJson("src/main/java/com/fisiteatro/fisiteatrosystem/data/asiento.json", Asiento[].class);
         AsientoDAO asientoDAO = new AsientoDAO(asientos);
-        Asiento asiento = new Asiento("F", 4, true);
-        asientoDAO.create(asiento);
+        //Asiento asiento = new Asiento("F", 4, true);
+        //asientoDAO.create(asiento);
         List<Asiento> asientoList = asientoDAO.readAll();
         System.out.println("Asientos después de crear:");
         asientoList.forEach(System.out::println);

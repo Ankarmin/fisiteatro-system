@@ -13,7 +13,9 @@ public class TicketDAO implements ITicketDAO {
     private Pila<Ticket> tickets;
 
     public TicketDAO(Pila<Ticket> tickets) {
+
         this.tickets = tickets;
+        loadFromFile();
     }
 
     public void create(Ticket ticket) throws IOException {
@@ -54,9 +56,25 @@ public class TicketDAO implements ITicketDAO {
         tickets = temp;
         saveToFile();
     }
+    private void loadFromFile() {
+        ObjectMapper mapper = new ObjectMapper();
+        File file = new File(FILE_PATH);
+        if (file.exists()) {
+            try {
+                List<Ticket> ticketList = mapper.readValue(file,
+                        mapper.getTypeFactory().constructCollectionType(List.class, Ticket.class));
+                // Insertar en orden inverso para mantener la pila correctamente
+                for (int i = ticketList.size() - 1; i >= 0; i--) {
+                    tickets.push(ticketList.get(i));
+                }
+            } catch (IOException e) {
+                System.out.println("Error al cargar los tickets desde el archivo: " + e.getMessage());
+            }
+        }
+    }
 
     private void saveToFile() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(new File(FILE_PATH), tickets.toList());
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILE_PATH), tickets.toList());
     }
 }

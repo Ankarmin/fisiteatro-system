@@ -12,5 +12,5 @@ public interface IAsientoDAO {
 
     void update(Asiento asiento) throws IOException;
 
-    void delete(String fila, int numero) throws IOException;
+    void delete(String eventoNombre,String fila, int numero) throws IOException;
 }

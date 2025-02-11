@@ -1,1 +1,21 @@
-[{"fila":"F","numero":4,"estado":true}]
+[ {
+  "eventoNombre" : "El mago de Oz",
+  "fila" : "A",
+  "numero" : 1,
+  "estado" : true
+}, {
+  "eventoNombre" : "Peter Pan",
+  "fila" : "B",
+  "numero" : 82,
+  "estado" : true
+}, {
+  "eventoNombre" : "Peter Pan",
+  "fila" : "C",
+  "numero" : 11,
+  "estado" : true
+}, {
+  "eventoNombre" : "Peter Pan",
+  "fila" : "D",
+  "numero" : 93,
+  "estado" : true
+} ]
