@@ -1,9 +1,11 @@
 package com.fisiteatro.fisiteatrosystem.view;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fisiteatro.fisiteatrosystem.model.dao.*;
 import com.fisiteatro.fisiteatrosystem.datastructures.*;
 import com.fisiteatro.fisiteatrosystem.model.dto.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -29,7 +31,7 @@ public class MenuCliente {
             System.out.println("\n--- MENÚ CLIENTE ---");
             System.out.println("1. Ver eventos");
             System.out.println("2. Comprar ticket");
-            System.out.println("2. Eliminar ticket");
+            System.out.println("3. Eliminar ticket");
             System.out.println("4. Historial de compra");
             System.out.println("5. Cerrar sesion");
             System.out.print("Seleccione una opción: ");
@@ -48,7 +50,7 @@ public class MenuCliente {
                     break;
                 case 3:
                     System.out.println("Función para anulación de compra.");
-
+                    eliminarTicket();
                     break;
                 case 4:
                     System.out.println("Mostrando historial de compras...");
@@ -144,6 +146,86 @@ public class MenuCliente {
             System.out.println("Error al guardar la reserva.");
         }
 
+    }
+
+    private void eliminarTicket(){
+        List<Ticket> tickets = ticketDAO.readAll();
+
+        if (tickets.isEmpty()) {
+            System.out.println("No hay tickets comprados.");
+            return;
+        }
+
+        // Filtrar los tickets del cliente actual
+        List<Ticket> ticketsCliente = tickets.stream()
+                .filter(ticket -> ticket.getCliente().getDni().equals(clienteDni))
+                .toList();
+
+        if (ticketsCliente.isEmpty()) {
+            System.out.println("No tienes tickets para eliminar.");
+            return;
+        }
+
+        // Mostrar los tickets disponibles para eliminar
+        System.out.println("\n--- TICKETS DISPONIBLES PARA ELIMINAR ---");
+        System.out.printf("%-15s %-12s %-20s %-12s %-8s %-10s %-15s %-15s%n",
+                "N° Ticket", "DNI Cliente", "Evento", "Fecha", "Hora", "Precio", "N° Asiento", "Fila Asiento");
+        System.out.println("------------------------------------------------------------------------------------------------------------");
+
+        for (Ticket ticket : ticketsCliente) {
+            System.out.printf("%-15s %-12s %-20s %-12s %-8s %-10.2f %-15d %-15s%n",
+                    ticket.getId(), ticket.getCliente().getDni(), ticket.getEvento().getNombre(),
+                    ticket.getEvento().getFecha(), ticket.getEvento().getHora(), ticket.getEvento().getPrecio(),
+                    ticket.getAsiento().getNumero(), ticket.getAsiento().getFila());
+        }
+
+        System.out.print("Ingrese el ID del ticket que desea eliminar: ");
+        String ticketId = scanner.nextLine();
+
+        // Buscar el ticket en la lista
+        Ticket ticketAEliminar = ticketsCliente.stream()
+                .filter(ticket -> String.valueOf(ticket.getId()).equals(ticketId))
+                .findFirst()
+                .orElse(null);
+
+        if (ticketAEliminar == null) {
+            System.out.println("Error: No se encontró un ticket con el ID ingresado.");
+            return;
+        }
+
+        // Ruta del archivo JSON donde se almacenan los tickets eliminados
+        String filePath = "src/main/java/com/fisiteatro/fisiteatrosystem/data/tickets_eliminados.json";
+        ObjectMapper mapper = new ObjectMapper();
+        Cola<Ticket> colaTicketsEliminados = new Cola<>();
+
+        try {
+            // Cargar los tickets eliminados previos si el archivo no está vacío
+            File file = new File(filePath);
+            if (file.exists() && file.length() > 0) {
+                colaTicketsEliminados.cargarDesdeJson(filePath, Ticket[].class);
+            }
+
+            // Agregar el ticket eliminado a la cola
+            colaTicketsEliminados.offer(ticketAEliminar);
+
+            // Guardar la cola actualizada en el JSON
+            mapper.writerWithDefaultPrettyPrinter().writeValue(file, colaTicketsEliminados.toList());
+            System.out.println("El ticket ha sido guardado en tickets_eliminados.json.");
+
+        } catch (IOException e) {
+            System.out.println("Error al guardar el ticket eliminado en el archivo: " + e.getMessage());
+            return;
+        }
+
+        // Eliminar el ticket del DAO
+        try {
+            ticketDAO.delete(ticketAEliminar.getCliente().getDni(),
+                    ticketAEliminar.getAsiento().getFila(),
+                    ticketAEliminar.getAsiento().getNumero());
+            System.out.println("El ticket ha sido eliminado correctamente.");
+        } catch (IOException e) {
+            System.out.println("Error al eliminar el ticket: " + e.getMessage());
+        }
     }
 
     private void mostrarHistorialCompras() {

@@ -3,17 +3,17 @@
   "fecha" : "2023-12-31",
   "hora" : "23:59",
   "precio" : 100.0,
-  "capacidad" : 497
+  "capacidad" : 494
 }, {
   "nombre" : "Peter Pan",
   "fecha" : "2023-12-31",
   "hora" : "23:59",
   "precio" : 100.0,
-  "capacidad" : 496
+  "capacidad" : 495
 }, {
   "nombre" : "Harry Potter",
   "fecha" : "2025-04-23",
   "hora" : "17:30",
   "precio" : 45.0,
-  "capacidad" : 250
+  "capacidad" : 246
 } ]
