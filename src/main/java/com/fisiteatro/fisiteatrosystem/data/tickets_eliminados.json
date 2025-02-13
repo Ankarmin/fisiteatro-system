@@ -1,0 +1,148 @@
+[ {
+  "id" : 4969,
+  "cliente" : {
+    "nombres" : "CHRISTIAN",
+    "apellidos" : "ARANCIVIA",
+    "dni" : "987654321",
+    "contrasena" : "ASDASDASD"
+  },
+  "asiento" : {
+    "eventoNombre" : "El mago de Oz",
+    "fila" : "F",
+    "numero" : 90,
+    "estado" : true
+  },
+  "evento" : {
+    "nombre" : "El mago de Oz",
+    "fecha" : "2023-12-31",
+    "hora" : "23:59",
+    "precio" : 100.0,
+    "capacidad" : 495
+  }
+}, {
+  "id" : 2403,
+  "cliente" : {
+    "nombres" : "CHRISTIAN",
+    "apellidos" : "ARANCIVIA",
+    "dni" : "987654321",
+    "contrasena" : "ASDASDASD"
+  },
+  "asiento" : {
+    "eventoNombre" : "Harry Potter",
+    "fila" : "E",
+    "numero" : 68,
+    "estado" : true
+  },
+  "evento" : {
+    "nombre" : "Harry Potter",
+    "fecha" : "2025-04-23",
+    "hora" : "17:30",
+    "precio" : 45.0,
+    "capacidad" : 249
+  }
+}, {
+  "id" : 7414,
+  "cliente" : {
+    "nombres" : "CHRISTIAN",
+    "apellidos" : "ARANCIVIA",
+    "dni" : "987654321",
+    "contrasena" : "ASDASDASD"
+  },
+  "asiento" : {
+    "eventoNombre" : "Peter Pan",
+    "fila" : "C",
+    "numero" : 26,
+    "estado" : true
+  },
+  "evento" : {
+    "nombre" : "Peter Pan",
+    "fecha" : "2023-12-31",
+    "hora" : "23:59",
+    "precio" : 100.0,
+    "capacidad" : 495
+  }
+}, {
+  "id" : 5540,
+  "cliente" : {
+    "nombres" : "CHRISTIAN",
+    "apellidos" : "ARANCIVIA",
+    "dni" : "987654321",
+    "contrasena" : "ASDASDASD"
+  },
+  "asiento" : {
+    "eventoNombre" : "Harry Potter",
+    "fila" : "C",
+    "numero" : 7,
+    "estado" : true
+  },
+  "evento" : {
+    "nombre" : "Harry Potter",
+    "fecha" : "2025-04-23",
+    "hora" : "17:30",
+    "precio" : 45.0,
+    "capacidad" : 247
+  }
+}, {
+  "id" : 1277,
+  "cliente" : {
+    "nombres" : "CHRISTIAN",
+    "apellidos" : "ARANCIVIA",
+    "dni" : "987654321",
+    "contrasena" : "ASDASDASD"
+  },
+  "asiento" : {
+    "eventoNombre" : "Harry Potter",
+    "fila" : "D",
+    "numero" : 64,
+    "estado" : true
+  },
+  "evento" : {
+    "nombre" : "Harry Potter",
+    "fecha" : "2025-04-23",
+    "hora" : "17:30",
+    "precio" : 45.0,
+    "capacidad" : 248
+  }
+}, {
+  "id" : 9705,
+  "cliente" : {
+    "nombres" : "CHRISTIAN",
+    "apellidos" : "ARANCIVIA",
+    "dni" : "987654321",
+    "contrasena" : "ASDASDASD"
+  },
+  "asiento" : {
+    "eventoNombre" : "Harry Potter",
+    "fila" : "D",
+    "numero" : 66,
+    "estado" : true
+  },
+  "evento" : {
+    "nombre" : "Harry Potter",
+    "fecha" : "2025-04-23",
+    "hora" : "17:30",
+    "precio" : 45.0,
+    "capacidad" : 246
+  }
+}, {
+  "id" : 1429,
+  "cliente" : {
+    "nombres" : "CHRISTIAN",
+    "apellidos" : "ARANCIVIA",
+    "dni" : "987654321",
+    "contrasena" : "ASDASDASD"
+  },
+  "asiento" : {
+    "eventoNombre" : "El mago de Oz",
+    "fila" : "C",
+    "numero" : 15,
+    "estado" : true
+  },
+  "evento" : {
+    "nombre" : "El mago de Oz",
+    "fecha" : "2023-12-31",
+    "hora" : "23:59",
+    "precio" : 100.0,
+    "capacidad" : 494
+  }
+} ]

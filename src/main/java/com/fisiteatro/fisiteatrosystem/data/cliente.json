@@ -23,4 +23,9 @@
   "apellidos" : "GA",
   "dni" : "66666666",
   "contrasena" : "ola123"
+}, {
+  "nombres" : "CHRISTIAN",
+  "apellidos" : "ARANCIVIA",
+  "dni" : "987654321",
+  "contrasena" : "ASDASDASD"
 } ]
