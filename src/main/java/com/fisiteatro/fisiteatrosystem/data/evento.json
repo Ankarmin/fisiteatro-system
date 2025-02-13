@@ -1,19 +1,29 @@
 [ {
-  "nombre" : "El mago de Oz",
-  "fecha" : "2023-12-31",
-  "hora" : "23:59",
-  "precio" : 100.0,
-  "capacidad" : 497
-}, {
+  "id" : 548,
   "nombre" : "Peter Pan",
-  "fecha" : "2023-12-31",
-  "hora" : "23:59",
-  "precio" : 100.0,
-  "capacidad" : 496
+  "fecha" : "2025-10-15",
+  "hora" : "18:30",
+  "precio" : 60.0,
+  "capacidad" : 100
 }, {
+  "id" : 938,
   "nombre" : "Harry Potter",
   "fecha" : "2025-04-23",
   "hora" : "17:30",
-  "precio" : 45.0,
+  "precio" : 70.0,
   "capacidad" : 250
+}, {
+  "id" : 285,
+  "nombre" : "El mago de Oz",
+  "fecha" : "2023-12-31",
+  "hora" : "15:30",
+  "precio" : 50.0,
+  "capacidad" : 300
+}, {
+  "id" : 849,
+  "nombre" : "GAAAAAAAAA",
+  "fecha" : "2004-11-25",
+  "hora" : "23:43",
+  "precio" : 0.0,
+  "capacidad" : 20
 } ]

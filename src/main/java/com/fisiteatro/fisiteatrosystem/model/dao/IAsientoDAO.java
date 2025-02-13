@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.util.List;
 
 public interface IAsientoDAO {
-    void create(Asiento asiento) throws IOException;
+    void create(int capacidad, int idEvento) throws IOException;
 
     List<Asiento> readAll();
 
-    void update(Asiento asiento) throws IOException;
+    void update(Asiento asiento, int id) throws IOException;
 
-    void delete(String eventoNombre,String fila, int numero) throws IOException;
+    //void delete(String eventoNombre,String fila, int numero) throws IOException;
 }

@@ -1,6 +1,7 @@
 package com.fisiteatro.fisiteatrosystem.datastructures;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fisiteatro.fisiteatrosystem.model.dto.Asiento;
 
 import java.io.File;
 import java.io.IOException;
@@ -102,6 +103,7 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> {
             imprimirEnOrdenRecursivo(nodo.derecho, consumer);
         }
     }
+
     public T getDato(Nodo<T> nodo) {
         return (nodo != null) ? nodo.dato : null;
     }
@@ -113,4 +115,5 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> {
     public Nodo<T> getDerecho(Nodo<T> nodo) {
         return (nodo != null) ? nodo.derecho : null;
     }
+
 }

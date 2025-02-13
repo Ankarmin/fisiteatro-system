@@ -1,7 +1,7 @@
 package com.fisiteatro.fisiteatrosystem.model.dto;
 
 public class Asiento implements Comparable<Asiento> {
-    private String eventoNombre;
+    private int idEvento;
     private String fila;
     private int numero;
     private boolean estado;
@@ -9,18 +9,11 @@ public class Asiento implements Comparable<Asiento> {
     public Asiento() {
     }
 
-    public Asiento(String eventoNombre,String fila, int numero, boolean estado) {
-        this.eventoNombre = eventoNombre;
+    public Asiento(int idEvento, String fila, int numero, boolean estado) {
+        this.idEvento = idEvento;
         this.fila = fila;
         this.numero = numero;
         this.estado = estado;
-    }
-
-    public String getEventoNombre() {
-        return eventoNombre;
-    }
-    public void setEventoNombre(String eventoNombre) {
-        this.eventoNombre = eventoNombre;
     }
 
     public String getFila() {
@@ -39,7 +32,7 @@ public class Asiento implements Comparable<Asiento> {
         this.numero = numero;
     }
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
@@ -58,14 +51,6 @@ public class Asiento implements Comparable<Asiento> {
 
     @Override
     public int compareTo(Asiento o) {
-        int eventoComparison = this.eventoNombre.compareTo(o.eventoNombre);
-        if (eventoComparison != 0) {
-            return eventoComparison;
-        }
-        int filaComparison = this.fila.compareTo(o.fila);
-        if (filaComparison != 0) {
-            return filaComparison;
-        }
         return Integer.compare(this.numero, o.numero);
     }
 }

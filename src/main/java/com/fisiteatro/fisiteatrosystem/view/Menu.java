@@ -44,7 +44,7 @@ public class Menu {
                     registrarse();
                     break;
                 case 3:
-                    verCatalogo();
+                    eventoDAO.verCatalogo();
                     break;
                 case 4:
                     System.out.println("Saliendo del sistema...");
@@ -103,24 +103,6 @@ public class Menu {
             System.out.println("Registro exitoso. ¡Ahora puede iniciar sesión!");
         } catch (IOException e) {
             System.out.println("Error al registrar el cliente.");
-        }
-    }
-
-    private void verCatalogo() {
-        List<Evento> eventos = eventoDAO.readAll();
-        if (eventos.isEmpty()) {
-            System.out.println("No hay eventos disponibles.");
-            return;
-        }
-
-        System.out.println("\n--- CATALOGO DE EVENTOS ---");
-        System.out.printf("%-5s %-20s %-12s %-8s %-10s %-10s%n", "N°", "Nombre", "Fecha", "Hora", "Precio", "Capacidad");
-        System.out.println("--------------------------------------------------------------");
-
-        int index = 1;
-        for (Evento evento : eventos) {
-            System.out.printf("%-5d %-20s %-12s %-8s %-10.2f %-10d%n",
-                    index++, evento.getNombre(), evento.getFecha(), evento.getHora(), evento.getPrecio(), evento.getCapacidad());
         }
     }
 

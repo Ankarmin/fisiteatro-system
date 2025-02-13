@@ -2,20 +2,27 @@ package com.fisiteatro.fisiteatrosystem.model.dao;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fisiteatro.fisiteatrosystem.datastructures.Pila;
+import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
 import com.fisiteatro.fisiteatrosystem.model.dto.Ticket;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 public class TicketDAO implements ITicketDAO {
-    private static final String FILE_PATH = "src/main/java/com/fisiteatro/fisiteatrosystem/data/ticket.json";
+    private static final String FILE_PATH = "src/main/java/com/fisiteatro/fisiteatrosystem/data/ticketsComprados.json";
     private Pila<Ticket> tickets;
 
-    public TicketDAO(Pila<Ticket> tickets) {
+    public TicketDAO() {
 
-        this.tickets = tickets;
-        loadFromFile();
+        this.tickets = new Pila<>();
+        try {
+            tickets.cargarDesdeJson(FILE_PATH, Ticket[].class);
+            System.out.println("Tickets cargados con exito");
+        } catch (IOException e) {
+            System.out.println("Error al cargar el archivo: " + e.getMessage());
+        }
     }
 
     public void create(Ticket ticket) throws IOException {
@@ -23,10 +30,29 @@ public class TicketDAO implements ITicketDAO {
         saveToFile();
     }
 
+    private boolean validarId(int id) {
+        for(Ticket ticket : tickets.toList()){
+            if(id == ticket.getId()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int createId() {
+        Random rand = new Random();
+        int id;
+        do {
+            id = rand.nextInt(9000) + 1000;
+        } while (validarId(id));
+        return id;
+    }
+
     public List<Ticket> readAll() {
         return tickets.toList();
     }
 
+    // solo se podria actulizar el cliente del ticket (despues d cancelarlo)
     public void update(Ticket ticket) throws IOException {
         Pila<Ticket> temp = new Pila<>();
         while (!tickets.isEmpty()) {

@@ -1,6 +1,7 @@
 package com.fisiteatro.fisiteatrosystem.model.dto;
 
 public class Cliente extends Usuario {
+
     public Cliente() {
     }
 

@@ -9,23 +9,19 @@ public class Ticket {
     private Asiento asiento;
     private Evento evento;
 
-    public Ticket() {
-        this.id = generarId();
-    }
+    public Ticket() {}
 
-    public Ticket(Cliente cliente, Asiento asiento, Evento evento) {
-        this.id= generarId();
+    public Ticket(int id, Cliente cliente, Asiento asiento, Evento evento) {
+        this.id= id;
         this.cliente = cliente;
         this.asiento = asiento;
         this.evento = evento;
     }
-    private int generarId() {
-        Random rand = new Random();
-        return rand.nextInt(9000) + 1000;
-    }
+
     public int getId() {
         return id;
     }
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -45,6 +41,7 @@ public class Ticket {
     public Evento getEvento() {
         return evento;
     }
+
     public void setEvento(Evento evento) {
         this.evento = evento;
     }

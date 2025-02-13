@@ -12,14 +12,12 @@ public class MenuCliente {
     private Scanner scanner;
     private EventoDAO eventoDAO;
     private TicketDAO ticketDAO;
-    private AsientoDAO asientoDAO;
     private String clienteDni;
 
     public MenuCliente(String clienteDni) {
         this.scanner = new Scanner(System.in);
         this.eventoDAO = new EventoDAO(new ListaEnlazada<>());
-        this.ticketDAO = new TicketDAO(new Pila<>());
-        this.asientoDAO = new AsientoDAO(new ArbolBinarioBusqueda<>());
+        this.ticketDAO = new TicketDAO();
         this.clienteDni = clienteDni;
     }
 
@@ -40,7 +38,7 @@ public class MenuCliente {
             switch (opcion) {
                 case 1:
                     System.out.println("Mostrando eventos disponibles...");
-                    listarEventos();
+                    eventoDAO.verCatalogo();
                     break;
                 case 2:
                     System.out.println("Función para comprando tickets.");
@@ -53,33 +51,14 @@ public class MenuCliente {
                 case 4:
                     System.out.println("Mostrando historial de compras...");
                     mostrarHistorialCompras();
-                    return;
+                    break;
                 case 5:
                     System.out.println("Regresando al menú principal...");
                     return;
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
             }
-        } while (opcion != 4);
-    }
-
-    private void listarEventos() {
-        List<Evento> eventos = eventoDAO.readAll();
-        if (eventos.isEmpty()) {
-            System.out.println("No hay eventos disponibles.");
-            return;
-        }
-
-        System.out.println("\n--- CATÁLOGO DE EVENTOS ---");
-        System.out.printf("%-5s %-20s %-12s %-8s %-10s %-10s%n", "N°", "Nombre", "Fecha", "Hora", "Precio", "Capacidad");
-        System.out.println("--------------------------------------------------------------");
-
-        int index = 1;
-        for (Evento evento : eventos) {
-            System.out.printf("%-5d %-20s %-12s %-8s %-10.2f %-10d%n",
-                    index++, evento.getNombre(), evento.getFecha(), evento.getHora(), evento.getPrecio(), evento.getCapacidad());
-        }
-
+        } while (opcion != 5);
     }
 
     private void generarTicket() {
@@ -94,27 +73,25 @@ public class MenuCliente {
             return;
         }
 
-        listarEventos();
-        System.out.print("Seleccione el número del evento: ");
-        int seleccion = scanner.nextInt() - 1;
+        eventoDAO.verCatalogo();
+        System.out.print("Seleccione el ID del evento: ");
+        int seleccion = scanner.nextInt();
         scanner.nextLine();
 
-        if (seleccion < 0 || seleccion >= eventos.size()) {
+        if (!eventoDAO.validarId(seleccion)) {
             System.out.println("Selección inválida.");
             return;
         }
 
-        Evento eventoSeleccionado = eventos.get(seleccion);
+        Evento eventoSeleccionado = eventoDAO.getById(seleccion);
         if (eventoSeleccionado.getCapacidad() <= 0) {
             System.out.println("El evento está agotado.");
             return;
         }
 
-        int nuevoAsiento = asientoDAO.generarNuevoAsiento(eventoSeleccionado.getNombre());
-        String nivelAsiento = asientoDAO.obtenerNivelAsiento(nuevoAsiento);
-        char filaAsignada = nivelAsiento.charAt(0);
-
-        Asiento asiento = new Asiento(eventoSeleccionado.getNombre(), String.valueOf(filaAsignada), nuevoAsiento, true);
+        // se le asigna un numero d asiento nodo
+        AsientoDAO asientoDAO = new AsientoDAO(eventoSeleccionado.getId());
+        Asiento asientoSeleccionado = asientoDAO.obtenerPrimerAsientoDisponible();
 
         Cliente cliente = new ClienteDAO(new Cola<>()).obtenerPorDni(clienteDni);
         if (cliente == null) {
@@ -122,13 +99,23 @@ public class MenuCliente {
             return;
         }
 
-        Ticket ticket = new Ticket(cliente, asiento, eventoSeleccionado);
+        // aca se gener id y s mete en el constructor
+        int idTicket = ticketDAO.createId();
+
+        // cambiar el estado del asiento
+        try {
+            asientoDAO.update(asientoSeleccionado, eventoSeleccionado.getId());
+            System.out.println("asiento en false");
+        } catch (IOException e) {
+            System.out.println("Error al cambiar el estado del asiento: " + e.getMessage());
+        }
+
+        Ticket ticket = new Ticket(idTicket, cliente, asientoSeleccionado, eventoSeleccionado);
 
         try {
             eventoDAO.reducirCapacidad(eventoSeleccionado);
-            ticketDAO.create(ticket);
-            asientoDAO.create(asiento);
-            System.out.println("Ticket generado con éxito. Número de asiento: " + nuevoAsiento + " - Fila: " + filaAsignada);
+            ticketDAO.create(ticket); // se guardan todos en una pila
+            System.out.println("Ticket generado con éxito. Número de asiento: " + asientoSeleccionado.getNumero() + " - Fila: " + asientoSeleccionado.getFila());
 
             // Mostrar los datos en forma de tabla
             System.out.println("\n--------------------- DETALLE DEL TICKET GENERADO -------------------");
@@ -138,7 +125,7 @@ public class MenuCliente {
             System.out.printf("%-15s %-12s %-20s %-12s %-8s %-10.2f %-15d %-15s%n",
                     ticket.getId(), cliente.getDni(), eventoSeleccionado.getNombre(),
                     eventoSeleccionado.getFecha(), eventoSeleccionado.getHora(), eventoSeleccionado.getPrecio(),
-                    nuevoAsiento, filaAsignada);
+                    asientoSeleccionado.getNumero(), asientoSeleccionado.getFila());
 
         } catch (IOException e) {
             System.out.println("Error al guardar la reserva.");

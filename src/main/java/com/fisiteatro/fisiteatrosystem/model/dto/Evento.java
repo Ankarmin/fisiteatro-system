@@ -1,6 +1,7 @@
 package com.fisiteatro.fisiteatrosystem.model.dto;
 
 public class Evento {
+    private int id;
     private String nombre;
     private String fecha;
     private String hora;
@@ -10,7 +11,8 @@ public class Evento {
     public Evento() {
     }
 
-    public Evento(String nombre, String fecha, String hora, float precio, int capacidad) {
+    public Evento(int id, String nombre, String fecha, String hora, float precio, int capacidad) {
+        this.id = id;
         this.nombre = nombre;
         this.fecha = fecha;
         this.hora = hora;
@@ -56,6 +58,14 @@ public class Evento {
 
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
+    }
+
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.fisiteatro.fisiteatrosystem.view;
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
 import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
 import com.fisiteatro.fisiteatrosystem.model.dao.AdministradorDAO;
+import com.fisiteatro.fisiteatrosystem.model.dao.AsientoDAO;
 import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
 import com.fisiteatro.fisiteatrosystem.model.dto.Administrador;
 import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
@@ -49,7 +50,7 @@ public class MenuAdmin {
                     // reportes si da tiempo
                     break;
                 case '4':
-                    // cambiar contra
+                    // cambiar contra4
                     cambiarContrasenia();
                     break;
                 case '5':
@@ -80,9 +81,14 @@ public class MenuAdmin {
         int capacidad = scanner.nextInt();
         scanner.nextLine();
 
-        Evento nuevoEvento = new Evento(nombre, fecha, hora, precio, capacidad);
+        int id = eventoDAO.createId();
+
+        Evento nuevoEvento = new Evento(id, nombre, fecha, hora, precio, capacidad);
         try{
             eventoDAO.create(nuevoEvento);
+            // crear los asientos
+            AsientoDAO asientoDAO = new AsientoDAO(nuevoEvento.getId()); // aca d por si se crea el file
+            asientoDAO.create(nuevoEvento.getCapacidad(), nuevoEvento.getId()); // aca escribe en el file
             System.out.println("\nEvento creado con éxito.");
         }catch(IOException e){
             System.out.println("Error al crear evento: " + e.getMessage());
@@ -97,20 +103,25 @@ public class MenuAdmin {
         System.out.print("Ingrese el ID del evento a modificar: ");
         int indice = scanner.nextInt();
         scanner.nextLine();
-        indice -= 1;
 
-        if(!eventoDAO.validarIndex(indice)){
+        if(!eventoDAO.validarId(indice)){
             System.out.println("ID no válido.");
             return;
         }
 
         // el evento del indice se guarde en una variable y elegir q se quiere editar para no tener q llenar todos los campos
-        Evento evento = eventoDAO.get(indice);
+        Evento evento = eventoDAO.getById(indice);
+
+        if(evento == null){
+            System.out.println("ID incorrecto.");
+            return;
+        }
+
         // menu q hace los cambios
         opcionesModificarEvento(evento);
 
         try {
-            eventoDAO.update(indice, evento);
+            eventoDAO.update(evento);
             System.out.println("\n\tEvento actualizado con éxito\n");
             eventoDAO.verCatalogo();
         } catch (IOException e) {
@@ -126,15 +137,19 @@ public class MenuAdmin {
         System.out.print("Ingrese el ID del evento a eliminar: ");
         int indice = scanner.nextInt();
         scanner.nextLine();
-        indice -= 1;
 
-        if(!eventoDAO.validarIndex(indice)){
+        if(!eventoDAO.validarId(indice)){
             System.out.println("ID no válido.");
             return;
         }
 
         try {
-            eventoDAO.deleteByIndex(indice);
+            Evento evento = eventoDAO.getById(indice);
+            // borrar el archivo
+            AsientoDAO asientoDAO = new AsientoDAO(evento.getId());
+            asientoDAO.deleteFile(evento.getId());
+
+            eventoDAO.deleteById(indice);
             System.out.println("Evento eliminado correctamente.\n");
             eventoDAO.verCatalogo();
         } catch (IOException e) {
@@ -208,12 +223,11 @@ public class MenuAdmin {
     public void opcionesModificarEvento(Evento evento){
         char opcion;
         System.out.println("\n\t---MODIFICAR EVENTO---\n");
-        System.out.println("1. Modificar nombre");
-        System.out.println("2. Modificar fecha");
-        System.out.println("3. Modificar hora");
-        System.out.println("4. Modificar precio");
-        System.out.println("5. Modificar capacidad");
-        System.out.println("6. Regresar");
+        System.out.println("1. Modificar fecha");
+        System.out.println("2. Modificar hora");
+        System.out.println("3. Modificar precio");
+        System.out.println("4. Modificar capacidad");
+        System.out.println("5. Regresar");
         System.out.print("Ingrese opción: ");
 
         opcion = scanner.next().charAt(0);
@@ -221,31 +235,34 @@ public class MenuAdmin {
 
         switch(opcion){
             case '1':
-                System.out.print("\nIngrese nuevo nombre: ");
-                String nuevoNombre = scanner.nextLine();
-                evento.setNombre(nuevoNombre);
-                break;
-            case '2':
                 System.out.print("\nIngrese nueva fecha (AAAA-MM-DD): ");
                 String nuevaFecha = scanner.nextLine();
                 evento.setFecha(nuevaFecha);
                 break;
-            case '3':
+            case '2':
                 System.out.print("\nIngrese nueva hora (HH:MM): ");
                 String nuevaHora = scanner.nextLine();
                 evento.setHora(nuevaHora);
                 break;
-            case '4':
+            case '3':
                 System.out.print("\nIngrese nuevo precio: ");
                 float nuevoPrecio = scanner.nextFloat();
                 evento.setPrecio(nuevoPrecio);
                 break;
-            case '5':
+            case '4':
                 System.out.print("\nIngrese nueva capacidad: ");
                 int nuevaCapacidad = scanner.nextInt();
                 evento.setCapacidad(nuevaCapacidad);
+                // volver a crear con cierta capacidad(sobreescribe)
+                AsientoDAO asientoDAO = new AsientoDAO(evento.getId());
+                try {
+                    asientoDAO.create(nuevaCapacidad, evento.getId());
+                    System.out.println("Capacidad actualizada con exito.");
+                } catch (IOException e) {
+                    System.out.println("Error al intentar cambiar la capacidad: " + e.getMessage());
+                }
                 break;
-            case '6':
+            case '5':
                 System.out.println("Regresando...");
                 break;
             default:
