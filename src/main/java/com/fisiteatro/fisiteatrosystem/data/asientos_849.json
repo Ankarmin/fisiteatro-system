@@ -1,19 +1,19 @@
 [ {
   "fila" : "A",
   "numero" : 1,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "A",
   "numero" : 2,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "B",
   "numero" : 3,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "C",
   "numero" : 4,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "A",
   "numero" : 5,

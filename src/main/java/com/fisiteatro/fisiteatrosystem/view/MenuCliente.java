@@ -136,7 +136,7 @@ public class MenuCliente {
     }
 
     private void eliminarTicket(){
-        List<Ticket> tickets = ticketDAO.readAll();
+        List<Ticket> tickets = ticketDAO.readAll(); //tickets comprados d todos los clientes
 
         if (tickets.isEmpty()) {
             System.out.println("No hay tickets comprados.");
@@ -144,11 +144,9 @@ public class MenuCliente {
         }
 
         // Filtrar los tickets del cliente actual
-        List<Ticket> ticketsCliente = tickets.stream()
-                .filter(ticket -> ticket.getCliente().getDni().equals(clienteDni))
-                .toList();
+        ListaEnlazada<Ticket> ticketsCliente = ticketDAO.getTicketsPorCliente(clienteDni);
 
-        if (ticketsCliente.isEmpty()) {
+        if (ticketsCliente.toList().isEmpty()) {
             System.out.println("No tienes tickets para eliminar.");
             return;
         }
@@ -159,7 +157,7 @@ public class MenuCliente {
                 "N° Ticket", "DNI Cliente", "Evento", "Fecha", "Hora", "Precio", "N° Asiento", "Fila Asiento");
         System.out.println("------------------------------------------------------------------------------------------------------------");
 
-        for (Ticket ticket : ticketsCliente) {
+        for (Ticket ticket : ticketsCliente.toList()) {
             System.out.printf("%-15s %-12s %-20s %-12s %-8s %-10.2f %-15d %-15s%n",
                     ticket.getId(), ticket.getCliente().getDni(), ticket.getEvento().getNombre(),
                     ticket.getEvento().getFecha(), ticket.getEvento().getHora(), ticket.getEvento().getPrecio(),
@@ -167,37 +165,29 @@ public class MenuCliente {
         }
 
         System.out.print("Ingrese el ID del ticket que desea eliminar: ");
-        String ticketId = scanner.nextLine();
+        int ticketId = scanner.nextInt();
+        scanner.nextLine();
 
         // Buscar el ticket en la lista
-        Ticket ticketAEliminar = ticketsCliente.stream()
-                .filter(ticket -> String.valueOf(ticket.getId()).equals(ticketId))
-                .findFirst()
-                .orElse(null);
+        Ticket ticketAEliminar = ticketDAO.getTicketById(ticketId, ticketsCliente);
 
         if (ticketAEliminar == null) {
             System.out.println("Error: No se encontró un ticket con el ID ingresado.");
             return;
         }
 
-        // Ruta del archivo JSON donde se almacenan los tickets eliminados
-        String filePath = "src/main/java/com/fisiteatro/fisiteatrosystem/data/tickets_eliminados.json";
-        ObjectMapper mapper = new ObjectMapper();
-        Cola<Ticket> colaTicketsEliminados = new Cola<>();
+        // ticket se guarda en una cola, luego la cola se sube a solicitudes.json
+        Cola<Ticket> colaTicketsEliminados = ticketDAO.getSolicitudesTickets();
 
         try {
-            // Cargar los tickets eliminados previos si el archivo no está vacío
-            File file = new File(filePath);
-            if (file.exists() && file.length() > 0) {
-                colaTicketsEliminados.cargarDesdeJson(filePath, Ticket[].class);
-            }
-
             // Agregar el ticket eliminado a la cola
             colaTicketsEliminados.offer(ticketAEliminar);
 
             // Guardar la cola actualizada en el JSON
-            mapper.writerWithDefaultPrettyPrinter().writeValue(file, colaTicketsEliminados.toList());
-            System.out.println("El ticket ha sido guardado en tickets_eliminados.json.");
+            ticketDAO.saveSolicitudesTicketsJSON(colaTicketsEliminados);
+
+            // Aumenta en 1 la capacidad -> TODAVÌA, K SE AUMENTE CUANDO SE ACEPTA LA SOLICITUD
+            //eventoDAO.aumentarCapacidad(ticketAEliminar.getEvento());
 
         } catch (IOException e) {
             System.out.println("Error al guardar el ticket eliminado en el archivo: " + e.getMessage());

@@ -145,4 +145,15 @@ public class EventoDAO implements IEventoDAO {
         }
     }
 
+    public void aumentarCapacidad(Evento evento) throws IOException {
+        List<Evento> eventos = readAll();
+        for (Evento e : eventos) {
+            if (e.equals(evento)) {
+                e.setCapacidad(e.getCapacidad() + 1);
+                saveToFile();
+                return;
+            }
+        }
+    }
+
 }

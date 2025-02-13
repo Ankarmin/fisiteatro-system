@@ -1,7 +1,10 @@
 package com.fisiteatro.fisiteatrosystem.model.dao;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
+import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
 import com.fisiteatro.fisiteatrosystem.datastructures.Pila;
+import com.fisiteatro.fisiteatrosystem.model.dto.Cliente;
 import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
 import com.fisiteatro.fisiteatrosystem.model.dto.Ticket;
 
@@ -69,6 +72,46 @@ public class TicketDAO implements ITicketDAO {
         saveToFile();
     }
 
+    public ListaEnlazada<Ticket> getTicketsPorCliente(String dni) {
+        ListaEnlazada<Ticket> ticketsCliente = new ListaEnlazada<>();
+        for (Ticket ticket : tickets.toList()) {
+            if(ticket.getCliente().getDni().equals(dni)){
+                ticketsCliente.add(ticket);
+            }
+        }
+        return ticketsCliente;
+
+    }
+
+    public Ticket getTicketById(int id, ListaEnlazada<Ticket> ticketsCliente) {
+        for(Ticket ticket : ticketsCliente.toList()){
+            if(ticket.getId() == id){
+                return ticket;
+            }
+        }
+        return null;
+    }
+
+    public Cola<Ticket> getSolicitudesTickets(){
+        String FILENAME = "src/main/java/com/fisiteatro/fisiteatrosystem/data/solicitudesTickets.json";
+        Cola<Ticket> solicitudesTickets = new Cola<>();
+        try {
+            solicitudesTickets.cargarDesdeJson(FILENAME, Ticket[].class);
+            System.out.println("Solicitudes tickets cargados con exito");
+        } catch (IOException e) {
+            System.out.println("Error al cargar solicitudes d tickets: " + e.getMessage());
+        }
+        return solicitudesTickets;
+    }
+
+    public  void saveSolicitudesTicketsJSON(Cola<Ticket> solicitudesTickets) throws IOException {
+        String FILENAME = "src/main/java/com/fisiteatro/fisiteatrosystem/data/solicitudesTickets.json";
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILENAME), solicitudesTickets.toList());
+    }
+
+
     public void delete(String dni, String fila, int numero) throws IOException {
         Pila<Ticket> temp = new Pila<>();
         while (!tickets.isEmpty()) {
@@ -82,6 +125,7 @@ public class TicketDAO implements ITicketDAO {
         tickets = temp;
         saveToFile();
     }
+
     private void loadFromFile() {
         ObjectMapper mapper = new ObjectMapper();
         File file = new File(FILE_PATH);

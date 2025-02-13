@@ -1,0 +1,22 @@
+[ {
+  "id" : 2510,
+  "cliente" : {
+    "nombres" : "maria",
+    "apellidos" : "gomez",
+    "dni" : "23456789",
+    "contrasena" : "maria123"
+  },
+  "asiento" : {
+    "fila" : "C",
+    "numero" : 4,
+    "estado" : false
+  },
+  "evento" : {
+    "id" : 849,
+    "nombre" : "GAAAAAAAAA",
+    "fecha" : "2004-11-25",
+    "hora" : "23:43",
+    "precio" : 0.0,
+    "capacidad" : 16
+  }
+} ]
