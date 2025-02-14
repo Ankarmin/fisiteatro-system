@@ -13,9 +13,9 @@ public class EventoDAO implements IEventoDAO {
     private static final String FILE_PATH = "src/main/java/com/fisiteatro/fisiteatrosystem/data/evento.json";
     private ListaEnlazada<Evento> eventos;
 
-    public EventoDAO(ListaEnlazada<Evento> eventos) {
+    public EventoDAO() {
 
-        this.eventos = eventos;
+        this.eventos = new ListaEnlazada<>();
 
         try {
             eventos.cargarDesdeJson(FILE_PATH, Evento[].class); // Usa el método de ListaEnlazada

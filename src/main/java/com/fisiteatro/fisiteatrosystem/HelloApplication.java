@@ -43,14 +43,14 @@ public class HelloApplication extends Application {
 //        adminList.forEach(System.out::println);
 
         // Cliente
-        Cola<Cliente> clientes = new Cola<>();
-        clientes.cargarDesdeJson("src/main/java/com/fisiteatro/fisiteatrosystem/data/cliente.json", Cliente[].class);
-        ClienteDAO clienteDAO = new ClienteDAO(clientes);
-        Cliente cliente = new Cliente("DA", "Cliente", UUID.randomUUID().toString(), "newpass");
-        clienteDAO.create(cliente);
-        List<Cliente> clienteList = clienteDAO.readAll();
-        System.out.println("Clientes después de crear:");
-        clienteList.forEach(System.out::println);
+//        Cola<Cliente> clientes = new Cola<>();
+//        clientes.cargarDesdeJson("src/main/java/com/fisiteatro/fisiteatrosystem/data/cliente.json", Cliente[].class);
+//        ClienteDAO clienteDAO = new ClienteDAO(clientes);
+//        Cliente cliente = new Cliente("DA", "Cliente", UUID.randomUUID().toString(), "newpass");
+//        clienteDAO.create(cliente);
+//        List<Cliente> clienteList = clienteDAO.readAll();
+//        System.out.println("Clientes después de crear:");
+//        clienteList.forEach(System.out::println);
 
         // Evento
 //        ListaEnlazada<Evento> eventos = new ListaEnlazada<>();
@@ -81,5 +81,6 @@ public class HelloApplication extends Application {
 //        List<Asiento> asientoList = asientoDAO.readAll();
 //        System.out.println("Asientos después de crear:");
 //        asientoList.forEach(System.out::println);
+
        }
 }

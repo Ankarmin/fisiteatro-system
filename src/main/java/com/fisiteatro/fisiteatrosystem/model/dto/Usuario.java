@@ -1,5 +1,7 @@
 package com.fisiteatro.fisiteatrosystem.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public abstract class Usuario {
     protected String nombres;
     protected String apellidos;
@@ -18,6 +20,11 @@ public abstract class Usuario {
 
     public String getNombres() {
         return nombres;
+    }
+
+    @JsonIgnore
+    public String getNombreCompleto() {
+        return nombres + " " + apellidos;
     }
 
     public void setNombres(String nombres) {

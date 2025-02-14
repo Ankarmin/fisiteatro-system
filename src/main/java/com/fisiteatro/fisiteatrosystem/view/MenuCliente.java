@@ -18,7 +18,7 @@ public class MenuCliente {
 
     public MenuCliente(String clienteDni) {
         this.scanner = new Scanner(System.in);
-        this.eventoDAO = new EventoDAO(new ListaEnlazada<>());
+        this.eventoDAO = new EventoDAO();
         this.ticketDAO = new TicketDAO();
         this.clienteDni = clienteDni;
     }
@@ -106,7 +106,7 @@ public class MenuCliente {
 
         // cambiar el estado del asiento
         try {
-            asientoDAO.update(asientoSeleccionado, eventoSeleccionado.getId());
+            asientoDAO.updateOcupado(asientoSeleccionado, eventoSeleccionado.getId());
             System.out.println("asiento en false");
         } catch (IOException e) {
             System.out.println("Error al cambiar el estado del asiento: " + e.getMessage());

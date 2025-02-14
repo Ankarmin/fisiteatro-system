@@ -10,7 +10,7 @@ public interface IAsientoDAO {
 
     List<Asiento> readAll();
 
-    void update(Asiento asiento, int id) throws IOException;
+    //void update(Asiento asiento, int id) throws IOException;
 
     //void delete(String eventoNombre,String fila, int numero) throws IOException;
 }

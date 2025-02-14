@@ -19,7 +19,7 @@ public class Menu {
     private EventoDAO eventoDAO;
     public Menu() {
         this.clienteDAO = new ClienteDAO(new Cola<>());
-        this.eventoDAO = new EventoDAO(new ListaEnlazada<>());
+        this.eventoDAO = new EventoDAO();
         this.scanner = new Scanner(System.in);
     }
 

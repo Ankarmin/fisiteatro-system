@@ -3,7 +3,9 @@ package com.fisiteatro.fisiteatrosystem.model.dao;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
 import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
+import com.fisiteatro.fisiteatrosystem.datastructures.Nodo;
 import com.fisiteatro.fisiteatrosystem.datastructures.Pila;
+import com.fisiteatro.fisiteatrosystem.model.dto.Asiento;
 import com.fisiteatro.fisiteatrosystem.model.dto.Cliente;
 import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
 import com.fisiteatro.fisiteatrosystem.model.dto.Ticket;
@@ -15,6 +17,7 @@ import java.util.Random;
 
 public class TicketDAO implements ITicketDAO {
     private static final String FILE_PATH = "src/main/java/com/fisiteatro/fisiteatrosystem/data/ticketsComprados.json";
+    private static final String PATH_ELIMINADOS = "src/main/java/com/fisiteatro/fisiteatrosystem/data/ticketsEliminadosPorEvento/eliminados_";
     private Pila<Ticket> tickets;
 
     public TicketDAO() {
@@ -104,6 +107,11 @@ public class TicketDAO implements ITicketDAO {
         return solicitudesTickets;
     }
 
+    public void deleteSolicitud(Cola<Ticket> solicitudes) throws IOException{
+        solicitudes.desencolar();
+        saveSolicitudesTicketsJSON(solicitudes);
+    }
+
     public  void saveSolicitudesTicketsJSON(Cola<Ticket> solicitudesTickets) throws IOException {
         String FILENAME = "src/main/java/com/fisiteatro/fisiteatrosystem/data/solicitudesTickets.json";
 
@@ -111,6 +119,43 @@ public class TicketDAO implements ITicketDAO {
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILENAME), solicitudesTickets.toList());
     }
 
+    public Pila<Ticket> getTicketsEliminados(int idEvento){
+        String FILENAME = PATH_ELIMINADOS + idEvento + ".json";
+        Pila<Ticket> ticketsEliminados = new Pila<>();
+        try {
+            ticketsEliminados.cargarDesdeJson(FILENAME, Ticket[].class);
+            System.out.println("pila tickets eliminados cargados");
+        } catch (IOException e) {
+            System.out.println("Error al cargar la pila d tickets eliminados: " + e.getMessage());
+        }
+        return ticketsEliminados;
+    }
+
+    public void addTicketEliminado(Ticket ticket, Pila<Ticket> pila) throws IOException {
+        // mismos cambios pero en el ticket para agregarlo a la pila actualizao
+        ticket.getEvento().setCapacidad(ticket.getEvento().getCapacidad() + 1);
+        ticket.getAsiento().setEstado(true);
+
+        pila.push(ticket);
+        saveTicketsEliminadosJSON(pila, ticket.getEvento().getId());
+    }
+
+    public Asiento getAsiento(int numAsiento, Evento evento){
+        AsientoDAO asientoDAO = new AsientoDAO(evento.getId());
+        for(Asiento asiento: asientoDAO.readAll()){
+            if(asiento.getNumero() == numAsiento){
+                return asiento;
+            }
+        }
+        return null;
+    }
+
+    public void saveTicketsEliminadosJSON(Pila<Ticket> ticketsEliminados, int idEvento) throws IOException {
+        String FILENAME = PATH_ELIMINADOS + idEvento + ".json";
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILENAME), ticketsEliminados.toList());
+    }
 
     public void delete(String dni, String fila, int numero) throws IOException {
         Pila<Ticket> temp = new Pila<>();
@@ -147,4 +192,5 @@ public class TicketDAO implements ITicketDAO {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILE_PATH), tickets.toList());
     }
+
 }

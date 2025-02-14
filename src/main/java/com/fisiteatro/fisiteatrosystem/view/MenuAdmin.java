@@ -2,11 +2,16 @@ package com.fisiteatro.fisiteatrosystem.view;
 
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
 import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
+import com.fisiteatro.fisiteatrosystem.datastructures.Nodo;
+import com.fisiteatro.fisiteatrosystem.datastructures.Pila;
 import com.fisiteatro.fisiteatrosystem.model.dao.AdministradorDAO;
 import com.fisiteatro.fisiteatrosystem.model.dao.AsientoDAO;
 import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
+import com.fisiteatro.fisiteatrosystem.model.dao.TicketDAO;
 import com.fisiteatro.fisiteatrosystem.model.dto.Administrador;
+import com.fisiteatro.fisiteatrosystem.model.dto.Asiento;
 import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
+import com.fisiteatro.fisiteatrosystem.model.dto.Ticket;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -16,17 +21,20 @@ public class MenuAdmin {
     private AdministradorDAO adminDAO;
     private EventoDAO eventoDAO;
     private Scanner scanner;
+    private TicketDAO ticketDAO;
 
     public MenuAdmin() {
         this.adminDAO = new AdministradorDAO();
-        this.eventoDAO = new EventoDAO(new ListaEnlazada<>());
+        this.eventoDAO = new EventoDAO();
         this.scanner = new Scanner(System.in);
+        this.ticketDAO = new TicketDAO();
     }
 
     public void mostrarMenu() {
         char opcion;
         do {
             System.out.println("\n\t---ADMINISTRADOR---\n");
+            System.out.println("0. Ver eventos");
             System.out.println("1. CRUD Eventos");
             System.out.println("2. Gestionar Tickets");
             System.out.println("3. Reportes");
@@ -38,6 +46,9 @@ public class MenuAdmin {
             scanner.nextLine();
 
             switch(opcion){
+                case '0':
+                    eventoDAO.verCatalogo();
+                    break;
                 case '1':
                     // menu del crud
                     mostrarMenuEventos();
@@ -158,6 +169,91 @@ public class MenuAdmin {
     }
 
     private void gestionarTickets(){
+        // k muestre la primera solicitud y si hay mas k debajo saalgaa "mas solicitudes..."
+        // y k ingresanado x sale d la gstion
+        Cola<Ticket> solicitudesTickets = ticketDAO.getSolicitudesTickets();
+
+        if (solicitudesTickets.isEmpty()) {
+            System.out.println("No hay solicitudes de cancelación por revisar.");
+            return;
+        }
+
+        Nodo<Ticket> ticket = solicitudesTickets.getFrente();
+        do {
+            Ticket ticketActual = solicitudesTickets.getDato(ticket);
+
+            // carga la pilaa d tickets eliminados segun el evento (se guardaa en diferentes arhivos)
+            Pila<Ticket> ticketsEliminados = ticketDAO.getTicketsEliminados(ticketActual.getEvento().getId());
+
+            System.out.println("\n\t\t\t\t--- SOLICITUDES DE CANCELACIÓN ---\n");
+            System.out.printf("%-5s %-20s %-12s %-8s %-10s%n", "N° Ticket", "Evento", "Fecha", "Hora", "Cliente");
+            System.out.println("----------------------------------------------------------------------------------");
+            System.out.printf("%-5d %-20s %-12s %-8s %-10s%n",
+                    ticketActual.getId(), ticketActual.getEvento().getNombre(), ticketActual.getEvento().getFecha(),
+                    ticketActual.getEvento().getHora(), ticketActual.getCliente().getNombreCompleto());
+            System.out.println("----------------------------------------------------------------------------------");
+            if(ticket == solicitudesTickets.getFondo()){
+                System.out.println("No se encontraron más solicitudes en cola");
+            } else {
+                System.out.println("Más solicitudes en cola...");
+            }
+
+            //logica d aceptar o no
+            System.out.println("\n¿Desea aceptar la cancelación de este ticket? (S/N)\n" +
+                    "Si desea salir de la gestión de tickets, ingrese 'X': ");
+            String response = scanner.nextLine().toUpperCase();
+
+            switch (response){
+                case "S":
+                    try {
+                        // aumentaaa n uno la capacidad del evento y cambia el estado del asiento a true(disp)
+                        Evento eventoActual = eventoDAO.getById(ticketActual.getEvento().getId());
+                        AsientoDAO asientoDAO = new AsientoDAO(eventoActual.getId());
+                        Asiento asientoActual = ticketDAO.getAsiento(ticketActual.getAsiento().getNumero(), eventoActual);
+
+                        eventoDAO.aumentarCapacidad(eventoActual);
+                        // ETE NO CAMBIA EL ESTADO DEL ASIENTO -> NO LO PASA A TRUE
+                        asientoDAO.updateDesocupado(asientoActual, eventoActual.getId());
+
+                        // agrega ticket a la pila d eliminados correspondiente
+                        // creaa json segun el evento y sobreescribe
+                        ticketDAO.addTicketEliminado(ticketActual, ticketsEliminados);
+
+                        // k se borre d las solicitudes
+                        ticketDAO.deleteSolicitud(solicitudesTickets);
+
+                        System.out.println("Ticket eliminado correctamente.");
+                    } catch (IOException e) {
+                        System.out.println("Error al eliminar el ticket: " + e.getMessage());
+                    }
+                    break;
+                case "N":
+
+                    try {
+                        // si no se acepta la cancelacion k regrese a la pilaa d tickets comprados
+                        ticketDAO.create(ticketActual);
+
+                        // k se borre d las solicitudes
+                        ticketDAO.deleteSolicitud(solicitudesTickets);
+
+                        System.out.println("Cancelación negada correctamente.");
+                    } catch (IOException e) {
+                        System.out.println("Error al negar cancelación: " + e.getMessage());
+                    }
+                    break;
+                case "X":
+                    return;
+                default:
+                    System.out.println("Respuesta no válida. Vuelva a intentar");
+            }
+
+            // pasa al siguiente
+            ticket = solicitudesTickets.pasarSiguiente(ticket);
+        }while (ticket != null);
+
+
+
+
         // q se muestre el frente de la cola y se vea si cola sig != null
         // q se muestre algo como "mas tickets en la cola"
         // opcions d si/no para la cancelacion, luego d esto el ticket

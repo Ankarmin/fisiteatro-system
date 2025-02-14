@@ -105,7 +105,7 @@ public class ListaEnlazada<T> {
             if (cabeza == null) {
                 throw new IndexOutOfBoundsException("La lista está vacía");
             }
-            cabeza = cabeza.siguiente;  // Elimina el primer nodo
+            cabeza = cabeza.siguiente;
             return;
         }
 

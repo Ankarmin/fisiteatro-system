@@ -28,4 +28,9 @@
   "apellidos" : "ARANCIVIA",
   "dni" : "987654321",
   "contrasena" : "ASDASDASD"
+}, {
+  "nombres" : "pelado",
+  "apellidos" : "arredondo",
+  "dni" : "87654321",
+  "contrasena" : "peladin"
 } ]

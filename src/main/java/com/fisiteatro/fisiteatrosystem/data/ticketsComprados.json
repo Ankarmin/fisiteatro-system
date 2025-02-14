@@ -1,14 +1,14 @@
 [ {
-  "id" : 2510,
+  "id" : 3985,
   "cliente" : {
-    "nombres" : "maria",
-    "apellidos" : "gomez",
-    "dni" : "23456789",
-    "contrasena" : "maria123"
+    "nombres" : "pelado",
+    "apellidos" : "arredondo",
+    "dni" : "87654321",
+    "contrasena" : "peladin"
   },
   "asiento" : {
-    "fila" : "C",
-    "numero" : 4,
+    "fila" : "A",
+    "numero" : 5,
     "estado" : false
   },
   "evento" : {
@@ -17,6 +17,6 @@
     "fecha" : "2004-11-25",
     "hora" : "23:43",
     "precio" : 0.0,
-    "capacidad" : 16
+    "capacidad" : 14
   }
 } ]

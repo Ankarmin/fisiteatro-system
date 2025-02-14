@@ -1,23 +1,23 @@
 [ {
   "fila" : "A",
   "numero" : 1,
-  "estado" : false
+  "estado" : true
 }, {
   "fila" : "A",
   "numero" : 2,
-  "estado" : false
+  "estado" : true
 }, {
   "fila" : "B",
   "numero" : 3,
-  "estado" : false
+  "estado" : true
 }, {
   "fila" : "C",
   "numero" : 4,
-  "estado" : false
+  "estado" : true
 }, {
   "fila" : "A",
   "numero" : 5,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "C",
   "numero" : 6,

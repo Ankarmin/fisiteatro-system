@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Random;
 
 public class AsientoDAO implements IAsientoDAO {
-    private static final String PATH = "src/main/java/com/fisiteatro/fisiteatrosystem/data/asientos_";
+    private static final String PATH = "src/main/java/com/fisiteatro/fisiteatrosystem/data/asientosPorEvento/asientos_";
     private ArbolBinarioBusqueda<Asiento> asientos;
     private final Random random = new Random();
 
@@ -108,18 +108,18 @@ public class AsientoDAO implements IAsientoDAO {
         return list;
     }
 
-    public void update(Asiento asiento, int idEvento) throws IOException {
+    public void updateOcupado(Asiento asiento, int idEvento) throws IOException {
         asiento.setEstado(false);
         saveToFile(idEvento);
     }
 
-    // ARREGLAR -> SE PUEDE HACER EL BALANCEO AVL
-    // si se vende un ticket, se borra del arbol
-//    public void delete(String eventoNombre,String fila, int numero) throws IOException {
-//        Asiento asiento = new Asiento(eventoNombre,fila, numero, false); // por q se crea? hacer la eliaminacion
-//        asientos.eliminar(asiento);
-//        saveToFile();
-//    }
+    public void updateDesocupado(Asiento asiento, int idEvento) throws IOException {
+        System.out.println("Dirección de memoria de asientoEnLista: " + System.identityHashCode(asiento));
+        asiento.setEstado(true);
+        saveToFile(idEvento);
+    }
+
+
 
     public void deleteFile(int idEvento) throws IOException {
         String FILENAME = PATH + idEvento + ".json";
