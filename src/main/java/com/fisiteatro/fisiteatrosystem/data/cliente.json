@@ -33,4 +33,9 @@
   "apellidos" : "arredondo",
   "dni" : "87654321",
   "contrasena" : "peladin"
+}, {
+  "nombres" : "david",
+  "apellidos" : "piñarreta",
+  "dni" : "73426177",
+  "contrasena" : "73426177"
 } ]
