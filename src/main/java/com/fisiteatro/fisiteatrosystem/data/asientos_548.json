@@ -2,12 +2,12 @@
   {
     "fila": "A",
     "numero": 1,
-    "estado": true
+    "estado": false
   },
   {
     "fila": "B",
     "numero": 2,
-    "estado": true
+    "estado": false
   },
   {
     "fila": "A",

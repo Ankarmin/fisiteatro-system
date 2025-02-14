@@ -1,4 +1,4 @@
-package com.fisiteatro.fisiteatrosystem.view;
+package com.fisiteatro.fisiteatrosystem.menu;
 //para el catalogo
 
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
@@ -14,11 +14,9 @@ public class Menu {
 
     private final ClienteDAO clienteDAO;
     private final Scanner scanner;
-    private final EventoDAO eventoDAO;
 
     public Menu() {
         this.clienteDAO = new ClienteDAO(new Cola<>());
-        this.eventoDAO = new EventoDAO(new ListaEnlazada<>());
         this.scanner = new Scanner(System.in);
     }
 
@@ -43,7 +41,7 @@ public class Menu {
                     registrarse();
                     break;
                 case 3:
-                    eventoDAO.verCatalogo();
+                    verCatalogo();
                     break;
                 case 4:
                     System.out.println("Saliendo del sistema...");
@@ -103,6 +101,11 @@ public class Menu {
         } catch (IOException e) {
             System.out.println("Error al registrar el cliente.");
         }
+    }
+
+    public void verCatalogo() {
+        EventoDAO eventoDAO = new EventoDAO(new ListaEnlazada<>());
+        eventoDAO.verCatalogo();
     }
 
     public static void main(String[] args) {

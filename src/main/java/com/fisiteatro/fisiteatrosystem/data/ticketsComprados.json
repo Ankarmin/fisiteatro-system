@@ -1,5 +1,27 @@
 [
   {
+    "id": 4416,
+    "cliente": {
+      "nombres": "david",
+      "apellidos": "piñarreta",
+      "dni": "73426177",
+      "contrasena": "73426177"
+    },
+    "asiento": {
+      "fila": "B",
+      "numero": 2,
+      "estado": false
+    },
+    "evento": {
+      "id": 548,
+      "nombre": "Peter Pan",
+      "fecha": "2025-10-15",
+      "hora": "18:30",
+      "precio": 60.0,
+      "capacidad": 98
+    }
+  },
+  {
     "id": 2510,
     "cliente": {
       "nombres": "maria",
@@ -19,6 +41,28 @@
       "hora": "23:43",
       "precio": 0.0,
       "capacidad": 16
+    }
+  },
+  {
+    "id": 8742,
+    "cliente": {
+      "nombres": "david",
+      "apellidos": "piñarreta",
+      "dni": "73426177",
+      "contrasena": "73426177"
+    },
+    "asiento": {
+      "fila": "A",
+      "numero": 1,
+      "estado": false
+    },
+    "evento": {
+      "id": 548,
+      "nombre": "Peter Pan",
+      "fecha": "2025-10-15",
+      "hora": "18:30",
+      "precio": 60.0,
+      "capacidad": 99
     }
   }
 ]

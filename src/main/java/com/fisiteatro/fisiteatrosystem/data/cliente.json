@@ -34,5 +34,11 @@
     "apellidos": "ARANCIVIA",
     "dni": "987654321",
     "contrasena": "ASDASDASD"
+  },
+  {
+    "nombres": "david",
+    "apellidos": "piñarreta",
+    "dni": "73426177",
+    "contrasena": "73426177"
   }
 ]

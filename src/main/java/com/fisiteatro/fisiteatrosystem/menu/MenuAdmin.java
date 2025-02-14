@@ -1,4 +1,4 @@
-package com.fisiteatro.fisiteatrosystem.view;
+package com.fisiteatro.fisiteatrosystem.menu;
 
 import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
 import com.fisiteatro.fisiteatrosystem.model.dao.AdministradorDAO;

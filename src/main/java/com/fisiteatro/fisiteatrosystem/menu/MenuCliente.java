@@ -1,4 +1,4 @@
-package com.fisiteatro.fisiteatrosystem.view;
+package com.fisiteatro.fisiteatrosystem.menu;
 
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
 import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;

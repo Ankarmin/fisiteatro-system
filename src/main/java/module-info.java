@@ -13,7 +13,7 @@ module com.fisiteatro.fisiteatrosystem {
     requires com.fasterxml.jackson.databind;
 
     // opens com.fisiteatro.fisiteatrosystem to javafx.fxml;
-    // opens com.fisiteatro.fisiteatrosystem.model.dto to com.fasterxml.jackson.databind;
+    opens com.fisiteatro.fisiteatrosystem.model.dto to com.fasterxml.jackson.databind;
 
     // exports com.fisiteatro.fisiteatrosystem;
 }
