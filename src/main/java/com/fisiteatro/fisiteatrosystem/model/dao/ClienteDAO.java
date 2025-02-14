@@ -1,6 +1,5 @@
 package com.fisiteatro.fisiteatrosystem.model.dao;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
 import com.fisiteatro.fisiteatrosystem.model.dto.Cliente;
@@ -56,6 +55,7 @@ public class ClienteDAO implements IClienteDAO {
         clientes = temp;
         saveToFile();
     }
+
     //se puede mejorar
     public void delete(String dni) throws IOException {
         Cola<Cliente> temp = new Cola<>();

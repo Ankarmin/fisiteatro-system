@@ -1,6 +1,8 @@
-[ {
-  "nombres" : "DA",
-  "apellidos" : "Admin",
-  "dni" : "99999999",
-  "contrasena" : "admin"
-} ]
+[
+  {
+    "nombres": "DA",
+    "apellidos": "Admin",
+    "dni": "99999999",
+    "contrasena": "admin"
+  }
+]

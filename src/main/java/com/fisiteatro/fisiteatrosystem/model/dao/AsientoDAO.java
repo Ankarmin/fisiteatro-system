@@ -1,8 +1,8 @@
 package com.fisiteatro.fisiteatrosystem.model.dao;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fisiteatro.fisiteatrosystem.datastructures.Nodo;
 import com.fisiteatro.fisiteatrosystem.datastructures.ArbolBinarioBusqueda;
+import com.fisiteatro.fisiteatrosystem.datastructures.Nodo;
 import com.fisiteatro.fisiteatrosystem.model.dto.Asiento;
 
 import java.io.File;
@@ -50,7 +50,7 @@ public class AsientoDAO implements IAsientoDAO {
 //    }
 
     // crea el arbol cuando se crea un evento -> NO ES LO MISMO Q AGREGAR UN NUEVO ASIENTO
-    public void create(int capacidad, int idEvento) throws IOException{
+    public void create(int capacidad, int idEvento) throws IOException {
         ArbolBinarioBusqueda<Asiento> arbolAsientos = new ArbolBinarioBusqueda<>();
 
         insertarEnOrdenBalanceado(arbolAsientos, 1, capacidad, idEvento);

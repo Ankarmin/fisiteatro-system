@@ -61,18 +61,18 @@ public class EventoDAO implements IEventoDAO {
         return eventos.validarIndex(index);
     }
 
-    public int createId(){
+    public int createId() {
         Random random = new Random();
         int id;
-        do{
+        do {
             id = random.nextInt(900) + 100;
         } while (validarId(id));
         return id;
     }
 
     public boolean validarId(int id) {
-        for(Evento evento : eventos.toList()){
-            if(id == evento.getId()){
+        for (Evento evento : eventos.toList()) {
+            if (id == evento.getId()) {
                 return true;
             }
         }
@@ -103,9 +103,9 @@ public class EventoDAO implements IEventoDAO {
         saveToFile();
     }
 
-    public Evento getById (int id){
-        for(Evento evento : eventos.toList()){
-            if(evento.getId() == id){
+    public Evento getById(int id) {
+        for (Evento evento : eventos.toList()) {
+            if (evento.getId() == id) {
                 return evento;
             }
         }

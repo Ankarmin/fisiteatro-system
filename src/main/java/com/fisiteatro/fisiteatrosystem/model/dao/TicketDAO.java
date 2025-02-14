@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
 import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
 import com.fisiteatro.fisiteatrosystem.datastructures.Pila;
-import com.fisiteatro.fisiteatrosystem.model.dto.Cliente;
-import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
 import com.fisiteatro.fisiteatrosystem.model.dto.Ticket;
 
 import java.io.File;
@@ -34,8 +32,8 @@ public class TicketDAO implements ITicketDAO {
     }
 
     private boolean validarId(int id) {
-        for(Ticket ticket : tickets.toList()){
-            if(id == ticket.getId()){
+        for (Ticket ticket : tickets.toList()) {
+            if (id == ticket.getId()) {
                 return true;
             }
         }
@@ -75,7 +73,7 @@ public class TicketDAO implements ITicketDAO {
     public ListaEnlazada<Ticket> getTicketsPorCliente(String dni) {
         ListaEnlazada<Ticket> ticketsCliente = new ListaEnlazada<>();
         for (Ticket ticket : tickets.toList()) {
-            if(ticket.getCliente().getDni().equals(dni)){
+            if (ticket.getCliente().getDni().equals(dni)) {
                 ticketsCliente.add(ticket);
             }
         }
@@ -84,15 +82,15 @@ public class TicketDAO implements ITicketDAO {
     }
 
     public Ticket getTicketById(int id, ListaEnlazada<Ticket> ticketsCliente) {
-        for(Ticket ticket : ticketsCliente.toList()){
-            if(ticket.getId() == id){
+        for (Ticket ticket : ticketsCliente.toList()) {
+            if (ticket.getId() == id) {
                 return ticket;
             }
         }
         return null;
     }
 
-    public Cola<Ticket> getSolicitudesTickets(){
+    public Cola<Ticket> getSolicitudesTickets() {
         String FILENAME = "src/main/java/com/fisiteatro/fisiteatrosystem/data/solicitudesTickets.json";
         Cola<Ticket> solicitudesTickets = new Cola<>();
         try {
@@ -104,7 +102,7 @@ public class TicketDAO implements ITicketDAO {
         return solicitudesTickets;
     }
 
-    public  void saveSolicitudesTicketsJSON(Cola<Ticket> solicitudesTickets) throws IOException {
+    public void saveSolicitudesTicketsJSON(Cola<Ticket> solicitudesTickets) throws IOException {
         String FILENAME = "src/main/java/com/fisiteatro/fisiteatrosystem/data/solicitudesTickets.json";
 
         ObjectMapper mapper = new ObjectMapper();
