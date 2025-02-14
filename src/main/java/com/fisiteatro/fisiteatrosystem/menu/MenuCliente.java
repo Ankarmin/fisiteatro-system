@@ -1,20 +1,25 @@
-package com.fisiteatro.fisiteatrosystem.view;
+package com.fisiteatro.fisiteatrosystem.menu;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fisiteatro.fisiteatrosystem.model.dao.*;
-import com.fisiteatro.fisiteatrosystem.datastructures.*;
-import com.fisiteatro.fisiteatrosystem.model.dto.*;
+import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
+import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
+import com.fisiteatro.fisiteatrosystem.model.dao.AsientoDAO;
+import com.fisiteatro.fisiteatrosystem.model.dao.ClienteDAO;
+import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
+import com.fisiteatro.fisiteatrosystem.model.dao.TicketDAO;
+import com.fisiteatro.fisiteatrosystem.model.dto.Asiento;
+import com.fisiteatro.fisiteatrosystem.model.dto.Cliente;
+import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
+import com.fisiteatro.fisiteatrosystem.model.dto.Ticket;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class MenuCliente {
-    private Scanner scanner;
-    private EventoDAO eventoDAO;
-    private TicketDAO ticketDAO;
-    private String clienteDni;
+    private final Scanner scanner;
+    private final EventoDAO eventoDAO;
+    private final TicketDAO ticketDAO;
+    private final String clienteDni;
 
     public MenuCliente(String clienteDni) {
         this.scanner = new Scanner(System.in);
@@ -135,7 +140,7 @@ public class MenuCliente {
 
     }
 
-    private void eliminarTicket(){
+    private void eliminarTicket() {
         List<Ticket> tickets = ticketDAO.readAll(); //tickets comprados d todos los clientes
 
         if (tickets.isEmpty()) {

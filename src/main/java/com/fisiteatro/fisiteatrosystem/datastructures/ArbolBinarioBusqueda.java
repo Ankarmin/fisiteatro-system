@@ -1,7 +1,6 @@
 package com.fisiteatro.fisiteatrosystem.datastructures;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fisiteatro.fisiteatrosystem.model.dto.Asiento;
 
 import java.io.File;
 import java.io.IOException;

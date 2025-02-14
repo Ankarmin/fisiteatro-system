@@ -1,4 +1,4 @@
-package com.fisiteatro.fisiteatrosystem.view;
+package com.fisiteatro.fisiteatrosystem.menu;
 
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
 import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
@@ -18,10 +18,10 @@ import java.util.Scanner;
 
 public class MenuAdmin {
 
-    private AdministradorDAO adminDAO;
-    private EventoDAO eventoDAO;
-    private Scanner scanner;
-    private TicketDAO ticketDAO;
+    private final AdministradorDAO adminDAO;
+    private final EventoDAO eventoDAO;
+    private final Scanner scanner;
+    private final TicketDAO ticketDAO;
 
     public MenuAdmin() {
         this.adminDAO = new AdministradorDAO();
@@ -45,7 +45,7 @@ public class MenuAdmin {
             opcion = scanner.next().charAt(0);
             scanner.nextLine();
 
-            switch(opcion){
+            switch(opcion) {
                 case '0':
                     eventoDAO.verCatalogo();
                     break;
@@ -70,10 +70,10 @@ public class MenuAdmin {
                 default:
                     System.out.println("Opción no válida. Intente nuevamente.");
             }
-        } while(opcion != '5');
+        } while (opcion != '5');
     }
 
-    private void agregarEvento(){
+    private void agregarEvento() {
         // datos: nombre, fecha, hora, precio, capacidad
         System.out.print("\nIngrese nombre del evento: ");
         String nombre = scanner.nextLine();
@@ -95,18 +95,18 @@ public class MenuAdmin {
         int id = eventoDAO.createId();
 
         Evento nuevoEvento = new Evento(id, nombre, fecha, hora, precio, capacidad);
-        try{
+        try {
             eventoDAO.create(nuevoEvento);
             // crear los asientos
             AsientoDAO asientoDAO = new AsientoDAO(nuevoEvento.getId()); // aca d por si se crea el file
             asientoDAO.create(nuevoEvento.getCapacidad(), nuevoEvento.getId()); // aca escribe en el file
             System.out.println("\nEvento creado con éxito.");
-        }catch(IOException e){
+        } catch (IOException e) {
             System.out.println("Error al crear evento: " + e.getMessage());
         }
     }
 
-    private void modificarEvento(){
+    private void modificarEvento() {
         // primero mostrar la lista de eventos con indice y q el admin elija
         // evento modificar segun el indice
         eventoDAO.verCatalogo();
@@ -115,7 +115,7 @@ public class MenuAdmin {
         int indice = scanner.nextInt();
         scanner.nextLine();
 
-        if(!eventoDAO.validarId(indice)){
+        if (!eventoDAO.validarId(indice)) {
             System.out.println("ID no válido.");
             return;
         }
@@ -123,7 +123,7 @@ public class MenuAdmin {
         // el evento del indice se guarde en una variable y elegir q se quiere editar para no tener q llenar todos los campos
         Evento evento = eventoDAO.getById(indice);
 
-        if(evento == null){
+        if (evento == null) {
             System.out.println("ID incorrecto.");
             return;
         }
@@ -140,7 +140,7 @@ public class MenuAdmin {
         }
     }
 
-    private void eliminarEvento(){
+    private void eliminarEvento() {
         // primero mostrar la lista de eventos con indice y q el admin elija
         // evento eliminar segun el indice
         eventoDAO.verCatalogo();
@@ -149,7 +149,7 @@ public class MenuAdmin {
         int indice = scanner.nextInt();
         scanner.nextLine();
 
-        if(!eventoDAO.validarId(indice)){
+        if (!eventoDAO.validarId(indice)) {
             System.out.println("ID no válido.");
             return;
         }
@@ -168,7 +168,7 @@ public class MenuAdmin {
         }
     }
 
-    private void gestionarTickets(){
+    private void gestionarTickets() {
         // k muestre la primera solicitud y si hay mas k debajo saalgaa "mas solicitudes..."
         // y k ingresanado x sale d la gstion
         Cola<Ticket> solicitudesTickets = ticketDAO.getSolicitudesTickets();
@@ -260,11 +260,11 @@ public class MenuAdmin {
         // se va a una pila
     }
 
-    private void cambiarContrasenia(){
+    private void cambiarContrasenia() {
         System.out.print("\nIngrese contraseña actual: ");
         String contraseniaActual = scanner.nextLine();
 
-        if(!adminDAO.verificarContrasenia(contraseniaActual)){
+        if (!adminDAO.verificarContrasenia(contraseniaActual)) {
             System.out.println("Contraseña incorrecta.");
             return;
         }
@@ -281,9 +281,9 @@ public class MenuAdmin {
         }
     }
 
-    private void mostrarMenuEventos(){
+    private void mostrarMenuEventos() {
         char opcion;
-        do{
+        do {
             System.out.println("\n\t---CRUD EVENTOS---\n");
             System.out.println("1. Agregar evento");
             System.out.println("2. Modificar evento");
@@ -294,7 +294,7 @@ public class MenuAdmin {
             opcion = scanner.next().charAt(0);
             scanner.nextLine();
 
-            switch (opcion){
+            switch (opcion) {
                 case '1':
                     // agrgar
                     agregarEvento();
@@ -316,7 +316,7 @@ public class MenuAdmin {
         } while (opcion != '4');
     }
 
-    public void opcionesModificarEvento(Evento evento){
+    public void opcionesModificarEvento(Evento evento) {
         char opcion;
         System.out.println("\n\t---MODIFICAR EVENTO---\n");
         System.out.println("1. Modificar fecha");
@@ -329,7 +329,7 @@ public class MenuAdmin {
         opcion = scanner.next().charAt(0);
         scanner.nextLine();
 
-        switch(opcion){
+        switch (opcion) {
             case '1':
                 System.out.print("\nIngrese nueva fecha (AAAA-MM-DD): ");
                 String nuevaFecha = scanner.nextLine();

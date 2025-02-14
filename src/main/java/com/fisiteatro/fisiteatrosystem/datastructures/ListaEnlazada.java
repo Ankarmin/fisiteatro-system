@@ -75,7 +75,7 @@ public class ListaEnlazada<T> {
         }
     }
 
-    public T get(int index){
+    public T get(int index) {
         if (index < 0) {
             throw new IndexOutOfBoundsException("Posición inválida");
         }
@@ -123,10 +123,10 @@ public class ListaEnlazada<T> {
         actual.siguiente = actual.siguiente.siguiente;
     }
 
-    public boolean validarIndex(int index){
+    public boolean validarIndex(int index) {
         Nodo<T> current = cabeza;
         int n = 0;
-        while (current != null){
+        while (current != null) {
             n++;
             current = current.siguiente;
         }

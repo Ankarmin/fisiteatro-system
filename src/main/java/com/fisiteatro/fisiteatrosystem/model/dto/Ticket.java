@@ -1,18 +1,16 @@
 package com.fisiteatro.fisiteatrosystem.model.dto;
 
-import java.util.Objects;
-import java.util.Random;
-
 public class Ticket {
     private int id;
     private Cliente cliente;
     private Asiento asiento;
     private Evento evento;
 
-    public Ticket() {}
+    public Ticket() {
+    }
 
     public Ticket(int id, Cliente cliente, Asiento asiento, Evento evento) {
-        this.id= id;
+        this.id = id;
         this.cliente = cliente;
         this.asiento = asiento;
         this.evento = evento;
@@ -45,6 +43,7 @@ public class Ticket {
     public void setEvento(Evento evento) {
         this.evento = evento;
     }
+
     @Override
     public String toString() {
         return "Ticket{" +

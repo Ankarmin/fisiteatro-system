@@ -60,11 +60,11 @@ public class Evento {
         this.capacidad = capacidad;
     }
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
     }
 
