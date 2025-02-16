@@ -59,8 +59,8 @@ public class Pila<T> {
             return;
         }
         T[] datos = mapper.readValue(file, clazz);
-        for (T dato : datos) {
-            push(dato);
+        for (int i = datos.length - 1; i >= 0; i--) {
+            push(datos[i]);
         }
     }
 

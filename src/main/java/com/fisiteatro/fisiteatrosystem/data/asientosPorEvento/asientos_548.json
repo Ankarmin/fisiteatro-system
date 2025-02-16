@@ -1,502 +1,401 @@
-[
-  {
-    "fila": "A",
-    "numero": 1,
-    "estado": false
-  },
-  {
-    "fila": "B",
-    "numero": 2,
-    "estado": false
-  },
-  {
-    "fila": "A",
-    "numero": 3,
-    "estado": true
-  },
-  {
-    "fila": "B",
-    "numero": 4,
-    "estado": true
-  },
-  {
-    "fila": "C",
-    "numero": 5,
-    "estado": true
-  },
-  {
-    "fila": "A",
-    "numero": 6,
-    "estado": true
-  },
-  {
-    "fila": "C",
-    "numero": 7,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 8,
-    "estado": true
-  },
-  {
-    "fila": "B",
-    "numero": 9,
-    "estado": true
-  },
-  {
-    "fila": "C",
-    "numero": 10,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 11,
-    "estado": true
-  },
-  {
-    "fila": "A",
-    "numero": 12,
-    "estado": true
-  },
-  {
-    "fila": "C",
-    "numero": 13,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 14,
-    "estado": true
-  },
-  {
-    "fila": "C",
-    "numero": 15,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 16,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 17,
-    "estado": true
-  },
-  {
-    "fila": "B",
-    "numero": 18,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 19,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 20,
-    "estado": true
-  },
-  {
-    "fila": "C",
-    "numero": 21,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 22,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 23,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 24,
-    "estado": true
-  },
-  {
-    "fila": "A",
-    "numero": 25,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 26,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 27,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 28,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 29,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 30,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 31,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 32,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 33,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 34,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 35,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 36,
-    "estado": true
-  },
-  {
-    "fila": "B",
-    "numero": 37,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 38,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 39,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 40,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 41,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 42,
-    "estado": true
-  },
-  {
-    "fila": "C",
-    "numero": 43,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 44,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 45,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 46,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 47,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 48,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 49,
-    "estado": true
-  },
-  {
-    "fila": "A",
-    "numero": 50,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 51,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 52,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 53,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 54,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 55,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 56,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 57,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 58,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 59,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 60,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 61,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 62,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 63,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 64,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 65,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 66,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 67,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 68,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 69,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 70,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 71,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 72,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 73,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 74,
-    "estado": true
-  },
-  {
-    "fila": "B",
-    "numero": 75,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 76,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 77,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 78,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 79,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 80,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 81,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 82,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 83,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 84,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 85,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 86,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 87,
-    "estado": true
-  },
-  {
-    "fila": "C",
-    "numero": 88,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 89,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 90,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 91,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 92,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 93,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 94,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 95,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 96,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 97,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 98,
-    "estado": true
-  },
-  {
-    "fila": "F",
-    "numero": 99,
-    "estado": true
-  },
-  {
-    "fila": "G",
-    "numero": 100,
-    "estado": true
-  }
-]
+[ {
+  "fila" : "A",
+  "numero" : 1,
+  "estado" : false
+}, {
+  "fila" : "B",
+  "numero" : 2,
+  "estado" : false
+}, {
+  "fila" : "A",
+  "numero" : 3,
+  "estado" : false
+}, {
+  "fila" : "B",
+  "numero" : 4,
+  "estado" : false
+}, {
+  "fila" : "C",
+  "numero" : 5,
+  "estado" : false
+}, {
+  "fila" : "A",
+  "numero" : 6,
+  "estado" : true
+}, {
+  "fila" : "C",
+  "numero" : 7,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 8,
+  "estado" : true
+}, {
+  "fila" : "B",
+  "numero" : 9,
+  "estado" : true
+}, {
+  "fila" : "C",
+  "numero" : 10,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 11,
+  "estado" : true
+}, {
+  "fila" : "A",
+  "numero" : 12,
+  "estado" : true
+}, {
+  "fila" : "C",
+  "numero" : 13,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 14,
+  "estado" : true
+}, {
+  "fila" : "C",
+  "numero" : 15,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 16,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 17,
+  "estado" : true
+}, {
+  "fila" : "B",
+  "numero" : 18,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 19,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 20,
+  "estado" : true
+}, {
+  "fila" : "C",
+  "numero" : 21,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 22,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 23,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 24,
+  "estado" : true
+}, {
+  "fila" : "A",
+  "numero" : 25,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 26,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 27,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 28,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 29,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 30,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 31,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 32,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 33,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 34,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 35,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 36,
+  "estado" : true
+}, {
+  "fila" : "B",
+  "numero" : 37,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 38,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 39,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 40,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 41,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 42,
+  "estado" : true
+}, {
+  "fila" : "C",
+  "numero" : 43,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 44,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 45,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 46,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 47,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 48,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 49,
+  "estado" : true
+}, {
+  "fila" : "A",
+  "numero" : 50,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 51,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 52,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 53,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 54,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 55,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 56,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 57,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 58,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 59,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 60,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 61,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 62,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 63,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 64,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 65,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 66,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 67,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 68,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 69,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 70,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 71,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 72,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 73,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 74,
+  "estado" : true
+}, {
+  "fila" : "B",
+  "numero" : 75,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 76,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 77,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 78,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 79,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 80,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 81,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 82,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 83,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 84,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 85,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 86,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 87,
+  "estado" : true
+}, {
+  "fila" : "C",
+  "numero" : 88,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 89,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 90,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 91,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 92,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 93,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 94,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 95,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 96,
+  "estado" : true
+}, {
+  "fila" : "E",
+  "numero" : 97,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 98,
+  "estado" : true
+}, {
+  "fila" : "F",
+  "numero" : 99,
+  "estado" : true
+}, {
+  "fila" : "G",
+  "numero" : 100,
+  "estado" : true
+} ]

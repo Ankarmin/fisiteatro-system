@@ -1,4 +1,46 @@
 [ {
+  "id" : 8295,
+  "cliente" : {
+    "nombres" : "lucia",
+    "apellidos" : "de la cruz",
+    "dni" : "12345678",
+    "contrasena" : "lucia123"
+  },
+  "asiento" : {
+    "fila" : "B",
+    "numero" : 4,
+    "estado" : false
+  },
+  "evento" : {
+    "id" : 548,
+    "nombre" : "Peter Pan",
+    "fecha" : "2025-10-15",
+    "hora" : "18:30",
+    "precio" : 60.0,
+    "capacidad" : 97
+  }
+}, {
+  "id" : 7662,
+  "cliente" : {
+    "nombres" : "lucia",
+    "apellidos" : "de la cruz",
+    "dni" : "12345678",
+    "contrasena" : "lucia123"
+  },
+  "asiento" : {
+    "fila" : "A",
+    "numero" : 3,
+    "estado" : false
+  },
+  "evento" : {
+    "id" : 548,
+    "nombre" : "Peter Pan",
+    "fecha" : "2025-10-15",
+    "hora" : "18:30",
+    "precio" : 60.0,
+    "capacidad" : 97
+  }
+}, {
   "id" : 3985,
   "cliente" : {
     "nombres" : "pelado",

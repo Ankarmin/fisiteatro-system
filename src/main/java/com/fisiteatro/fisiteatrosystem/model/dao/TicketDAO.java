@@ -69,7 +69,10 @@ public class TicketDAO implements ITicketDAO {
                 temp.push(current);
             }
         }
-        tickets = temp;
+        while (!temp.isEmpty()) {
+            tickets.push(temp.pop());
+        }
+        //tickets = temp;
         saveToFile();
     }
 
@@ -165,7 +168,10 @@ public class TicketDAO implements ITicketDAO {
                 temp.push(current);
             }
         }
-        tickets = temp;
+        while (!temp.isEmpty()) {
+            tickets.push(temp.pop());
+        }
+        //tickets = temp;
         saveToFile();
     }
 
