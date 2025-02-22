@@ -1,8 +1,6 @@
 package com.fisiteatro.fisiteatrosystem.menu;
-//para el catalogo
 
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
-import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
 import com.fisiteatro.fisiteatrosystem.model.dao.ClienteDAO;
 import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
 import com.fisiteatro.fisiteatrosystem.model.dto.Cliente;

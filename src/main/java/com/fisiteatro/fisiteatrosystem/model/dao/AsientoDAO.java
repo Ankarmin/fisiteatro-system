@@ -39,23 +39,11 @@ public class AsientoDAO implements IAsientoDAO {
 
     }
 
-    // ARREGLAR -> mmm por si se kiere agregar
-//    public void create(Asiento asiento) throws IOException {
-//        int nuevoNumero = generarNumeroAsiento();
-//        String nivel = obtenerNivelABB(nuevoNumero);
-//        asiento.setNumero(nuevoNumero);
-//        asiento.setFila(nivel);
-//        asientos.insertar(asiento);
-//        saveToFile();
-//    }
-
-    // crea el arbol cuando se crea un evento -> NO ES LO MISMO Q AGREGAR UN NUEVO ASIENTO
     public void create(int capacidad, int idEvento) throws IOException {
         ArbolBinarioBusqueda<Asiento> arbolAsientos = new ArbolBinarioBusqueda<>();
 
         insertarEnOrdenBalanceado(arbolAsientos, 1, capacidad, idEvento);
 
-        // se crea el json y se escribe
         asientos = arbolAsientos;
         saveToFile(idEvento);
     }
@@ -65,7 +53,6 @@ public class AsientoDAO implements IAsientoDAO {
 
         int mitad = (min + max) / 2;
 
-        // Determinar fila correcta
         String fila = determinarFila(mitad, max);
 
         Asiento asiento = new Asiento(idEvento, fila, mitad, true);
@@ -118,7 +105,6 @@ public class AsientoDAO implements IAsientoDAO {
         asiento.setEstado(true);
         saveToFile(idEvento);
     }
-
 
 
     public void deleteFile(int idEvento) throws IOException {
