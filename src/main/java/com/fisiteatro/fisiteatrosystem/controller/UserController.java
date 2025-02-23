@@ -1,5 +1,6 @@
 package com.fisiteatro.fisiteatrosystem.controller;
 
+import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
 import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
 import com.fisiteatro.fisiteatrosystem.model.dao.TicketDAO;
 import com.fisiteatro.fisiteatrosystem.model.dto.AsientoDTO;
@@ -8,6 +9,7 @@ import com.fisiteatro.fisiteatrosystem.model.dto.EventoDTO;
 import com.fisiteatro.fisiteatrosystem.model.dto.TicketDTO;
 import com.fisiteatro.fisiteatrosystem.service.EventoService;
 import com.fisiteatro.fisiteatrosystem.service.TicketService;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -16,11 +18,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -233,14 +240,13 @@ public class UserController implements Initializable {
     }
 
     private void cargarCompras() {
-        ObservableList<TicketDTO> ticketList = FXCollections.observableList(ticketService.readAll());
+        ObservableList<TicketDTO> ticketList = FXCollections.observableArrayList(ticketService.readAll());
         compras_tableViewCompras.setItems(ticketList);
         compras_tableViewCompras.refresh();
     }
 
     private void cargarEventos() {
-        ObservableList<EventoDTO> eventoList = FXCollections.observableList(eventoService.readAll());
-
+        ObservableList<EventoDTO> eventoList = FXCollections.observableArrayList(eventoService.readAll());
         eventos_tableViewEventos.setItems(eventoList);
         eventos_tableViewEventos.refresh();
     }
@@ -250,4 +256,27 @@ public class UserController implements Initializable {
         eventoService = new EventoService();
     }
 
+    @FXML
+    private void cerrarSesion() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/fisiteatro/fisiteatrosystem/view/fxml/Login.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Fisiteatro");
+
+            Stage currentStage = (Stage) bttnCerrarSesion.getScene().getWindow();
+            currentStage.close();
+
+            stage.setOnCloseRequest(event -> {
+                Platform.exit();
+                System.exit(0);
+            });
+
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
