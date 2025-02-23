@@ -30,8 +30,8 @@ public class TicketService {
         ticketDAO.update(ticket);
     }
 
-    public ListaEnlazada<TicketDTO> getTicketsPorCliente(String dni) {
-        return ticketDAO.getTicketsPorCliente(dni);
+    public Pila<TicketDTO> getTicketsPorDNI(String dni) {
+        return ticketDAO.getTicketsPorDNI(dni);
     }
 
     public TicketDTO getTicketById(int id, ListaEnlazada<TicketDTO> ticketsCliente) {

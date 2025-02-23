@@ -76,15 +76,14 @@ public class TicketDAO implements ITicketDAO {
         saveToFile();
     }
 
-    public ListaEnlazada<TicketDTO> getTicketsPorCliente(String dni) {
-        ListaEnlazada<TicketDTO> ticketsCliente = new ListaEnlazada<>();
+    public Pila<TicketDTO> getTicketsPorDNI(String DNI) {
+        Pila<TicketDTO> ticketsCliente = new Pila<>();
         for (TicketDTO ticketDTO : tickets.toList()) {
-            if (ticketDTO.getCliente().getDni().equals(dni)) {
-                ticketsCliente.add(ticketDTO);
+            if (ticketDTO.getCliente().getDni().equals(DNI)) {
+                ticketsCliente.push(ticketDTO);
             }
         }
         return ticketsCliente;
-
     }
 
     public TicketDTO getTicketById(int id, ListaEnlazada<TicketDTO> ticketsCliente) {

@@ -1,16 +1,11 @@
 package com.fisiteatro.fisiteatrosystem.controller;
 
-import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
-import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
-import com.fisiteatro.fisiteatrosystem.model.dao.TicketDAO;
-import com.fisiteatro.fisiteatrosystem.model.dto.AsientoDTO;
 import com.fisiteatro.fisiteatrosystem.model.dto.ClienteDTO;
 import com.fisiteatro.fisiteatrosystem.model.dto.EventoDTO;
 import com.fisiteatro.fisiteatrosystem.model.dto.TicketDTO;
 import com.fisiteatro.fisiteatrosystem.service.EventoService;
 import com.fisiteatro.fisiteatrosystem.service.TicketService;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -192,11 +187,11 @@ public class UserController implements Initializable {
         configurarColumnaCompras();
 
         cargarEventos();
-        cargarCompras();
     }
 
     public void setClienteDTO(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
+        cargarCompras();
     }
 
     public void switchForm(ActionEvent event) {
@@ -216,31 +211,24 @@ public class UserController implements Initializable {
 
     private void configurarColumnaCompras() {
         compras_columna_nroTicket.setCellValueFactory(new PropertyValueFactory<>("id"));
-        compras_columna_dniCliente.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getCliente().getDni()));
+        compras_columna_dniCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getDni()));
 
-        compras_columna_evento.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getEvento().getNombre()));
+        compras_columna_evento.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getNombre()));
 
-        compras_columna_fecha.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getEvento().getFecha()));
+        compras_columna_fecha.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getFecha()));
 
-        compras_columna_hora.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getEvento().getHora()));
+        compras_columna_hora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getHora()));
 
-        compras_columna_precio.setCellValueFactory(cellData ->
-                new SimpleObjectProperty(cellData.getValue().getEvento().getPrecio()));
+        compras_columna_precio.setCellValueFactory(cellData -> new SimpleObjectProperty(cellData.getValue().getEvento().getPrecio()));
 
-        compras_columna_nroAsiento.setCellValueFactory(cellData ->
-                new SimpleIntegerProperty(cellData.getValue().getAsiento().getNumero()).asObject());
+        compras_columna_nroAsiento.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAsiento().getNumero()).asObject());
 
-        compras_columna_filaAsiento.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getAsiento().getFila()));
+        compras_columna_filaAsiento.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAsiento().getFila()));
 
     }
 
     private void cargarCompras() {
-        ObservableList<TicketDTO> ticketList = FXCollections.observableArrayList(ticketService.readAll());
+        ObservableList<TicketDTO> ticketList = FXCollections.observableArrayList(ticketService.getTicketsPorDNI(clienteDTO.getDni()).toList());
         compras_tableViewCompras.setItems(ticketList);
         compras_tableViewCompras.refresh();
     }

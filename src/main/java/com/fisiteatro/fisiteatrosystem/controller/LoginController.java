@@ -146,17 +146,17 @@ public class LoginController implements Initializable {
 
     private void abrirVentana(String titulo, String fxmlPath) {
         try {
-            Stage stage = (Stage) iniciarSesion_bttnIngresar.getScene().getWindow();
-            stage.close();
-
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = fxmlLoader.load();
 
             if (Objects.equals(titulo, "Cliente")) {
-                ClienteDTO cliente = clienteService.obtenerPorDni(iniciarSesion_txtFieldNombreUsuario.getText());
+                ClienteDTO clienteDTO = clienteService.obtenerPorDni(iniciarSesion_txtFieldNombreUsuario.getText());
                 UserController userController = fxmlLoader.getController();
-                userController.setClienteDTO(cliente);
+                userController.setClienteDTO(clienteDTO);
             }
+
+            Stage stage = (Stage) iniciarSesion_bttnIngresar.getScene().getWindow();
+            stage.close();
 
             Stage nuevaVentana = new Stage();
             nuevaVentana.setTitle(titulo);

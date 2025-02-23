@@ -141,7 +141,7 @@ public class MenuCliente {
     }
 
     private void eliminarTicket() {
-        List<TicketDTO> ticketDTOS = ticketDAO.readAll(); //tickets comprados d todos los clientes
+        /* List<TicketDTO> ticketDTOS = ticketDAO.readAll(); //tickets comprados d todos los clientes
 
         if (ticketDTOS.isEmpty()) {
             System.out.println("No hay tickets comprados.");
@@ -207,7 +207,7 @@ public class MenuCliente {
             System.out.println("El ticket ha sido eliminado correctamente.");
         } catch (IOException e) {
             System.out.println("Error al eliminar el ticket: " + e.getMessage());
-        }
+        } */
     }
 
     private void mostrarHistorialCompras() {
