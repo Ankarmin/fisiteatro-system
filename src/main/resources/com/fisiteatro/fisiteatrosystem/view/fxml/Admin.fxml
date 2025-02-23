@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="1213.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.natursalas.natursalassystem.controller.AdminController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="719.0" prefWidth="1213.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fisiteatro.fisiteatrosystem.controller.AdminController">
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
@@ -45,11 +38,6 @@
                                         <Font size="18.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="lblFecha" layoutX="921.0" layoutY="16.0" prefHeight="18.0" prefWidth="278.0" text="DD:MM:YY" textAlignment="RIGHT" AnchorPane.rightAnchor="14.199999999999818">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                </Label>
                             </children>
                             <styleClass>
                                 <String fx:value="white-bg" />
@@ -60,11 +48,6 @@
                     <left>
                         <AnchorPane prefHeight="640.0" prefWidth="242.0" stylesheets="@../css/AdminDesign.css" BorderPane.alignment="CENTER">
                             <children>
-                                <ImageView fitHeight="105.0" fitWidth="110.0" layoutX="68.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../assets/fontUserGreen.png" />
-                                    </image>
-                                </ImageView>
                                 <Label fx:id="lblNombreCuenta" layoutX="107.0" layoutY="145.0" stylesheets="@../css/AdminDesign.css" text="Administrador">
                                     <font>
                                         <Font size="18.0" />
@@ -76,12 +59,11 @@
                                     </font>
                                 </Label>
                                 <Line endX="100.0" layoutX="120.0" layoutY="201.0" startX="-100.0" styleClass="shadow" />
-                                <Button fx:id="bttnInformacion" layoutX="21.0" layoutY="235.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="46.0" prefWidth="200.0" styleClass="button-1" stylesheets="@../css/AdminDesign.css" text="Información" />
-                                <Button fx:id="bttnPacientes" layoutX="21.0" layoutY="295.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="46.0" prefWidth="200.0" styleClass="button-1" stylesheets="@../css/AdminDesign.css" text="Pacientes" />
-                                <Button fx:id="bttnVentas" layoutX="21.0" layoutY="358.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="46.0" prefWidth="200.0" styleClass="button-1" stylesheets="@../css/AdminDesign.css" text="Ventas" />
-                                <Button fx:id="bttnCrearCuenta" layoutX="21.0" layoutY="477.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="46.0" prefWidth="200.0" styleClass="button-1" stylesheets="@../css/AdminDesign.css" text="Crear cuenta" />
-                                <Button fx:id="bttnCerrarSesion" layoutX="21.0" layoutY="538.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="46.0" prefWidth="200.0" styleClass="button-2" stylesheets="@../css/AdminDesign.css" text="Cerrar sesión" />
-                                <Button fx:id="bttnInventarios" layoutX="20.0" layoutY="419.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="46.0" prefWidth="200.0" styleClass="button-1" stylesheets="@../css/AdminDesign.css" text="Inventarios" />
+                                <Button fx:id="bttnEventos" layoutX="21.0" layoutY="235.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="46.0" prefWidth="200.0" styleClass="button-1" stylesheets="@../css/AdminDesign.css" text="Eventos" />
+                                <Button fx:id="bttnAdministrarEventos" layoutX="21.0" layoutY="295.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="46.0" prefWidth="200.0" styleClass="button-1" stylesheets="@../css/AdminDesign.css" text="Administrar eventos" />
+                                <Button fx:id="bttnGestionarTickets" layoutX="21.0" layoutY="358.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="46.0" prefWidth="200.0" styleClass="button-1" stylesheets="@../css/AdminDesign.css" text="Gestionar tickets" />
+                                <Button fx:id="bttnCerrarSesion" layoutX="21.0" layoutY="482.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="46.0" prefWidth="200.0" styleClass="button-2" stylesheets="@../css/AdminDesign.css" text="Cerrar sesión" />
+                                <Button fx:id="bttnInventarios" layoutX="20.0" layoutY="419.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="46.0" prefWidth="200.0" styleClass="button-1" stylesheets="@../css/AdminDesign.css" text="Reportes" />
                             </children>
                             <styleClass>
                                 <String fx:value="gb-color-1" />
@@ -92,170 +74,119 @@
                     <center>
                         <AnchorPane prefHeight="606.0" prefWidth="972.0" BorderPane.alignment="CENTER">
                             <children>
-                                <AnchorPane fx:id="panelInformacion" layoutX="120.0" layoutY="130.0" prefHeight="660.8" prefWidth="971.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <children>
-                                        <AnchorPane layoutX="15.2" layoutY="14.0" prefHeight="220.0" prefWidth="962.0" stylesheets="@../css/AdminDesign.css" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
-                                            <styleClass>
-                                                <String fx:value="shadow" />
-                                                <String fx:value="radius" />
-                                                <String fx:value="white-bg" />
-                                            </styleClass>
-                                            <children>
-                                                <ScrollPane layoutX="33.0" layoutY="-1.0" prefHeight="168.80000000000007" prefWidth="943.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                    <content>
-                                                        <AnchorPane prefHeight="215.0" prefWidth="1260.0" styleClass="white-bg" stylesheets="@../css/AdminDesign.css">
-                                                            <children>
-                                                                <AnchorPane layoutX="23.0" layoutY="14.0" prefHeight="178.0" prefWidth="259.0" stylesheets="@../css/AdminDesign.css">
-                                                                    <styleClass>
-                                                                        <String fx:value="gb-color-1" />
-                                                                        <String fx:value="radius" />
-                                                                        <String fx:value="shadow" />
-                                                                    </styleClass>
-                                                                    <children>
-                                                                        <ImageView fitHeight="95.0" fitWidth="110.0" layoutX="14.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
-                                                                            <image>
-                                                                                <Image url="@../assets/ubication.jpg" />
-                                                                            </image>
-                                                                        </ImageView>
-                                                                        <Label layoutX="29.0" layoutY="22.0" text="Sede con más ventas hoy">
-                                                                            <font>
-                                                                                <Font size="18.0" />
-                                                                            </font>
-                                                                        </Label>
-                                                                        <Label fx:id="informacion_lblSedeMasVentas" layoutX="149.0" layoutY="96.0" text="Sin ventas">
-                                                                            <font>
-                                                                                <Font size="18.0" />
-                                                                            </font>
-                                                                        </Label>
-                                                                    </children>
-                                                                </AnchorPane>
-                                                                <AnchorPane layoutX="319.0" layoutY="14.0" prefHeight="178.0" prefWidth="259.0" stylesheets="@../css/AdminDesign.css">
-                                                                    <styleClass>
-                                                                        <String fx:value="gb-color-1" />
-                                                                        <String fx:value="radius" />
-                                                                        <String fx:value="shadow" />
-                                                                    </styleClass>
-                                                                    <children>
-                                                                        <ImageView fitHeight="101.0" fitWidth="138.0" layoutX="34.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
-                                                                            <image>
-                                                                                <Image url="@../assets/product.jpg" />
-                                                                            </image>
-                                                                        </ImageView>
-                                                                        <Label layoutX="34.0" layoutY="25.0" text="Productos vendidos hoy">
-                                                                            <font>
-                                                                                <Font size="18.0" />
-                                                                            </font>
-                                                                        </Label>
-                                                                        <Label fx:id="informacion_lblProductosVendidos" layoutX="181.0" layoutY="104.0" text="0">
-                                                                            <font>
-                                                                                <Font size="18.0" />
-                                                                            </font>
-                                                                        </Label>
-                                                                    </children>
-                                                                </AnchorPane>
-                                                                <AnchorPane layoutX="615.0" layoutY="14.0" prefHeight="178.0" prefWidth="259.0" stylesheets="@../css/AdminDesign.css">
-                                                                    <styleClass>
-                                                                        <String fx:value="gb-color-1" />
-                                                                        <String fx:value="radius" />
-                                                                        <String fx:value="shadow" />
-                                                                    </styleClass>
-                                                                    <children>
-                                                                        <ImageView fitHeight="96.0" fitWidth="73.0" layoutX="43.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
-                                                                            <image>
-                                                                                <Image url="@../assets/person.jpg" />
-                                                                            </image>
-                                                                        </ImageView>
-                                                                        <Label layoutX="33.0" layoutY="24.0" text="Pacientes atendidos hoy">
-                                                                            <font>
-                                                                                <Font size="18.0" />
-                                                                            </font>
-                                                                        </Label>
-                                                                        <Label fx:id="informacion_lblPacientesAtendidos" layoutX="183.0" layoutY="102.0" text="0">
-                                                                            <font>
-                                                                                <Font size="18.0" />
-                                                                            </font>
-                                                                        </Label>
-                                                                    </children>
-                                                                </AnchorPane>
-                                                                <AnchorPane layoutX="915.0" layoutY="14.0" prefHeight="178.0" prefWidth="259.0" stylesheets="@../css/AdminDesign.css">
-                                                                    <styleClass>
-                                                                        <String fx:value="gb-color-1" />
-                                                                        <String fx:value="radius" />
-                                                                        <String fx:value="shadow" />
-                                                                    </styleClass>
-                                                                    <children>
-                                                                        <ImageView fitHeight="108.0" fitWidth="132.0" layoutX="14.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
-                                                                            <image>
-                                                                                <Image url="@../assets/newPacients.jpg" />
-                                                                            </image>
-                                                                        </ImageView>
-                                                                        <Label layoutX="44.0" layoutY="25.0" text="Pacientes nuevos hoy">
-                                                                            <font>
-                                                                                <Font size="18.0" />
-                                                                            </font>
-                                                                        </Label>
-                                                                        <Label fx:id="informacion_blPacientesNuevos" layoutX="186.0" layoutY="101.0" text="0">
-                                                                            <font>
-                                                                                <Font size="18.0" />
-                                                                            </font>
-                                                                        </Label>
-                                                                    </children>
-                                                                </AnchorPane>
-                                                            </children>
-                                                        </AnchorPane>
-                                                    </content>
-                                                </ScrollPane>
-                                            </children>
-                                        </AnchorPane>
-                                        <AnchorPane layoutX="15.2" layoutY="254.4" prefHeight="386.0" prefWidth="941.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="254.0">
-                                            <styleClass>
-                                                <String fx:value="shadow" />
-                                                <String fx:value="radius" />
-                                                <String fx:value="white-bg" />
-                                            </styleClass>
-                                            <children>
-                                                <AnchorPane layoutX="22.0" layoutY="71.0" prefHeight="293.0" prefWidth="903.0" styleClass="white-bg" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="20.799999999999955" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="15.199999999999932" AnchorPane.topAnchor="71.0">
-                                                    <children>
-                                                        <TableView fx:id="informacion_tableViewVentasPorSede" layoutX="78.0" prefHeight="293.6" prefWidth="903.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                            <columns>
-                                                                <TableColumn fx:id="informacion_columna_sede" prefWidth="75.0" text="SEDE" />
-                                                                <TableColumn fx:id="informacion_columna_productosVendidos" prefWidth="75.0" text="PRODUCTOS VENDIDOS" />
-                                                                <TableColumn fx:id="informacion_columna_productoMasVendido" prefWidth="75.0" text="PRODUCTO MÁS VENDIDO" />
-                                                                <TableColumn fx:id="informacion_columna_pacientesAtendidos" prefWidth="75.0" text="PACIENTES ATENDIDOS" />
-                                                                <TableColumn fx:id="informacion_columna_pacientesNuevos" prefWidth="75.0" text="PACIENTES NUEVOS" />
-                                                            </columns>
-                                                            <columnResizePolicy>
-                                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                                            </columnResizePolicy>
-                                                        </TableView>
-                                                    </children>
-                                                </AnchorPane>
-                                                <Label layoutX="22.0" layoutY="22.0" prefHeight="18.0" prefWidth="222.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Ventas por sede">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </AnchorPane>
-                                    </children>
+                                <AnchorPane fx:id="panelEventos" layoutX="120.0" layoutY="130.0" prefHeight="660.8" prefWidth="971.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label layoutX="21.0" layoutY="24.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Eventos">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane layoutX="21.0" layoutY="63.2" prefHeight="539.0" prefWidth="920.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="63.0">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                    <String fx:value="radius" />
+                                 </styleClass>
+                                 <children>
+                                    <AnchorPane layoutX="14.0" layoutY="77.0" prefHeight="447.0" prefWidth="890.0" stylesheets="@../css/AdminDesign.css">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="radius" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                       <children>
+                                          <TableView fx:id="eventos_tableViewEventos" layoutX="107.0" layoutY="72.0" prefHeight="447.2" prefWidth="890.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columns>
+                                              <TableColumn fx:id="eventos_columna_id" prefWidth="75.0" text="ID" />
+                                              <TableColumn fx:id="eventos_columna_nombre" prefWidth="75.0" text="NOMBRE" />
+                                                <TableColumn fx:id="eventos_columna_fecha" prefWidth="75.0" text="FECHA" />
+                                                <TableColumn fx:id="eventos_columna_hora" prefWidth="75.0" text="HORA" />
+                                                <TableColumn fx:id="eventos_columna_precio" prefWidth="75.0" text="PRECIO" />
+                                                <TableColumn fx:id="eventos_columna_capacidad" prefWidth="75.0" text="CAPACIDAD" />
+                                            </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                    <Label layoutX="14.0" layoutY="22.0" text="Buscar por ID">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="eventos_txtFieldBuscar" layoutX="136.0" layoutY="18.0" prefHeight="34.0" prefWidth="250.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" />
+                                    <Button fx:id="eventos_bttnBuscar" layoutX="406.0" layoutY="18.0" mnemonicParsing="false" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Buscar" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="panelPacientes" prefHeight="660.8" prefWidth="971.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="panelAdministrarEventos" prefHeight="660.8" prefWidth="971.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label layoutX="14.0" layoutY="22.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Lista de eventos">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane layoutX="14.0" layoutY="62.0" prefHeight="476.0" prefWidth="944.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="122.39999999999998" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="12.800000000000068" AnchorPane.topAnchor="62.0">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="radius" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="14.0" text="Buscar por ID">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="administrarEventos_textFieldBuscar" layoutX="129.0" layoutY="10.0" prefHeight="34.0" prefWidth="270.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" />
+                                    <Button fx:id="administrarEventos_bttnBuscar" layoutX="414.0" layoutY="10.0" mnemonicParsing="false" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Buscar" />
+                                    <AnchorPane layoutX="14.0" layoutY="56.0" prefHeight="402.0" prefWidth="915.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="17.600000000000023" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.400000000000091" AnchorPane.topAnchor="56.0">
+                                       <styleClass>
+                                          <String fx:value="radius" />
+                                          <String fx:value="shadow" />
+                                          <String fx:value="white-bg" />
+                                       </styleClass>
+                                       <children>
+                                          <TableView fx:id="administrarEventos_tableViewEventos" layoutX="182.0" layoutY="68.0" prefHeight="402.4" prefWidth="915.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columns>
+                                              <TableColumn fx:id="administrarEventos_columna_id" prefWidth="75.0" text="ID" />
+                                                <TableColumn fx:id="administrarEventos_columna_nombre" prefWidth="75.0" text="NOMBRE" />
+                                                <TableColumn fx:id="administrarEventos_columna_fecha" prefWidth="75.0" text="FECHA" />
+                                                <TableColumn fx:id="administrarEventos_columna_hora" prefWidth="75.0" text="HORA" />
+                                                <TableColumn fx:id="administrarEventos_columna_precio" prefWidth="75.0" text="PRECIO" />
+                                                <TableColumn fx:id="administrarEventos_columna_capacidad" prefWidth="75.0" text="CAPACIDAD" />
+                                            </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                              <Button fx:id="administrarEventos_bttnCrearEvento" layoutX="124.0" layoutY="579.0" mnemonicParsing="false" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Crear evento" AnchorPane.bottomAnchor="47.399999999999956" AnchorPane.leftAnchor="124.0" />
+                              <Button fx:id="administrarEventos_bttnModificarEvento" layoutX="407.0" layoutY="579.0" mnemonicParsing="false" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Modificar evento" AnchorPane.bottomAnchor="47.200000000000024" AnchorPane.leftAnchor="407.2" AnchorPane.rightAnchor="407.40000000000003" />
+                              <Button fx:id="administrarEventos_bttnEliminarEvento" layoutX="722.0" layoutY="579.0" mnemonicParsing="false" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Eliminar evento" AnchorPane.bottomAnchor="47.39999999999998" AnchorPane.rightAnchor="100.40000000000009" />
+                           </children>
+                                </AnchorPane>
+                                <AnchorPane fx:id="panelGestionarTickets" prefHeight="660.8" prefWidth="971.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <AnchorPane layoutX="27.0" layoutY="91.2" prefHeight="236.0" prefWidth="923.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="334.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="91.0">
+                                        <AnchorPane layoutX="24.0" layoutY="67.2" prefHeight="460.0" prefWidth="922.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="134.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="67.0">
                                             <styleClass>
                                                 <String fx:value="white-bg" />
                                                 <String fx:value="shadow" />
+                                                <String fx:value="radius" />
                                             </styleClass>
                                             <children>
-                                                <TableView fx:id="pacientes_tableViewPacientes" layoutX="43.0" layoutY="36.0" prefHeight="401.0" prefWidth="923.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <TableView fx:id="gestionarTickets_tableViewSolicitudes" layoutX="81.0" layoutY="192.0" prefHeight="280.0" prefWidth="922.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                     <columns>
-                                                        <TableColumn fx:id="pacientes_columna_sede" prefWidth="75.0" text="SEDE" />
-                                                        <TableColumn fx:id="pacientes_columna_dni" prefWidth="75.0" text="DNI" />
-                                                        <TableColumn fx:id="pacientes_columna_nombres" prefWidth="75.0" text="NOMBRES" />
-                                                        <TableColumn fx:id="pacientes_columna_apellidos" prefWidth="75.0" text="APELLIDOS" />
-                                                        <TableColumn fx:id="pacientes_columna_edad" prefWidth="75.0" text="EDAD" />
-                                                        <TableColumn fx:id="pacientes_columna_telefono" prefWidth="75.0" text="TELÉFONO" />
-                                                        <TableColumn fx:id="pacientes_columna_nacimiento" prefWidth="75.0" text="NACIMIENTO" />
+                                                        <TableColumn fx:id="gestionarTickets_columna_nroTicket" prefWidth="75.0" text="N° TICKET" />
+                                                        <TableColumn fx:id="gestionarTickets_columna_evento" prefWidth="75.0" text="EVENTO" />
+                                                        <TableColumn fx:id="gestionarTickets_columna_fecha" prefWidth="75.0" text="FECHA" />
+                                                        <TableColumn fx:id="gestionarTickets_columna_hora" prefWidth="75.0" text="HORA" />
+                                                        <TableColumn fx:id="gestionarTickets_columna_cliente" prefWidth="75.0" text="CLIENTE" />
                                                     </columns>
                                                     <columnResizePolicy>
                                                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -263,168 +194,13 @@
                                                 </TableView>
                                             </children>
                                         </AnchorPane>
-                                        <Label layoutX="27.0" layoutY="42.0" text="Buscar por DNI">
+                                        <Label layoutX="24.0" layoutY="24.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Solicitudes de cancelación">
                                             <font>
                                                 <Font size="18.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="pacientes_txtFieldBuscarDNI" layoutX="163.0" layoutY="38.0" prefHeight="35.0" prefWidth="257.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" AnchorPane.leftAnchor="163.20000000000005" AnchorPane.rightAnchor="550.6" />
-                                        <Button fx:id="pacientes_bttnBuscar" layoutX="439.0" layoutY="39.0" mnemonicParsing="false" onAction="#cargarPaciente" prefHeight="34.0" prefWidth="89.0" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Buscar" AnchorPane.rightAnchor="442.6" />
-                                        <AnchorPane layoutX="27.0" layoutY="396.0" prefHeight="244.0" prefWidth="926.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="20.799999999999955" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="17.600000000000023">
-                                            <styleClass>
-                                                <String fx:value="white-bg" />
-                                                <String fx:value="radius" />
-                                                <String fx:value="shadow" />
-                                            </styleClass>
-                                            <children>
-                                                <AnchorPane layoutX="428.8" layoutY="22.4" prefHeight="200.0" prefWidth="483.0" styleClass="white-bg" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="429.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
-                                                    <children>
-                                                        <TableView fx:id="pacientes_historial_tableViewMovimientos" layoutX="69.0" layoutY="24.0" prefHeight="224.0" prefWidth="427.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                            <columns>
-                                                                <TableColumn fx:id="pacientes_historial_columna_fecha" prefWidth="75.0" text="FECHA" />
-                                                                <TableColumn fx:id="pacientes_historial_columna_sede" prefWidth="75.0" text="SEDE" />
-                                                                <TableColumn fx:id="pacientes_historial_columna_diagnostico" prefWidth="75.0" text="DIAGNÓSTICO" />
-                                                                <TableColumn fx:id="pacientes_historial_columna_precioTotal" prefWidth="75.0" text="PRECIO TOTAL" />
-                                                            </columns>
-                                                            <columnResizePolicy>
-                                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                                            </columnResizePolicy>
-                                                        </TableView>
-                                                    </children>
-                                                </AnchorPane>
-                                                <Label layoutX="22.0" layoutY="32.0" text="Nombres:">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="22.0" layoutY="73.0" text="Apellidos:">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="22.0" layoutY="115.0" text="DNI:">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="24.0" layoutY="157.0" text="Teléfono:">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="24.0" layoutY="202.0" text="Fecha de nacimiento:">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="pacientes_historial_name" layoutX="114.0" layoutY="32.0">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="pacientes_historial_lastName" layoutX="114.0" layoutY="73.0">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="pacientes_historial_dni" layoutX="74.0" layoutY="115.0">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="pacientes_historial_telefono" layoutX="114.0" layoutY="157.0">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="pacientes_historial_nacimiento" layoutX="207.0" layoutY="202.0">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </AnchorPane>
-                                        <Label fx:id="lblPath1" layoutX="27.0" layoutY="348.0" prefHeight="18.0" prefWidth="222.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Historial" AnchorPane.bottomAnchor="285.59999999999997" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="721.6">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font>
-                                        </Label>
-                                    </children>
-                                </AnchorPane>
-                                <AnchorPane fx:id="panelVentas" prefHeight="660.8" prefWidth="971.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <children>
-                                        <AnchorPane layoutX="24.0" layoutY="300.8" prefHeight="334.0" prefWidth="922.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="301.0">
-                                            <styleClass>
-                                                <String fx:value="white-bg" />
-                                                <String fx:value="shadow" />
-                                                <String fx:value="radius" />
-                                            </styleClass>
-                                            <children>
-                                                <TableView fx:id="ventas_tableViewVentas" layoutX="81.0" layoutY="192.0" prefHeight="280.0" prefWidth="922.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                    <columns>
-                                                        <TableColumn fx:id="ventas_columna_sede" prefWidth="75.0" text="SEDE" />
-                                                        <TableColumn fx:id="ventas_columna_fechaVenta" prefWidth="75.0" text="FECHA DE VENTA" />
-                                                        <TableColumn fx:id="ventas_columna_dniPaciente" prefWidth="75.0" text="DNI DEL PACIENTE" />
-                                                        <TableColumn fx:id="ventas_columna_paciente" prefWidth="75.0" text="NOMBRE DEL PACIENTE" />
-                                                        <TableColumn fx:id="ventas_columna_diagnostico" prefWidth="75.0" text="DIAGNÓSTICO" />
-                                                        <TableColumn fx:id="ventas_columna_PrecioTotal" prefWidth="75.0" text="PRECIO TOTAL" />
-                                                    </columns>
-                                                    <columnResizePolicy>
-                                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                                    </columnResizePolicy>
-                                                </TableView>
-                                            </children>
-                                        </AnchorPane>
-                                        <Label layoutX="24.0" layoutY="254.0" text="Total de ventas">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <Label layoutX="24.0" layoutY="24.0" text="Filtrar resultados">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <AnchorPane layoutX="24.0" layoutY="74.0" prefHeight="158.0" prefWidth="927.0" stylesheets="@../css/AdminDesign.css" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="74.0">
-                                            <styleClass>
-                                                <String fx:value="white-bg" />
-                                                <String fx:value="shadow" />
-                                                <String fx:value="radius" />
-                                            </styleClass>
-                                            <children>
-                                                <Label layoutX="22.0" layoutY="24.0" text="Desde:" AnchorPane.bottomAnchor="107.99999999999999" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="24.0">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="22.0" layoutY="79.0" text="Hasta:" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="79.0">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="326.0" layoutY="24.0" text="Paciente:" AnchorPane.bottomAnchor="107.2" AnchorPane.topAnchor="24.0">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="323.0" layoutY="79.0" text="Producto:" AnchorPane.bottomAnchor="52.79999999999998" AnchorPane.topAnchor="79.0">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="663.0" layoutY="24.0" text="Sede:" AnchorPane.bottomAnchor="108.0" AnchorPane.topAnchor="24.0">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Button fx:id="ventas_bttnFiltrar" layoutX="707.0" layoutY="89.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="101.0" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Filtrar" AnchorPane.bottomAnchor="35.20000000000001" AnchorPane.rightAnchor="118.4" AnchorPane.topAnchor="89.0" />
-                                                <DatePicker fx:id="ventas_filtrar_desdeDate" layoutX="82.0" layoutY="20.0" prefHeight="34.0" prefWidth="183.0" AnchorPane.bottomAnchor="104.0" AnchorPane.topAnchor="20.000000000000007" />
-                                                <DatePicker fx:id="ventas_filtrar_hastaDate" layoutX="81.0" layoutY="75.0" prefHeight="34.0" prefWidth="183.0" AnchorPane.bottomAnchor="49.0" AnchorPane.topAnchor="75.0" />
-                                                <ComboBox fx:id="ventas_filtrar_sede" layoutX="721.0" layoutY="22.0" prefHeight="32.0" prefWidth="175.0" AnchorPane.bottomAnchor="104.4" AnchorPane.topAnchor="22.0" />
-                                                <ComboBox fx:id="ventas_filtrar_productos" layoutX="420.0" layoutY="76.0" prefHeight="32.0" prefWidth="175.0" AnchorPane.bottomAnchor="50.400000000000006" AnchorPane.topAnchor="76.0" />
-                                                <ComboBox fx:id="ventas_filtrar_pacientes" layoutX="420.0" layoutY="22.0" prefHeight="32.0" prefWidth="175.0" AnchorPane.bottomAnchor="105.2" AnchorPane.topAnchor="22.0" />
-                                            </children>
-                                        </AnchorPane>
+                              <Button fx:id="gestionarTickets_bttnAceptarEliminacion" layoutX="210.0" layoutY="572.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="196.0" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Aceptar eliminación" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="210.0" />
+                              <Button fx:id="gestionarTickets_bttnRechazarEliminacion" layoutX="586.0" layoutY="572.0" mnemonicParsing="false" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Rechazar eliminación" AnchorPane.bottomAnchor="54.39999999999998" AnchorPane.rightAnchor="188.4000000000001" />
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane fx:id="pnlInventarios" layoutX="133.0" layoutY="184.0" prefHeight="660.8" prefWidth="971.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -456,125 +232,6 @@
                                                 </TableView>
                                             </children>
                                         </AnchorPane>
-                                    </children>
-                                </AnchorPane>
-                                <AnchorPane fx:id="panelCrearCuenta" layoutX="191.0" layoutY="104.0" prefHeight="660.8" prefWidth="971.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <children>
-                                        <Label layoutX="36.0" layoutY="27.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Cuentas registradas">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <AnchorPane layoutX="36.0" layoutY="68.8" prefHeight="211.0" prefWidth="890.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="381.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="69.0">
-                                            <styleClass>
-                                                <String fx:value="white-bg" />
-                                                <String fx:value="radius" />
-                                                <String fx:value="shadow" />
-                                            </styleClass>
-                                            <children>
-                                                <TableView fx:id="cuentas_tableViewCuentas" layoutX="89.0" layoutY="40.0" prefHeight="238.0" prefWidth="890.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                    <columns>
-                                                        <TableColumn fx:id="cuentas_columna_sede" prefWidth="75.0" text="SEDE" />
-                                                        <TableColumn fx:id="cuentas_columna_ubicacion" prefWidth="75.0" text="UBICACIÓN" />
-                                                        <TableColumn fx:id="cuentas_columna_correo" prefWidth="75.0" text="CORREO" />
-                                                    </columns>
-                                                    <columnResizePolicy>
-                                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                                    </columnResizePolicy>
-                                                </TableView>
-                                            </children>
-                                        </AnchorPane>
-                                        <AnchorPane layoutX="36.0" layoutY="315.0" prefHeight="290.0" prefWidth="426.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="36.0">
-                                            <styleClass>
-                                                <String fx:value="white-bg" />
-                                                <String fx:value="shadow" />
-                                                <String fx:value="radius" />
-                                            </styleClass>
-                                            <children>
-                                                <Label layoutX="21.0" layoutY="26.0" text="Sede:">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="21.0" layoutY="72.0" text="Ubicación:">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="21.0" layoutY="117.0" text="Correo:">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="21.0" layoutY="159.0" text="Contraseña:">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Button fx:id="cuentas_editar_bttnEditar" layoutX="263.0" layoutY="241.0" mnemonicParsing="false" onAction="#editarCuenta" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Editar" />
-                                                <Button fx:id="cuentas_editar_bttnEliminar" layoutX="100.0" layoutY="241.0" mnemonicParsing="false" onAction="#eliminarCuenta" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Eliminar" />
-                                                <TextField fx:id="cuentas_editar_txtFieldSede_" layoutX="126.0" layoutY="22.0" prefHeight="36.0" prefWidth="274.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" />
-                                                <TextField fx:id="cuentas_editar_txtFieldUbicacion" layoutX="126.0" layoutY="68.0" prefHeight="36.0" prefWidth="274.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" />
-                                                <TextField fx:id="cuentas_editar_txtFieldCorreo" layoutX="126.0" layoutY="113.0" prefHeight="36.0" prefWidth="274.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" />
-                                                <TextField fx:id="cuentas_editar_txtFieldContrasena" layoutX="126.0" layoutY="155.0" prefHeight="36.0" prefWidth="274.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" />
-                                                <CheckBox fx:id="cuentas_editar_mostrarContrasena" layoutX="21.0" layoutY="199.0" mnemonicParsing="false" onAction="#mostrarContrasena" text="Mostrar contraseña">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </CheckBox>
-                                                <PasswordField fx:id="cuentas_editar_pswFieldContrasena" layoutX="126.0" layoutY="155.0" prefHeight="35.0" prefWidth="274.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" />
-                                            </children>
-                                        </AnchorPane>
-                                        <AnchorPane layoutX="479.2" layoutY="343.0" prefHeight="290.0" prefWidth="447.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="479.2000000000001" AnchorPane.rightAnchor="45.0">
-                                            <styleClass>
-                                                <String fx:value="white-bg" />
-                                                <String fx:value="shadow" />
-                                                <String fx:value="radius" />
-                                            </styleClass>
-                                            <children>
-                                                <Label layoutX="25.0" layoutY="28.0" text="Sede:">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="27.0" layoutY="71.0" text="Ubicación:">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="27.0" layoutY="117.0" text="Correo:">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="27.0" layoutY="159.0" text="Contraseña:">
-                                                    <font>
-                                                        <Font size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="cuentas_crear_txtFieldSede" layoutX="128.0" layoutY="24.0" prefHeight="36.0" prefWidth="274.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="44.80000000000001" />
-                                                <TextField fx:id="cuentas_crear_txtFieldUbicacion" layoutX="128.0" layoutY="67.0" prefHeight="36.0" prefWidth="274.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="44.80000000000001" />
-                                                <TextField fx:id="cuentas_crear_txtFieldCorreo" layoutX="128.0" layoutY="113.0" prefHeight="36.0" prefWidth="274.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="44.80000000000001" />
-                                                <TextField fx:id="cuentas_crear_txtFieldContrasena" layoutX="128.0" layoutY="155.0" prefHeight="36.0" prefWidth="274.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="44.80000000000001" />
-                                                <Button fx:id="cuentas_crear_bttnCrear" layoutX="181.0" layoutY="235.0" mnemonicParsing="false" onAction="#crearCuenta" prefHeight="34.0" prefWidth="85.0" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Crear" AnchorPane.leftAnchor="181.0" AnchorPane.rightAnchor="180.60000000000002" />
-                                                <CheckBox fx:id="cuentas_crear_mostrarContrasena" layoutX="25.0" layoutY="204.0" mnemonicParsing="false" onAction="#mostrarContrasena" text="Mostrar contraseña">
-                                                    <font>
-                                                        <Font size="14.0" />
-                                                    </font>
-                                                </CheckBox>
-                                                <PasswordField fx:id="cuentas_crear_pswFieldContrasena" layoutX="128.0" layoutY="155.0" prefHeight="36.0" prefWidth="275.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="44.0" />
-                                            </children>
-                                        </AnchorPane>
-                                        <Label layoutX="36.0" layoutY="308.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Editar cuenta" AnchorPane.bottomAnchor="325.59999999999997" AnchorPane.leftAnchor="36.0">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <Label layoutX="481.0" layoutY="308.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Crear cuenta" AnchorPane.bottomAnchor="325.59999999999997" AnchorPane.leftAnchor="480.80000000000007" AnchorPane.rightAnchor="382.20000000000005">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font>
-                                        </Label>
                                     </children>
                                 </AnchorPane>
                             </children>

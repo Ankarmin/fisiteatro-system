@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fisiteatro.fisiteatrosystem.controller.AdminCrearEventoController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/AdminDesign.css">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Crear evento">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="53.0" layoutY="137.0" text="Nombre">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="53.0" layoutY="87.0" text="ID">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="53.0" layoutY="186.0" text="Fecha">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="53.0" layoutY="233.0" text="Hora">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="279.0" text="Precio">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="329.0" text="Capacidad">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="agregarEvento_txtFieldId" layoutX="135.0" layoutY="88.0" prefHeight="28.0" prefWidth="244.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" />
+            <TextField fx:id="agregarEvento_txtFieldNombre" layoutX="135.0" layoutY="137.0" prefHeight="28.0" prefWidth="244.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" />
+            <TextField fx:id="agregarEvento_txtFieldFecha" layoutX="135.0" layoutY="186.0" prefHeight="28.0" prefWidth="244.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" />
+            <TextField fx:id="agregarEvento_txtFieldHora" layoutX="135.0" layoutY="233.0" prefHeight="28.0" prefWidth="244.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" />
+            <TextField fx:id="agregarEvento_txtFieldPrecio" layoutX="135.0" layoutY="279.0" prefHeight="28.0" prefWidth="244.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" />
+            <TextField fx:id="agregarEvento_txtFieldCapacidad" layoutX="152.0" layoutY="329.0" prefHeight="28.0" prefWidth="228.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" />
+            <Button fx:id="agregarEvento_bttnAgregar" layoutX="90.0" layoutY="404.0" mnemonicParsing="false" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Agregar" />
+            <Button fx:id="agregarEvento_bttnCancelar" layoutX="275.0" layoutY="404.0" mnemonicParsing="false" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Cancelar" />
+         </children>
+         <styleClass>
+            <String fx:value="white-bg" />
+            <String fx:value="shadow" />
+            <String fx:value="radius" />
+         </styleClass>
+      </AnchorPane>
+   </children>
+</StackPane>

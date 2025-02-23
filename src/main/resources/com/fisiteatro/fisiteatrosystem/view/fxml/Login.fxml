@@ -55,7 +55,7 @@
                                 <Font name="Tahoma" size="14.0" />
                             </font>
                         </CheckBox>
-                        <Button fx:id="iniciarSesion_bttnIngresar" layoutX="65.0" layoutY="451.0" mnemonicParsing="false" onAction="#ingresar" prefHeight="51.0" prefWidth="322.0" stylesheets="@../css/PageDesign.css" text="Ingresar">
+                        <Button fx:id="iniciarSesion_bttnIngresar" layoutX="65.0" layoutY="451.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="322.0" stylesheets="@../css/PageDesign.css" text="Ingresar">
                             <font>
                                 <Font name="Tahoma Bold" size="18.0" />
                             </font>
