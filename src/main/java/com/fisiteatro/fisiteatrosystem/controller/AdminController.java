@@ -1,7 +1,7 @@
 package com.fisiteatro.fisiteatrosystem.controller;
 
 import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
-import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
+import com.fisiteatro.fisiteatrosystem.model.dto.EventoDTO;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,25 +35,25 @@ public class AdminController implements Initializable {
     private Button administrarEventos_bttnModificarEvento;
 
     @FXML
-    private TableColumn<Evento, Integer> administrarEventos_columna_capacidad;
+    private TableColumn<EventoDTO, Integer> administrarEventos_columna_capacidad;
 
     @FXML
-    private TableColumn<Evento, String> administrarEventos_columna_fecha;
+    private TableColumn<EventoDTO, String> administrarEventos_columna_fecha;
 
     @FXML
-    private TableColumn<Evento, String> administrarEventos_columna_hora;
+    private TableColumn<EventoDTO, String> administrarEventos_columna_hora;
 
     @FXML
-    private TableColumn<Evento, Integer> administrarEventos_columna_id;
+    private TableColumn<EventoDTO, Integer> administrarEventos_columna_id;
 
     @FXML
-    private TableColumn<Evento, String> administrarEventos_columna_nombre;
+    private TableColumn<EventoDTO, String> administrarEventos_columna_nombre;
 
     @FXML
-    private TableColumn<Evento, Float> administrarEventos_columna_precio;
+    private TableColumn<EventoDTO, Float> administrarEventos_columna_precio;
 
     @FXML
-    private TableView<Evento> administrarEventos_tableViewEventos;
+    private TableView<EventoDTO> administrarEventos_tableViewEventos;
 
     @FXML
     private TextField administrarEventos_textFieldBuscar;
@@ -77,25 +77,25 @@ public class AdminController implements Initializable {
     private Button eventos_bttnBuscar;
 
     @FXML
-    private TableColumn<Evento, Integer> eventos_columna_capacidad;
+    private TableColumn<EventoDTO, Integer> eventos_columna_capacidad;
 
     @FXML
-    private TableColumn<Evento, String> eventos_columna_fecha;
+    private TableColumn<EventoDTO, String> eventos_columna_fecha;
 
     @FXML
-    private TableColumn<Evento, String> eventos_columna_hora;
+    private TableColumn<EventoDTO, String> eventos_columna_hora;
 
     @FXML
-    private TableColumn<Evento, Integer> eventos_columna_id;
+    private TableColumn<EventoDTO, Integer> eventos_columna_id;
 
     @FXML
-    private TableColumn<Evento, String> eventos_columna_nombre;
+    private TableColumn<EventoDTO, String> eventos_columna_nombre;
 
     @FXML
-    private TableColumn<Evento, Float> eventos_columna_precio;
+    private TableColumn<EventoDTO, Float> eventos_columna_precio;
 
     @FXML
-    private TableView<Evento> eventos_tableViewEventos;
+    private TableView<EventoDTO> eventos_tableViewEventos;
 
     @FXML
     private TextField eventos_txtFieldBuscar;
@@ -198,7 +198,7 @@ public class AdminController implements Initializable {
 
     private void cargarEventos() {
         EventoDAO eventoDAO = new EventoDAO();
-        ObservableList<Evento> eventosList = FXCollections.observableList(eventoDAO.readAll());
+        ObservableList<EventoDTO> eventosList = FXCollections.observableList(eventoDAO.readAll());
 
         eventos_tableViewEventos.setItems(eventosList);
         eventos_tableViewEventos.refresh();
@@ -206,7 +206,7 @@ public class AdminController implements Initializable {
 
     private void cargarAdministrarEventos() {
         EventoDAO eventoDAO = new EventoDAO();
-        ObservableList<Evento> eventosList = FXCollections.observableList(eventoDAO.readAll());
+        ObservableList<EventoDTO> eventosList = FXCollections.observableList(eventoDAO.readAll());
 
         administrarEventos_tableViewEventos.setItems(eventosList);
         administrarEventos_tableViewEventos.refresh();

@@ -2,16 +2,16 @@ package com.fisiteatro.fisiteatrosystem.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public abstract class Usuario {
+public abstract class UsuarioDTO {
     protected String nombres;
     protected String apellidos;
     protected String dni;
     protected String contrasena;
 
-    protected Usuario() {
+    protected UsuarioDTO() {
     }
 
-    protected Usuario(String nombres, String apellidos, String dni, String contrasena) {
+    protected UsuarioDTO(String nombres, String apellidos, String dni, String contrasena) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.dni = dni;

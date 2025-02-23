@@ -197,7 +197,7 @@ public class UserController implements Initializable {
         compras_columna_nroAsiento.setCellValueFactory(new PropertyValueFactory<>("numero"));
         compras_columna_filaAsiento.setCellValueFactory(new PropertyValueFactory<>("fila"));
     }
-    
+
     private void cargarCompras(){
         EventoDAO eventoDAO = new EventoDAO();
         ObservableList<Evento> eventosList = FXCollections.observableList(eventoDAO.readAll());

@@ -1,10 +1,9 @@
 package com.fisiteatro.fisiteatrosystem.menu;
-//para el catalogo
 
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
 import com.fisiteatro.fisiteatrosystem.model.dao.ClienteDAO;
 import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
-import com.fisiteatro.fisiteatrosystem.model.dto.Cliente;
+import com.fisiteatro.fisiteatrosystem.model.dto.ClienteDTO;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -58,7 +57,7 @@ public class Menu {
         System.out.print("Ingrese su contraseña: ");
         String contrasena = scanner.nextLine();
 
-        Cliente cliente = clienteDAO.iniciarSesion(dni, contrasena);
+        ClienteDTO clienteDTO = clienteDAO.iniciarSesion(dni, contrasena);
 
         if (dni.equals("99999999") && contrasena.equals("admin")) {
             System.out.println("¡Inicio de sesión exitoso! Bienvenido Administrador.");
@@ -66,9 +65,9 @@ public class Menu {
             menuAdmin.mostrarMenu();
             return;
         }
-        if (cliente != null) {
-            System.out.println("¡Inicio de sesión exitoso! Bienvenido, " + cliente.getNombres());
-            MenuCliente menuCliente = new MenuCliente(cliente.getDni());
+        if (clienteDTO != null) {
+            System.out.println("¡Inicio de sesión exitoso! Bienvenido, " + clienteDTO.getNombres());
+            MenuCliente menuCliente = new MenuCliente(clienteDTO.getDni());
             menuCliente.mostrarMenu();
         } else {
             System.out.println("DNI o contraseña incorrectos. Intente nuevamente.");
@@ -93,9 +92,9 @@ public class Menu {
             return;
         }
 
-        Cliente nuevoCliente = new Cliente(nombres, apellidos, dni, contrasena);
+        ClienteDTO nuevoClienteDTO = new ClienteDTO(nombres, apellidos, dni, contrasena);
         try {
-            clienteDAO.create(nuevoCliente);
+            clienteDAO.create(nuevoClienteDTO);
             System.out.println("Registro exitoso. ¡Ahora puede iniciar sesión!");
         } catch (IOException e) {
             System.out.println("Error al registrar el cliente.");

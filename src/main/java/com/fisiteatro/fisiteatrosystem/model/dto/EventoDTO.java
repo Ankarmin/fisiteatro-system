@@ -1,6 +1,6 @@
 package com.fisiteatro.fisiteatrosystem.model.dto;
 
-public class Evento {
+public class EventoDTO {
     private int id;
     private String nombre;
     private String fecha;
@@ -8,10 +8,10 @@ public class Evento {
     private float precio;
     private int capacidad;
 
-    public Evento() {
+    public EventoDTO() {
     }
 
-    public Evento(int id, String nombre, String fecha, String hora, float precio, int capacidad) {
+    public EventoDTO(int id, String nombre, String fecha, String hora, float precio, int capacidad) {
         this.id = id;
         this.nombre = nombre;
         this.fecha = fecha;

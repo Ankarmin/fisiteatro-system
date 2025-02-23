@@ -1,16 +1,16 @@
 package com.fisiteatro.fisiteatrosystem.model.dao;
 
-import com.fisiteatro.fisiteatrosystem.model.dto.Administrador;
+import com.fisiteatro.fisiteatrosystem.model.dto.AdministradorDTO;
 
 import java.io.IOException;
 import java.util.List;
 
 public interface IAdministradorDAO {
-    void create(Administrador administrador) throws IOException;
+    void create(AdministradorDTO administradorDTO) throws IOException;
 
-    List<Administrador> readAll();
+    List<AdministradorDTO> readAll();
 
-    void update(Administrador administrador) throws IOException;
+    void update(AdministradorDTO administradorDTO) throws IOException;
 
     void delete(String dni) throws IOException;
 }
