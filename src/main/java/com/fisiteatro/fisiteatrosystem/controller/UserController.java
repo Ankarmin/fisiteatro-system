@@ -1,7 +1,17 @@
 package com.fisiteatro.fisiteatrosystem.controller;
 
 import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
-import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
+import com.fisiteatro.fisiteatrosystem.model.dao.TicketDAO;
+import com.fisiteatro.fisiteatrosystem.model.dto.AsientoDTO;
+import com.fisiteatro.fisiteatrosystem.model.dto.ClienteDTO;
+import com.fisiteatro.fisiteatrosystem.model.dto.EventoDTO;
+import com.fisiteatro.fisiteatrosystem.model.dto.TicketDTO;
+import com.fisiteatro.fisiteatrosystem.service.EventoService;
+import com.fisiteatro.fisiteatrosystem.service.TicketService;
+import javafx.beans.property.SimpleFloatProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,34 +45,34 @@ public class UserController implements Initializable {
     private Button compras_bttnEliminar;
 
     @FXML
-    private TableColumn<?, ?> compras_columna_dniCliente;
+    private TableColumn<TicketDTO, String> compras_columna_dniCliente;
 
     @FXML
-    private TableColumn<?, ?> compras_columna_evento;
+    private TableColumn<TicketDTO, String> compras_columna_evento;
 
     @FXML
-    private TableColumn<?, ?> compras_columna_fecha;
+    private TableColumn<TicketDTO, String> compras_columna_fecha;
 
     @FXML
-    private TableColumn<?, ?> compras_columna_filaAsiento;
+    private TableColumn<TicketDTO, String> compras_columna_filaAsiento;
 
     @FXML
-    private TableColumn<?, ?> compras_columna_filaAsiento1;
+    private TableColumn<TicketDTO, String> compras_columna_filaAsiento1;
 
     @FXML
-    private TableColumn<?, ?> compras_columna_hora;
+    private TableColumn<TicketDTO, String> compras_columna_hora;
 
     @FXML
-    private TableColumn<?, ?> compras_columna_nroAsiento;
+    private TableColumn<TicketDTO, Integer> compras_columna_nroAsiento;
 
     @FXML
-    private TableColumn<?, ?> compras_columna_nroTicket;
+    private TableColumn<TicketDTO, Integer> compras_columna_nroTicket;
 
     @FXML
-    private TableColumn<?, ?> compras_columna_precio;
+    private TableColumn<TicketDTO, Float> compras_columna_precio;
 
     @FXML
-    private TableView<?> compras_tableViewCompras;
+    private TableView<TicketDTO> compras_tableViewCompras;
 
     @FXML
     private TextField compras_txtFieldBuscar;
@@ -74,25 +84,25 @@ public class UserController implements Initializable {
     private Button eventos_bttnComprar;
 
     @FXML
-    private TableColumn<Evento, Integer> eventos_columna_capacidad;
+    private TableColumn<EventoDTO, Integer> eventos_columna_capacidad;
 
     @FXML
-    private TableColumn<Evento, String> eventos_columna_fecha;
+    private TableColumn<EventoDTO, String> eventos_columna_fecha;
 
     @FXML
-    private TableColumn<Evento, String> eventos_columna_hora;
+    private TableColumn<EventoDTO, String> eventos_columna_hora;
 
     @FXML
-    private TableColumn<Evento, Integer> eventos_columna_id;
+    private TableColumn<EventoDTO, Integer> eventos_columna_id;
 
     @FXML
-    private TableColumn<Evento, String> eventos_columna_nombre;
+    private TableColumn<EventoDTO, String> eventos_columna_nombre;
 
     @FXML
-    private TableColumn<Evento, Float> eventos_columna_precio;
+    private TableColumn<EventoDTO, Float> eventos_columna_precio;
 
     @FXML
-    private TableView<Evento> eventos_tableViewEventos;
+    private TableView<EventoDTO> eventos_tableViewEventos;
 
     @FXML
     private TextField eventos_txtFieldBuscar;
@@ -163,13 +173,17 @@ public class UserController implements Initializable {
     @FXML
     private AnchorPane panelHistorial;
 
-
+    private TicketService ticketService;
+    private EventoService eventoService;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        configurarService();
         configurarColumnaEventos();
+        configurarColumnaCompras();
 
         cargarEventos();
+        cargarCompras();
     }
 
     public void switchForm(ActionEvent event) {
@@ -178,7 +192,7 @@ public class UserController implements Initializable {
         panelHistorial.setVisible(event.getSource() == bttnHistorial);
     }
 
-    private void configurarColumnaEventos(){
+    private void configurarColumnaEventos() {
         eventos_columna_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         eventos_columna_nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         eventos_columna_fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
@@ -187,27 +201,47 @@ public class UserController implements Initializable {
         eventos_columna_capacidad.setCellValueFactory(new PropertyValueFactory<>("capacidad"));
     }
 
-    private void configurarColumnaCompras(){
+    private void configurarColumnaCompras() {
         compras_columna_nroTicket.setCellValueFactory(new PropertyValueFactory<>("id"));
-        compras_columna_dniCliente.setCellValueFactory(new PropertyValueFactory<>("dni"));
-        compras_columna_evento.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        compras_columna_fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
-        compras_columna_hora.setCellValueFactory(new PropertyValueFactory<>("hora"));
-        compras_columna_precio.setCellValueFactory(new PropertyValueFactory<>("precio"));
-        compras_columna_nroAsiento.setCellValueFactory(new PropertyValueFactory<>("numero"));
-        compras_columna_filaAsiento.setCellValueFactory(new PropertyValueFactory<>("fila"));
+        compras_columna_dniCliente.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getCliente().getDni()));
+
+        compras_columna_evento.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getEvento().getNombre()));
+
+        compras_columna_fecha.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getEvento().getFecha()));
+
+        compras_columna_hora.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getEvento().getHora()));
+
+        compras_columna_precio.setCellValueFactory(cellData ->
+                new SimpleObjectProperty(cellData.getValue().getEvento().getPrecio()));
+
+        compras_columna_nroAsiento.setCellValueFactory(cellData ->
+                new SimpleIntegerProperty(cellData.getValue().getAsiento().getNumero()).asObject());
+
+        compras_columna_filaAsiento.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getAsiento().getFila()));
+
     }
 
-    private void cargarCompras(){
-        EventoDAO eventoDAO = new EventoDAO();
-        ObservableList<Evento> eventosList = FXCollections.observableList(eventoDAO.readAll());
+    private void cargarCompras() {
+        ObservableList<TicketDTO> ticketList = FXCollections.observableList(ticketService.readAll());
+        compras_tableViewCompras.setItems(ticketList);
+        compras_tableViewCompras.refresh();
     }
 
-    private void cargarEventos(){
-        EventoDAO eventoDAO = new EventoDAO();
-        ObservableList<Evento> eventosList = FXCollections.observableList(eventoDAO.readAll());
+    private void cargarEventos() {
+        ObservableList<EventoDTO> eventoList = FXCollections.observableList(eventoService.readAll());
 
-        eventos_tableViewEventos.setItems(eventosList);
+        eventos_tableViewEventos.setItems(eventoList);
         eventos_tableViewEventos.refresh();
     }
+
+    private void configurarService() {
+        ticketService = new TicketService();
+        eventoService = new EventoService();
+    }
+
 }
