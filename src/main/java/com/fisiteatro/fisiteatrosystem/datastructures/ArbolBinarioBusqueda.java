@@ -114,5 +114,4 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> {
     public Nodo<T> getDerecho(Nodo<T> nodo) {
         return (nodo != null) ? nodo.derecho : null;
     }
-
 }
