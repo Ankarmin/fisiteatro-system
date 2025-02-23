@@ -1,5 +1,7 @@
 package com.fisiteatro.fisiteatrosystem.controller;
 
+import com.fisiteatro.fisiteatrosystem.service.AdministradorService;
+import com.fisiteatro.fisiteatrosystem.service.ClienteService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -59,8 +61,13 @@ public class LoginController implements Initializable {
     @FXML
     private TextField registrar_txtField_contrasena;
 
+    private ClienteService clienteService;
+    private AdministradorService administradorService;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        configurarServices();
+
         iniciarSesion_txtFieldContrasena.setVisible(false);
         registrar_txtField_contrasena.setVisible(false);
     }
@@ -72,21 +79,31 @@ public class LoginController implements Initializable {
 
     @FXML
     private void mostrarContrasena() {
-        boolean mostrarIniciarSesion = iniciarSesion_mostrarContrasena.isSelected();
-        boolean mostrarRegistrar = registrar_mostrarContrasena.isSelected();
-        registrar_txtField_contrasena.setVisible(mostrarRegistrar);
-        registrar_password_contrasena.setVisible(!mostrarRegistrar);
-        iniciarSesion_txtFieldContrasena.setVisible(mostrarIniciarSesion);
-        iniciarSesion_passwordFieldContrasena.setVisible(!mostrarIniciarSesion);
-        if (mostrarIniciarSesion) {
-            iniciarSesion_txtFieldContrasena.setText(iniciarSesion_passwordFieldContrasena.getText());
+        togglePasswordVisibility(iniciarSesion_mostrarContrasena, iniciarSesion_txtFieldContrasena, iniciarSesion_passwordFieldContrasena);
+        togglePasswordVisibility(registrar_mostrarContrasena, registrar_txtField_contrasena, registrar_password_contrasena);
+    }
+
+    private void togglePasswordVisibility(CheckBox checkBox, TextField textField, PasswordField passwordField) {
+        boolean isVisible = checkBox.isSelected();
+        textField.setVisible(isVisible);
+        passwordField.setVisible(!isVisible);
+        if (isVisible) {
+            textField.setText(passwordField.getText());
         } else {
-            iniciarSesion_passwordFieldContrasena.setText(iniciarSesion_txtFieldContrasena.getText());
+            passwordField.setText(textField.getText());
         }
-        if (mostrarRegistrar) {
-            registrar_txtField_contrasena.setText(registrar_password_contrasena.getText());
-        } else {
-            registrar_password_contrasena.setText(registrar_txtField_contrasena.getText());
-        }
+    }
+
+    private void iniciarSesion() {
+        String nombreUsuario = iniciarSesion_txtFieldNombreUsuario.getText();
+        String contrasena = iniciarSesion_mostrarContrasena.isSelected() ? iniciarSesion_txtFieldContrasena.getText() : iniciarSesion_passwordFieldContrasena.getText();
+
+        clienteService.iniciarSesion(nombreUsuario, contrasena);
+        System.out.println("Iniciar sesion");
+    }
+
+    private void configurarServices() {
+        clienteService = new ClienteService();
+        administradorService = new AdministradorService();
     }
 }

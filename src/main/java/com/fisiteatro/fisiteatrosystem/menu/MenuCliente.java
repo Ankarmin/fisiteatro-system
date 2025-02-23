@@ -6,10 +6,10 @@ import com.fisiteatro.fisiteatrosystem.model.dao.AsientoDAO;
 import com.fisiteatro.fisiteatrosystem.model.dao.ClienteDAO;
 import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
 import com.fisiteatro.fisiteatrosystem.model.dao.TicketDAO;
-import com.fisiteatro.fisiteatrosystem.model.dto.Asiento;
-import com.fisiteatro.fisiteatrosystem.model.dto.Cliente;
-import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
-import com.fisiteatro.fisiteatrosystem.model.dto.Ticket;
+import com.fisiteatro.fisiteatrosystem.model.dto.AsientoDTO;
+import com.fisiteatro.fisiteatrosystem.model.dto.ClienteDTO;
+import com.fisiteatro.fisiteatrosystem.model.dto.EventoDTO;
+import com.fisiteatro.fisiteatrosystem.model.dto.TicketDTO;
 
 import java.io.IOException;
 import java.util.List;
@@ -74,8 +74,8 @@ public class MenuCliente {
             return;
         }
 
-        List<Evento> eventos = eventoDAO.readAll();
-        if (eventos.isEmpty()) {
+        List<EventoDTO> eventoDTOS = eventoDAO.readAll();
+        if (eventoDTOS.isEmpty()) {
             System.out.println("No hay eventos disponibles para comprar boletos.");
             return;
         }
@@ -90,18 +90,18 @@ public class MenuCliente {
             return;
         }
 
-        Evento eventoSeleccionado = eventoDAO.getById(seleccion);
-        if (eventoSeleccionado.getCapacidad() <= 0) {
+        EventoDTO eventoDTOSeleccionado = eventoDAO.getById(seleccion);
+        if (eventoDTOSeleccionado.getCapacidad() <= 0) {
             System.out.println("El evento está agotado.");
             return;
         }
 
         // se le asigna un numero d asiento nodo
-        AsientoDAO asientoDAO = new AsientoDAO(eventoSeleccionado.getId());
-        Asiento asientoSeleccionado = asientoDAO.obtenerPrimerAsientoDisponible();
+        AsientoDAO asientoDAO = new AsientoDAO(eventoDTOSeleccionado.getId());
+        AsientoDTO asientoDTOSeleccionado = asientoDAO.obtenerPrimerAsientoDisponible();
 
-        Cliente cliente = new ClienteDAO(new Cola<>()).obtenerPorDni(clienteDni);
-        if (cliente == null) {
+        ClienteDTO clienteDTO = new ClienteDAO(new Cola<>()).obtenerPorDni(clienteDni);
+        if (clienteDTO == null) {
             System.out.println("Error: Cliente no encontrado.");
             return;
         }
@@ -111,18 +111,18 @@ public class MenuCliente {
 
         // cambiar el estado del asiento
         try {
-            asientoDAO.updateOcupado(asientoSeleccionado, eventoSeleccionado.getId());
+            asientoDAO.updateOcupado(asientoDTOSeleccionado, eventoDTOSeleccionado.getId());
             System.out.println("asiento en false");
         } catch (IOException e) {
             System.out.println("Error al cambiar el estado del asiento: " + e.getMessage());
         }
 
-        Ticket ticket = new Ticket(idTicket, cliente, asientoSeleccionado, eventoSeleccionado);
+        TicketDTO ticketDTO = new TicketDTO(idTicket, clienteDTO, asientoDTOSeleccionado, eventoDTOSeleccionado);
 
         try {
-            eventoDAO.reducirCapacidad(eventoSeleccionado);
-            ticketDAO.create(ticket); // se guardan todos en una pila
-            System.out.println("Ticket generado con éxito. Número de asiento: " + asientoSeleccionado.getNumero() + " - Fila: " + asientoSeleccionado.getFila());
+            eventoDAO.reducirCapacidad(eventoDTOSeleccionado);
+            ticketDAO.create(ticketDTO); // se guardan todos en una pila
+            System.out.println("Ticket generado con éxito. Número de asiento: " + asientoDTOSeleccionado.getNumero() + " - Fila: " + asientoDTOSeleccionado.getFila());
 
             // Mostrar los datos en forma de tabla
             System.out.println("\n--------------------- DETALLE DEL TICKET GENERADO -------------------");
@@ -130,9 +130,9 @@ public class MenuCliente {
                     "N° Ticket", "DNI Cliente", "Evento", "Fecha", "Hora", "Precio", "N° Asiento", "Fila Asiento");
             System.out.println("------------------------------------------------------------------------------------------------------------");
             System.out.printf("%-15s %-12s %-20s %-12s %-8s %-10.2f %-15d %-15s%n",
-                    ticket.getId(), cliente.getDni(), eventoSeleccionado.getNombre(),
-                    eventoSeleccionado.getFecha(), eventoSeleccionado.getHora(), eventoSeleccionado.getPrecio(),
-                    asientoSeleccionado.getNumero(), asientoSeleccionado.getFila());
+                    ticketDTO.getId(), clienteDTO.getDni(), eventoDTOSeleccionado.getNombre(),
+                    eventoDTOSeleccionado.getFecha(), eventoDTOSeleccionado.getHora(), eventoDTOSeleccionado.getPrecio(),
+                    asientoDTOSeleccionado.getNumero(), asientoDTOSeleccionado.getFila());
 
         } catch (IOException e) {
             System.out.println("Error al guardar la reserva.");
@@ -141,15 +141,15 @@ public class MenuCliente {
     }
 
     private void eliminarTicket() {
-        List<Ticket> tickets = ticketDAO.readAll(); //tickets comprados d todos los clientes
+        List<TicketDTO> ticketDTOS = ticketDAO.readAll(); //tickets comprados d todos los clientes
 
-        if (tickets.isEmpty()) {
+        if (ticketDTOS.isEmpty()) {
             System.out.println("No hay tickets comprados.");
             return;
         }
 
         // Filtrar los tickets del cliente actual
-        ListaEnlazada<Ticket> ticketsCliente = ticketDAO.getTicketsPorCliente(clienteDni);
+        ListaEnlazada<TicketDTO> ticketsCliente = ticketDAO.getTicketsPorCliente(clienteDni);
 
         if (ticketsCliente.toList().isEmpty()) {
             System.out.println("No tienes tickets para eliminar.");
@@ -162,11 +162,11 @@ public class MenuCliente {
                 "N° Ticket", "DNI Cliente", "Evento", "Fecha", "Hora", "Precio", "N° Asiento", "Fila Asiento");
         System.out.println("------------------------------------------------------------------------------------------------------------");
 
-        for (Ticket ticket : ticketsCliente.toList()) {
+        for (TicketDTO ticketDTO : ticketsCliente.toList()) {
             System.out.printf("%-15s %-12s %-20s %-12s %-8s %-10.2f %-15d %-15s%n",
-                    ticket.getId(), ticket.getCliente().getDni(), ticket.getEvento().getNombre(),
-                    ticket.getEvento().getFecha(), ticket.getEvento().getHora(), ticket.getEvento().getPrecio(),
-                    ticket.getAsiento().getNumero(), ticket.getAsiento().getFila());
+                    ticketDTO.getId(), ticketDTO.getCliente().getDni(), ticketDTO.getEvento().getNombre(),
+                    ticketDTO.getEvento().getFecha(), ticketDTO.getEvento().getHora(), ticketDTO.getEvento().getPrecio(),
+                    ticketDTO.getAsiento().getNumero(), ticketDTO.getAsiento().getFila());
         }
 
         System.out.print("Ingrese el ID del ticket que desea eliminar: ");
@@ -174,19 +174,19 @@ public class MenuCliente {
         scanner.nextLine();
 
         // Buscar el ticket en la lista
-        Ticket ticketAEliminar = ticketDAO.getTicketById(ticketId, ticketsCliente);
+        TicketDTO ticketDTOAEliminar = ticketDAO.getTicketById(ticketId, ticketsCliente);
 
-        if (ticketAEliminar == null) {
+        if (ticketDTOAEliminar == null) {
             System.out.println("Error: No se encontró un ticket con el ID ingresado.");
             return;
         }
 
         // ticket se guarda en una cola, luego la cola se sube a solicitudes.json
-        Cola<Ticket> colaTicketsEliminados = ticketDAO.getSolicitudesTickets();
+        Cola<TicketDTO> colaTicketsEliminados = ticketDAO.getSolicitudesTickets();
 
         try {
             // Agregar el ticket eliminado a la cola
-            colaTicketsEliminados.offer(ticketAEliminar);
+            colaTicketsEliminados.offer(ticketDTOAEliminar);
 
             // Guardar la cola actualizada en el JSON
             ticketDAO.saveSolicitudesTicketsJSON(colaTicketsEliminados);
@@ -201,9 +201,9 @@ public class MenuCliente {
 
         // Eliminar el ticket del DAO
         try {
-            ticketDAO.delete(ticketAEliminar.getCliente().getDni(),
-                    ticketAEliminar.getAsiento().getFila(),
-                    ticketAEliminar.getAsiento().getNumero());
+            ticketDAO.delete(ticketDTOAEliminar.getCliente().getDni(),
+                    ticketDTOAEliminar.getAsiento().getFila(),
+                    ticketDTOAEliminar.getAsiento().getNumero());
             System.out.println("El ticket ha sido eliminado correctamente.");
         } catch (IOException e) {
             System.out.println("Error al eliminar el ticket: " + e.getMessage());
@@ -211,15 +211,15 @@ public class MenuCliente {
     }
 
     private void mostrarHistorialCompras() {
-        List<Ticket> tickets = ticketDAO.readAll();
-        if (tickets.isEmpty()) {
+        List<TicketDTO> ticketDTOS = ticketDAO.readAll();
+        if (ticketDTOS.isEmpty()) {
             System.out.println("No hay tickets comprados.");
             return;
         }
 
         // Filtrar los tickets del cliente actual
-        List<Ticket> ticketsCliente = tickets.stream()
-                .filter(ticket -> ticket.getCliente().getDni().equals(clienteDni))
+        List<TicketDTO> ticketsCliente = ticketDTOS.stream()
+                .filter(ticketDTO -> ticketDTO.getCliente().getDni().equals(clienteDni))
                 .toList();
 
         if (ticketsCliente.isEmpty()) {
@@ -232,11 +232,11 @@ public class MenuCliente {
                 "N° Ticket", "DNI Cliente", "Evento", "Fecha", "Hora", "Precio", "N° Asiento", "Fila Asiento");
         System.out.println("------------------------------------------------------------------------------------------------------------");
 
-        for (Ticket ticket : ticketsCliente) {
+        for (TicketDTO ticketDTO : ticketsCliente) {
             System.out.printf("%-15s %-12s %-20s %-12s %-8s %-10.2f %-15d %-15s%n",
-                    ticket.getId(), ticket.getCliente().getDni(), ticket.getEvento().getNombre(),
-                    ticket.getEvento().getFecha(), ticket.getEvento().getHora(), ticket.getEvento().getPrecio(),
-                    ticket.getAsiento().getNumero(), ticket.getAsiento().getFila());
+                    ticketDTO.getId(), ticketDTO.getCliente().getDni(), ticketDTO.getEvento().getNombre(),
+                    ticketDTO.getEvento().getFecha(), ticketDTO.getEvento().getHora(), ticketDTO.getEvento().getPrecio(),
+                    ticketDTO.getAsiento().getNumero(), ticketDTO.getAsiento().getFila());
         }
     }
 }

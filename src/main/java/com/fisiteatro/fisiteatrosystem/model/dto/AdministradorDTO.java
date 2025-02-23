@@ -1,10 +1,10 @@
 package com.fisiteatro.fisiteatrosystem.model.dto;
 
-public class Administrador extends Usuario {
-    public Administrador() {
+public class AdministradorDTO extends UsuarioDTO {
+    public AdministradorDTO() {
     }
 
-    public Administrador(String nombres, String apellidos, String dni, String contrasena) {
+    public AdministradorDTO(String nombres, String apellidos, String dni, String contrasena) {
         super(nombres, apellidos, dni, contrasena);
     }
 

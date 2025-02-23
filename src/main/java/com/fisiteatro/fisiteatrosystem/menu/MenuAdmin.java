@@ -7,10 +7,10 @@ import com.fisiteatro.fisiteatrosystem.model.dao.AdministradorDAO;
 import com.fisiteatro.fisiteatrosystem.model.dao.AsientoDAO;
 import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
 import com.fisiteatro.fisiteatrosystem.model.dao.TicketDAO;
-import com.fisiteatro.fisiteatrosystem.model.dto.Administrador;
-import com.fisiteatro.fisiteatrosystem.model.dto.Asiento;
-import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
-import com.fisiteatro.fisiteatrosystem.model.dto.Ticket;
+import com.fisiteatro.fisiteatrosystem.model.dto.AdministradorDTO;
+import com.fisiteatro.fisiteatrosystem.model.dto.AsientoDTO;
+import com.fisiteatro.fisiteatrosystem.model.dto.EventoDTO;
+import com.fisiteatro.fisiteatrosystem.model.dto.TicketDTO;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -93,12 +93,12 @@ public class MenuAdmin {
 
         int id = eventoDAO.createId();
 
-        Evento nuevoEvento = new Evento(id, nombre, fecha, hora, precio, capacidad);
+        EventoDTO nuevoEventoDTO = new EventoDTO(id, nombre, fecha, hora, precio, capacidad);
         try {
-            eventoDAO.create(nuevoEvento);
+            eventoDAO.create(nuevoEventoDTO);
             // crear los asientos
-            AsientoDAO asientoDAO = new AsientoDAO(nuevoEvento.getId()); // aca d por si se crea el file
-            asientoDAO.create(nuevoEvento.getCapacidad(), nuevoEvento.getId()); // aca escribe en el file
+            AsientoDAO asientoDAO = new AsientoDAO(nuevoEventoDTO.getId()); // aca d por si se crea el file
+            asientoDAO.create(nuevoEventoDTO.getCapacidad(), nuevoEventoDTO.getId()); // aca escribe en el file
             System.out.println("\nEvento creado con éxito.");
         } catch (IOException e) {
             System.out.println("Error al crear evento: " + e.getMessage());
@@ -120,18 +120,18 @@ public class MenuAdmin {
         }
 
         // el evento del indice se guarde en una variable y elegir q se quiere editar para no tener q llenar todos los campos
-        Evento evento = eventoDAO.getById(indice);
+        EventoDTO eventoDTO = eventoDAO.getById(indice);
 
-        if (evento == null) {
+        if (eventoDTO == null) {
             System.out.println("ID incorrecto.");
             return;
         }
 
         // menu q hace los cambios
-        opcionesModificarEvento(evento);
+        opcionesModificarEvento(eventoDTO);
 
         try {
-            eventoDAO.update(evento);
+            eventoDAO.update(eventoDTO);
             System.out.println("\n\tEvento actualizado con éxito\n");
             eventoDAO.verCatalogo();
         } catch (IOException e) {
@@ -154,10 +154,10 @@ public class MenuAdmin {
         }
 
         try {
-            Evento evento = eventoDAO.getById(indice);
+            EventoDTO eventoDTO = eventoDAO.getById(indice);
             // borrar el archivo
-            AsientoDAO asientoDAO = new AsientoDAO(evento.getId());
-            asientoDAO.deleteFile(evento.getId());
+            AsientoDAO asientoDAO = new AsientoDAO(eventoDTO.getId());
+            asientoDAO.deleteFile(eventoDTO.getId());
 
             eventoDAO.deleteById(indice);
             System.out.println("Evento eliminado correctamente.\n");
@@ -170,26 +170,26 @@ public class MenuAdmin {
     private void gestionarTickets() {
         // k muestre la primera solicitud y si hay mas k debajo saalgaa "mas solicitudes..."
         // y k ingresanado x sale d la gstion
-        Cola<Ticket> solicitudesTickets = ticketDAO.getSolicitudesTickets();
+        Cola<TicketDTO> solicitudesTickets = ticketDAO.getSolicitudesTickets();
 
         if (solicitudesTickets.isEmpty()) {
             System.out.println("No hay solicitudes de cancelación por revisar.");
             return;
         }
 
-        Nodo<Ticket> ticket = solicitudesTickets.getFrente();
+        Nodo<TicketDTO> ticket = solicitudesTickets.getFrente();
         do {
-            Ticket ticketActual = solicitudesTickets.getDato(ticket);
+            TicketDTO ticketDTOActual = solicitudesTickets.getDato(ticket);
 
             // carga la pilaa d tickets eliminados segun el evento (se guardaa en diferentes arhivos)
-            Pila<Ticket> ticketsEliminados = ticketDAO.getTicketsEliminados(ticketActual.getEvento().getId());
+            Pila<TicketDTO> ticketsEliminados = ticketDAO.getTicketsEliminados(ticketDTOActual.getEvento().getId());
 
             System.out.println("\n\t\t\t\t--- SOLICITUDES DE CANCELACIÓN ---\n");
             System.out.printf("%-5s %-20s %-12s %-8s %-10s%n", "N° Ticket", "Evento", "Fecha", "Hora", "Cliente");
             System.out.println("----------------------------------------------------------------------------------");
             System.out.printf("%-5d %-20s %-12s %-8s %-10s%n",
-                    ticketActual.getId(), ticketActual.getEvento().getNombre(), ticketActual.getEvento().getFecha(),
-                    ticketActual.getEvento().getHora(), ticketActual.getCliente().getNombreCompleto());
+                    ticketDTOActual.getId(), ticketDTOActual.getEvento().getNombre(), ticketDTOActual.getEvento().getFecha(),
+                    ticketDTOActual.getEvento().getHora(), ticketDTOActual.getCliente().getNombreCompleto());
             System.out.println("----------------------------------------------------------------------------------");
             if (ticket == solicitudesTickets.getFondo()) {
                 System.out.println("No se encontraron más solicitudes en cola");
@@ -206,17 +206,17 @@ public class MenuAdmin {
                 case "S":
                     try {
                         // aumentaaa n uno la capacidad del evento y cambia el estado del asiento a true(disp)
-                        Evento eventoActual = eventoDAO.getById(ticketActual.getEvento().getId());
-                        AsientoDAO asientoDAO = new AsientoDAO(eventoActual.getId());
-                        Asiento asientoActual = ticketDAO.getAsiento(ticketActual.getAsiento().getNumero(), eventoActual);
+                        EventoDTO eventoDTOActual = eventoDAO.getById(ticketDTOActual.getEvento().getId());
+                        AsientoDAO asientoDAO = new AsientoDAO(eventoDTOActual.getId());
+                        AsientoDTO asientoDTOActual = ticketDAO.getAsiento(ticketDTOActual.getAsiento().getNumero(), eventoDTOActual);
 
-                        eventoDAO.aumentarCapacidad(eventoActual);
+                        eventoDAO.aumentarCapacidad(eventoDTOActual);
                         // ETE NO CAMBIA EL ESTADO DEL ASIENTO -> NO LO PASA A TRUE
-                        asientoDAO.updateDesocupado(asientoActual, eventoActual.getId());
+                        asientoDAO.updateDesocupado(asientoDTOActual, eventoDTOActual.getId());
 
                         // agrega ticket a la pila d eliminados correspondiente
                         // creaa json segun el evento y sobreescribe
-                        ticketDAO.addTicketEliminado(ticketActual, ticketsEliminados);
+                        ticketDAO.addTicketEliminado(ticketDTOActual, ticketsEliminados);
 
                         // k se borre d las solicitudes
                         ticketDAO.deleteSolicitud(solicitudesTickets);
@@ -230,7 +230,7 @@ public class MenuAdmin {
 
                     try {
                         // si no se acepta la cancelacion k regrese a la pilaa d tickets comprados
-                        ticketDAO.create(ticketActual);
+                        ticketDAO.create(ticketDTOActual);
 
                         // k se borre d las solicitudes
                         ticketDAO.deleteSolicitud(solicitudesTickets);
@@ -269,9 +269,9 @@ public class MenuAdmin {
         System.out.print("Ingrese la nueva contraseña: ");
         String contraseniaNueva = scanner.nextLine();
 
-        Administrador administrador = adminDAO.cambiarContrasenia(contraseniaNueva);
+        AdministradorDTO administradorDTO = adminDAO.cambiarContrasenia(contraseniaNueva);
         try {
-            adminDAO.update(administrador);
+            adminDAO.update(administradorDTO);
             System.out.println("\nContraseña actualizada con exito.");
         } catch (IOException e) {
             System.out.println("Error al intentar cambiar la contraseña: " + e.getMessage());
@@ -313,7 +313,7 @@ public class MenuAdmin {
         } while (opcion != '4');
     }
 
-    public void opcionesModificarEvento(Evento evento) {
+    public void opcionesModificarEvento(EventoDTO eventoDTO) {
         char opcion;
         System.out.println("\n\t---MODIFICAR EVENTO---\n");
         System.out.println("1. Modificar fecha");
@@ -330,26 +330,26 @@ public class MenuAdmin {
             case '1':
                 System.out.print("\nIngrese nueva fecha (AAAA-MM-DD): ");
                 String nuevaFecha = scanner.nextLine();
-                evento.setFecha(nuevaFecha);
+                eventoDTO.setFecha(nuevaFecha);
                 break;
             case '2':
                 System.out.print("\nIngrese nueva hora (HH:MM): ");
                 String nuevaHora = scanner.nextLine();
-                evento.setHora(nuevaHora);
+                eventoDTO.setHora(nuevaHora);
                 break;
             case '3':
                 System.out.print("\nIngrese nuevo precio: ");
                 float nuevoPrecio = scanner.nextFloat();
-                evento.setPrecio(nuevoPrecio);
+                eventoDTO.setPrecio(nuevoPrecio);
                 break;
             case '4':
                 System.out.print("\nIngrese nueva capacidad: ");
                 int nuevaCapacidad = scanner.nextInt();
-                evento.setCapacidad(nuevaCapacidad);
+                eventoDTO.setCapacidad(nuevaCapacidad);
                 // volver a crear con cierta capacidad(sobreescribe)
-                AsientoDAO asientoDAO = new AsientoDAO(evento.getId());
+                AsientoDAO asientoDAO = new AsientoDAO(eventoDTO.getId());
                 try {
-                    asientoDAO.create(nuevaCapacidad, evento.getId());
+                    asientoDAO.create(nuevaCapacidad, eventoDTO.getId());
                     System.out.println("Capacidad actualizada con exito.");
                 } catch (IOException e) {
                     System.out.println("Error al intentar cambiar la capacidad: " + e.getMessage());
