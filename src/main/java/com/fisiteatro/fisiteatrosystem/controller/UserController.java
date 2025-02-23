@@ -1,5 +1,11 @@
 package com.fisiteatro.fisiteatrosystem.controller;
 
+import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
+import com.fisiteatro.fisiteatrosystem.model.dao.AsientoDAO;
+import com.fisiteatro.fisiteatrosystem.model.dao.ClienteDAO;
+import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
+import com.fisiteatro.fisiteatrosystem.model.dao.TicketDAO;
+import com.fisiteatro.fisiteatrosystem.model.dto.AsientoDTO;
 import com.fisiteatro.fisiteatrosystem.model.dto.ClienteDTO;
 import com.fisiteatro.fisiteatrosystem.model.dto.EventoDTO;
 import com.fisiteatro.fisiteatrosystem.model.dto.TicketDTO;
@@ -175,6 +181,8 @@ public class UserController implements Initializable {
     @FXML
     private AnchorPane panelHistorial;
 
+    private EventoDTO eventoSeleccionadoComprar;
+
     private TicketService ticketService;
     private EventoService eventoService;
 
@@ -187,6 +195,7 @@ public class UserController implements Initializable {
         configurarColumnaCompras();
 
         cargarEventos();
+        inicializarTablaEventos();
     }
 
     public void setClienteDTO(ClienteDTO clienteDTO) {
@@ -242,6 +251,66 @@ public class UserController implements Initializable {
     private void configurarService() {
         ticketService = new TicketService();
         eventoService = new EventoService();
+    }
+
+    private void inicializarTablaEventos() {
+        eventos_tableViewEventos.setRowFactory(tv -> {
+            TableRow<EventoDTO> row = new TableRow<>();
+
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 1  && !row.isEmpty()) {
+                    eventoSeleccionadoComprar = row.getItem();
+                    System.out.println("Evento seleccionado: " + eventoSeleccionadoComprar.getNombre());
+                }
+            });
+
+            return row;
+        });
+    }
+
+    @FXML
+    private void comprarTicket() {
+        if (eventoSeleccionadoComprar != null) {
+            System.out.println("Comprando ticket para: " + eventoSeleccionadoComprar.getNombre());
+
+            if (eventoSeleccionadoComprar.getCapacidad() <= 0){
+                System.out.println("No hay asientos disponibles");
+                return;
+            }
+
+            // Obtener un asiento disponible
+            AsientoDAO asientoDAO = new AsientoDAO(eventoSeleccionadoComprar.getId());
+            AsientoDTO asientoDisponible = asientoDAO.obtenerPrimerAsientoDisponible();
+
+            if (asientoDisponible == null) {
+                System.out.println("No hay asientos disponibles.");
+                return;
+            }
+
+            TicketDAO ticketDAO = new TicketDAO();
+            int idTicket = ticketDAO.createId();
+
+            // Lógica para registrar la compra (puedes modificar según tu estructura)
+            TicketDTO nuevoTicket = new TicketDTO(idTicket, clienteDTO, asientoDisponible, eventoSeleccionadoComprar);
+
+            try {
+                EventoDAO eventoDAO = new EventoDAO();
+                eventoDAO.disminuirEnUno(eventoSeleccionadoComprar.getId());
+
+                ticketService.create(nuevoTicket);
+                // Marcar el asiento como ocupado y guardar cambios
+                asientoDAO.updateOcupado(asientoDisponible, eventoSeleccionadoComprar.getId());
+
+                System.out.println("Compra realizada con éxito. Asiento asignado: " + asientoDisponible);
+                cargarCompras(); // Actualizar la tabla de compras
+                cargarEventos();
+                eventos_tableViewEventos.refresh();
+            } catch (IOException e) {
+                System.err.println("Error al registrar la compra: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Seleccione un evento antes de comprar.");
+        }
     }
 
     @FXML
