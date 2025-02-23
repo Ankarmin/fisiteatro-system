@@ -1,9 +1,14 @@
 package com.fisiteatro.fisiteatrosystem.controller;
 
+import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
+import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
@@ -69,25 +74,25 @@ public class UserController implements Initializable {
     private Button eventos_bttnComprar;
 
     @FXML
-    private TableColumn<?, ?> eventos_columna_capacidad;
+    private TableColumn<Evento, Integer> eventos_columna_capacidad;
 
     @FXML
-    private TableColumn<?, ?> eventos_columna_fecha;
+    private TableColumn<Evento, String> eventos_columna_fecha;
 
     @FXML
-    private TableColumn<?, ?> eventos_columna_hora;
+    private TableColumn<Evento, String> eventos_columna_hora;
 
     @FXML
-    private TableColumn<?, ?> eventos_columna_id;
+    private TableColumn<Evento, Integer> eventos_columna_id;
 
     @FXML
-    private TableColumn<?, ?> eventos_columna_nombre;
+    private TableColumn<Evento, String> eventos_columna_nombre;
 
     @FXML
-    private TableColumn<?, ?> eventos_columna_precio;
+    private TableColumn<Evento, Float> eventos_columna_precio;
 
     @FXML
-    private TableView<?> eventos_tableViewEventos;
+    private TableView<Evento> eventos_tableViewEventos;
 
     @FXML
     private TextField eventos_txtFieldBuscar;
@@ -158,14 +163,50 @@ public class UserController implements Initializable {
     @FXML
     private AnchorPane panelHistorial;
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        configurarColumnaEventos();
 
+        cargarEventos();
     }
 
     public void switchForm(ActionEvent event) {
         panelEventos.setVisible(event.getSource() == bttnEventos);
         panelCompras.setVisible(event.getSource() == bttnCompras);
         panelHistorial.setVisible(event.getSource() == bttnHistorial);
+    }
+
+    private void configurarColumnaEventos(){
+        eventos_columna_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        eventos_columna_nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        eventos_columna_fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        eventos_columna_hora.setCellValueFactory(new PropertyValueFactory<>("hora"));
+        eventos_columna_precio.setCellValueFactory(new PropertyValueFactory<>("precio"));
+        eventos_columna_capacidad.setCellValueFactory(new PropertyValueFactory<>("capacidad"));
+    }
+
+    private void configurarColumnaCompras(){
+        compras_columna_nroTicket.setCellValueFactory(new PropertyValueFactory<>("id"));
+        compras_columna_dniCliente.setCellValueFactory(new PropertyValueFactory<>("dni"));
+        compras_columna_evento.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        compras_columna_fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        compras_columna_hora.setCellValueFactory(new PropertyValueFactory<>("hora"));
+        compras_columna_precio.setCellValueFactory(new PropertyValueFactory<>("precio"));
+        compras_columna_nroAsiento.setCellValueFactory(new PropertyValueFactory<>("numero"));
+        compras_columna_filaAsiento.setCellValueFactory(new PropertyValueFactory<>("fila"));
+    }
+
+    private void cargarCompras(){
+
+    }
+
+    private void cargarEventos(){
+        EventoDAO eventoDAO = new EventoDAO();
+        ObservableList<Evento> eventosList = FXCollections.observableList(eventoDAO.readAll());
+
+        eventos_tableViewEventos.setItems(eventosList);
+        eventos_tableViewEventos.refresh();
     }
 }

@@ -10,7 +10,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/fisiteatro/fisiteatrosystem/view/fxml/Admin.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/fisiteatro/fisiteatrosystem/view/fxml/User.fxml"));
         Parent root = fxmlLoader.load();
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("Fisiteatro");
