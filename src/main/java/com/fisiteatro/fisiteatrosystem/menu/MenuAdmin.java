@@ -261,10 +261,10 @@ public class MenuAdmin {
         System.out.print("\nIngrese contraseña actual: ");
         String contraseniaActual = scanner.nextLine();
 
-        if (!adminDAO.verificarContrasenia(contraseniaActual)) {
+        /* if (!adminDAO.verificarContrasenia(contraseniaActual)) {
             System.out.println("Contraseña incorrecta.");
             return;
-        }
+        } */
 
         System.out.print("Ingrese la nueva contraseña: ");
         String contraseniaNueva = scanner.nextLine();

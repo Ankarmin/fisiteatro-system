@@ -29,8 +29,8 @@ public class AdministradorService {
         administradorDAO.delete(dni);
     }
 
-    public boolean verificarContrasenia(String contrasenia) {
-        return administradorDAO.verificarContrasenia(contrasenia);
+    public boolean iniciarSesion(String dni, String contrasena) {
+        return administradorDAO.iniciarSesion(dni, contrasena);
     }
 
     public AdministradorDTO cambiarContrasenia(String contrasenia) {

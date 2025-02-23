@@ -1,7 +1,7 @@
 package com.fisiteatro.fisiteatrosystem.controller;
 
-import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
 import com.fisiteatro.fisiteatrosystem.model.dto.EventoDTO;
+import com.fisiteatro.fisiteatrosystem.service.EventoService;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -163,8 +163,11 @@ public class AdminController implements Initializable {
     @FXML
     private AnchorPane pnlInventarios;
 
+    private EventoService eventoService;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        configurarServices();
         configurarColumnasEventos();
         configurarColumnasAdministrarEventos();
 
@@ -176,6 +179,10 @@ public class AdminController implements Initializable {
         panelEventos.setVisible(event.getSource() == bttnEventos);
         panelAdministrarEventos.setVisible(event.getSource() == bttnAdministrarEventos);
         panelGestionarTickets.setVisible(event.getSource() == bttnGestionarTickets);
+    }
+
+    private void configurarServices() {
+        eventoService = new EventoService();
     }
 
     private void configurarColumnasEventos() {
@@ -197,17 +204,13 @@ public class AdminController implements Initializable {
     }
 
     private void cargarEventos() {
-        EventoDAO eventoDAO = new EventoDAO();
-        ObservableList<EventoDTO> eventosList = FXCollections.observableList(eventoDAO.readAll());
-
+        ObservableList<EventoDTO> eventosList = FXCollections.observableList(eventoService.readAll());
         eventos_tableViewEventos.setItems(eventosList);
         eventos_tableViewEventos.refresh();
     }
 
     private void cargarAdministrarEventos() {
-        EventoDAO eventoDAO = new EventoDAO();
-        ObservableList<EventoDTO> eventosList = FXCollections.observableList(eventoDAO.readAll());
-
+        ObservableList<EventoDTO> eventosList = FXCollections.observableList(eventoService.readAll());
         administrarEventos_tableViewEventos.setItems(eventosList);
         administrarEventos_tableViewEventos.refresh();
     }

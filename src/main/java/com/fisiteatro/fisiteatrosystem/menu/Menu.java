@@ -57,7 +57,7 @@ public class Menu {
         System.out.print("Ingrese su contraseña: ");
         String contrasena = scanner.nextLine();
 
-        ClienteDTO clienteDTO = clienteDAO.iniciarSesion(dni, contrasena);
+        /* ClienteDTO clienteDTO = clienteDAO.iniciarSesion(dni, contrasena);
 
         if (dni.equals("99999999") && contrasena.equals("admin")) {
             System.out.println("¡Inicio de sesión exitoso! Bienvenido Administrador.");
@@ -71,7 +71,7 @@ public class Menu {
             menuCliente.mostrarMenu();
         } else {
             System.out.println("DNI o contraseña incorrectos. Intente nuevamente.");
-        }
+        } */
     }
 
     private void registrarse() {
