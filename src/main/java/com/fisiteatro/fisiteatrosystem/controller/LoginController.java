@@ -155,7 +155,7 @@ public class LoginController implements Initializable {
             if (Objects.equals(titulo, "Cliente")) {
                 ClienteDTO cliente = clienteService.obtenerPorDni(iniciarSesion_txtFieldNombreUsuario.getText());
                 UserController userController = fxmlLoader.getController();
-                // userController.setCliente(cliente);
+                userController.setClienteDTO(cliente);
             }
 
             Stage nuevaVentana = new Stage();

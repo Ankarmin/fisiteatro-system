@@ -176,6 +176,8 @@ public class UserController implements Initializable {
     private TicketService ticketService;
     private EventoService eventoService;
 
+    private ClienteDTO clienteDTO;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configurarService();
@@ -184,6 +186,10 @@ public class UserController implements Initializable {
 
         cargarEventos();
         cargarCompras();
+    }
+
+    public void setClienteDTO(ClienteDTO clienteDTO) {
+        this.clienteDTO = clienteDTO;
     }
 
     public void switchForm(ActionEvent event) {
