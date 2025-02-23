@@ -1,68 +1,106 @@
-[
-  {
-    "id": 8295,
-    "cliente": {
-      "nombres": "lucia",
-      "apellidos": "de la cruz",
-      "dni": "12345678",
-      "contrasena": "lucia123"
-    },
-    "asiento": {
-      "fila": "B",
-      "numero": 4,
-      "estado": false
-    },
-    "evento": {
-      "id": 548,
-      "nombre": "Peter Pan",
-      "fecha": "2025-10-15",
-      "hora": "18:30",
-      "precio": 60.0,
-      "capacidad": 97
-    }
+[ {
+  "id" : 2722,
+  "cliente" : {
+    "nombres" : "CHRISTIAN",
+    "apellidos" : "ARANCIVIA",
+    "dni" : "987654321",
+    "contrasena" : "ASDASDASD"
   },
-  {
-    "id": 7662,
-    "cliente": {
-      "nombres": "lucia",
-      "apellidos": "de la cruz",
-      "dni": "12345678",
-      "contrasena": "lucia123"
-    },
-    "asiento": {
-      "fila": "A",
-      "numero": 3,
-      "estado": false
-    },
-    "evento": {
-      "id": 548,
-      "nombre": "Peter Pan",
-      "fecha": "2025-10-15",
-      "hora": "18:30",
-      "precio": 60.0,
-      "capacidad": 97
-    }
+  "asiento" : {
+    "fila" : "A",
+    "numero" : 5,
+    "estado" : true
   },
-  {
-    "id": 3985,
-    "cliente": {
-      "nombres": "pelado",
-      "apellidos": "arredondo",
-      "dni": "87654321",
-      "contrasena": "peladin"
-    },
-    "asiento": {
-      "fila": "A",
-      "numero": 5,
-      "estado": false
-    },
-    "evento": {
-      "id": 849,
-      "nombre": "GAAAAAAAAA",
-      "fecha": "2004-11-25",
-      "hora": "23:43",
-      "precio": 0.0,
-      "capacidad": 14
-    }
+  "evento" : {
+    "id" : 490,
+    "nombre" : "La era del Hielo",
+    "fecha" : "2025-10-10",
+    "hora" : "15:30",
+    "precio" : 100.0,
+    "capacidad" : 25
   }
-]
+}, {
+  "id" : 7763,
+  "cliente" : {
+    "nombres" : "CHRISTIAN",
+    "apellidos" : "ARANCIVIA",
+    "dni" : "987654321",
+    "contrasena" : "ASDASDASD"
+  },
+  "asiento" : {
+    "fila" : "C",
+    "numero" : 4,
+    "estado" : false
+  },
+  "evento" : {
+    "id" : 490,
+    "nombre" : "La era del Hielo",
+    "fecha" : "2025-10-10",
+    "hora" : "15:30",
+    "precio" : 100.0,
+    "capacidad" : 25
+  }
+}, {
+  "id" : 8295,
+  "cliente" : {
+    "nombres" : "lucia",
+    "apellidos" : "de la cruz",
+    "dni" : "12345678",
+    "contrasena" : "lucia123"
+  },
+  "asiento" : {
+    "fila" : "B",
+    "numero" : 4,
+    "estado" : false
+  },
+  "evento" : {
+    "id" : 548,
+    "nombre" : "Peter Pan",
+    "fecha" : "2025-10-15",
+    "hora" : "18:30",
+    "precio" : 60.0,
+    "capacidad" : 97
+  }
+}, {
+  "id" : 7662,
+  "cliente" : {
+    "nombres" : "lucia",
+    "apellidos" : "de la cruz",
+    "dni" : "12345678",
+    "contrasena" : "lucia123"
+  },
+  "asiento" : {
+    "fila" : "A",
+    "numero" : 3,
+    "estado" : false
+  },
+  "evento" : {
+    "id" : 548,
+    "nombre" : "Peter Pan",
+    "fecha" : "2025-10-15",
+    "hora" : "18:30",
+    "precio" : 60.0,
+    "capacidad" : 97
+  }
+}, {
+  "id" : 3985,
+  "cliente" : {
+    "nombres" : "pelado",
+    "apellidos" : "arredondo",
+    "dni" : "87654321",
+    "contrasena" : "peladin"
+  },
+  "asiento" : {
+    "fila" : "A",
+    "numero" : 5,
+    "estado" : false
+  },
+  "evento" : {
+    "id" : 849,
+    "nombre" : "GAAAAAAAAA",
+    "fecha" : "2004-11-25",
+    "hora" : "23:43",
+    "precio" : 0.0,
+    "capacidad" : 14
+  }
+} ]

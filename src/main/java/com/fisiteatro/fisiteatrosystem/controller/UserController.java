@@ -182,6 +182,7 @@ public class UserController implements Initializable {
     private AnchorPane panelHistorial;
 
     private EventoDTO eventoSeleccionadoComprar;
+    private TicketDTO ticketSeleccionadoBorrar;
 
     private TicketService ticketService;
     private EventoService eventoService;
@@ -311,6 +312,26 @@ public class UserController implements Initializable {
         } else {
             System.out.println("Seleccione un evento antes de comprar.");
         }
+    }
+
+    private void inicializarTablaCompras() {
+        compras_tableViewCompras.setRowFactory(tv -> {
+            TableRow<EventoDTO> row = new TableRow<>();
+
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 1  && !row.isEmpty()) {
+                    ticketSeleccionadoBorrar = row.getItem();
+                    System.out.println("Evento seleccionado: " + ticketSeleccionadoBorrar.getEvento().getNombre());
+                }
+            });
+
+            return row;
+        });
+    }
+
+    @FXML
+    private void eliminarTicket() {
+
     }
 
     @FXML

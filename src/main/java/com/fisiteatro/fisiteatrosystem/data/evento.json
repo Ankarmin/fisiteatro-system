@@ -1,10 +1,8 @@
-[
-  {
-    "id": 490,
-    "nombre": "La era del Hielo",
-    "fecha": "2025-10-10",
-    "hora": "15:30",
-    "precio": 100.0,
-    "capacidad": 25
-  }
-]
+[ {
+  "id" : 490,
+  "nombre" : "La era del Hielo",
+  "fecha" : "2025-10-10",
+  "hora" : "15:30",
+  "precio" : 100.0,
+  "capacidad" : 23
+} ]
