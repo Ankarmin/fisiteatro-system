@@ -1,8 +1,11 @@
 package com.fisiteatro.fisiteatrosystem.controller;
 
 import com.fisiteatro.fisiteatrosystem.model.dto.EventoDTO;
+import com.fisiteatro.fisiteatrosystem.model.dto.TicketDTO;
 import com.fisiteatro.fisiteatrosystem.service.EventoService;
+import com.fisiteatro.fisiteatrosystem.service.TicketService;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -107,22 +111,22 @@ public class AdminController implements Initializable {
     private Button gestionarTickets_bttnRechazarEliminacion;
 
     @FXML
-    private TableColumn<?, ?> gestionarTickets_columna_cliente;
+    private TableColumn<TicketDTO, String> gestionarTickets_columna_cliente;
 
     @FXML
-    private TableColumn<?, ?> gestionarTickets_columna_evento;
+    private TableColumn<TicketDTO, String> gestionarTickets_columna_evento;
 
     @FXML
-    private TableColumn<?, ?> gestionarTickets_columna_fecha;
+    private TableColumn<TicketDTO, String> gestionarTickets_columna_fecha;
 
     @FXML
-    private TableColumn<?, ?> gestionarTickets_columna_hora;
+    private TableColumn<TicketDTO, String> gestionarTickets_columna_hora;
 
     @FXML
-    private TableColumn<?, ?> gestionarTickets_columna_nroTicket;
+    private TableColumn<TicketDTO, Integer> gestionarTickets_columna_nroTicket;
 
     @FXML
-    private TableView<?> gestionarTickets_tableViewSolicitudes;
+    private TableView<TicketDTO> gestionarTickets_tableViewSolicitudes;
 
     @FXML
     private TableColumn<?, ?> inventarios_columna_cantidadAumentada;
@@ -164,18 +168,21 @@ public class AdminController implements Initializable {
     private AnchorPane pnlInventarios;
 
     private EventoService eventoService;
+    private TicketService ticketService;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configurarServices();
+
         configurarColumnasEventos();
-        configurarColumnasAdministrarEventos();
+        configurarColumnasGestionarTickets();
 
         cargarEventos();
-        cargarAdministrarEventos();
+        cargarSolicitudes();
     }
 
-    public void switchForm(ActionEvent event) {
+    @FXML
+    private void switchForm(ActionEvent event) {
         panelEventos.setVisible(event.getSource() == bttnEventos);
         panelAdministrarEventos.setVisible(event.getSource() == bttnAdministrarEventos);
         panelGestionarTickets.setVisible(event.getSource() == bttnGestionarTickets);
@@ -183,18 +190,10 @@ public class AdminController implements Initializable {
 
     private void configurarServices() {
         eventoService = new EventoService();
+        ticketService = new TicketService();
     }
 
     private void configurarColumnasEventos() {
-        eventos_columna_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        eventos_columna_nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        eventos_columna_fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
-        eventos_columna_hora.setCellValueFactory(new PropertyValueFactory<>("hora"));
-        eventos_columna_precio.setCellValueFactory(new PropertyValueFactory<>("precio"));
-        eventos_columna_capacidad.setCellValueFactory(new PropertyValueFactory<>("capacidad"));
-    }
-
-    private void configurarColumnasAdministrarEventos() {
         administrarEventos_columna_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         administrarEventos_columna_nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         administrarEventos_columna_fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
@@ -203,16 +202,24 @@ public class AdminController implements Initializable {
         administrarEventos_columna_capacidad.setCellValueFactory(new PropertyValueFactory<>("capacidad"));
     }
 
-    private void cargarEventos() {
-        ObservableList<EventoDTO> eventosList = FXCollections.observableList(eventoService.readAll());
-        eventos_tableViewEventos.setItems(eventosList);
-        eventos_tableViewEventos.refresh();
+    private void configurarColumnasGestionarTickets() {
+        gestionarTickets_columna_nroTicket.setCellValueFactory(new PropertyValueFactory<>("id"));
+        gestionarTickets_columna_evento.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getNombre()));
+        gestionarTickets_columna_fecha.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getFecha()));
+        gestionarTickets_columna_hora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getHora()));
+        gestionarTickets_columna_cliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getNombreCompleto()));
     }
 
-    private void cargarAdministrarEventos() {
-        ObservableList<EventoDTO> eventosList = FXCollections.observableList(eventoService.readAll());
+    private void cargarEventos() {
+        ObservableList<EventoDTO> eventosList = FXCollections.observableArrayList(eventoService.readAll());
         administrarEventos_tableViewEventos.setItems(eventosList);
         administrarEventos_tableViewEventos.refresh();
+    }
+
+    private void cargarSolicitudes() {
+        ObservableList<TicketDTO> ticketList = FXCollections.observableArrayList(ticketService.readAll());
+        gestionarTickets_tableViewSolicitudes.setItems(ticketList);
+        gestionarTickets_tableViewSolicitudes.refresh();
     }
 
     @FXML
@@ -237,5 +244,46 @@ public class AdminController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    private void crearEvento() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/fisiteatro/fisiteatrosystem/view/fxml/AdminCrearEvento.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Crear Evento");
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            stage.showAndWait();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    private void modificarEvento() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/fisiteatro/fisiteatrosystem/view/fxml/AdminModificarEvento.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Modificar Evento");
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            stage.showAndWait();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    private void eliminarEvento() {
+
     }
 }

@@ -1,9 +1,11 @@
 package com.fisiteatro.fisiteatrosystem.controller;
 
+import com.fisiteatro.fisiteatrosystem.service.EventoService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,7 +36,24 @@ public class AdminModificarEventoController implements Initializable {
     @FXML
     private TextField modificarEvento_txtFieldPrecio;
 
+    private EventoService eventoService;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    }
+
+    private void configuarServices() {
+        eventoService = new EventoService();
+    }
+
+    @FXML
+    private void modificarEvento() {
+
+    }
+
+    @FXML
+    private void cancelarModificacion() {
+        Stage currentStage = (Stage) modificarEvento_bttnCancelar.getScene().getWindow();
+        currentStage.close();
     }
 }
