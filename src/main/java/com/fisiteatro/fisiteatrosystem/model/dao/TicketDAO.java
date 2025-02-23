@@ -4,9 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
 import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
 import com.fisiteatro.fisiteatrosystem.datastructures.Pila;
-import com.fisiteatro.fisiteatrosystem.model.dto.Ticket;
 import com.fisiteatro.fisiteatrosystem.model.dto.Asiento;
 import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
+import com.fisiteatro.fisiteatrosystem.model.dto.Ticket;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.util.Random;
 public class TicketDAO implements ITicketDAO {
     private static final String FILE_PATH = "src/main/java/com/fisiteatro/fisiteatrosystem/data/ticketsComprados.json";
     private static final String PATH_ELIMINADOS = "src/main/java/com/fisiteatro/fisiteatrosystem/data/ticketsEliminadosPorEvento/eliminados_";
-    private Pila<Ticket> tickets;
+    private final Pila<Ticket> tickets;
 
     public TicketDAO() {
 
@@ -108,7 +108,7 @@ public class TicketDAO implements ITicketDAO {
         return solicitudesTickets;
     }
 
-    public void deleteSolicitud(Cola<Ticket> solicitudes) throws IOException{
+    public void deleteSolicitud(Cola<Ticket> solicitudes) throws IOException {
         solicitudes.desencolar();
         saveSolicitudesTicketsJSON(solicitudes);
     }
@@ -120,7 +120,7 @@ public class TicketDAO implements ITicketDAO {
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILENAME), solicitudesTickets.toList());
     }
 
-    public Pila<Ticket> getTicketsEliminados(int idEvento){
+    public Pila<Ticket> getTicketsEliminados(int idEvento) {
         String FILENAME = PATH_ELIMINADOS + idEvento + ".json";
         Pila<Ticket> ticketsEliminados = new Pila<>();
         try {
@@ -141,10 +141,10 @@ public class TicketDAO implements ITicketDAO {
         saveTicketsEliminadosJSON(pila, ticket.getEvento().getId());
     }
 
-    public Asiento getAsiento(int numAsiento, Evento evento){
+    public Asiento getAsiento(int numAsiento, Evento evento) {
         AsientoDAO asientoDAO = new AsientoDAO(evento.getId());
-        for(Asiento asiento: asientoDAO.readAll()){
-            if(asiento.getNumero() == numAsiento){
+        for (Asiento asiento : asientoDAO.readAll()) {
+            if (asiento.getNumero() == numAsiento) {
                 return asiento;
             }
         }

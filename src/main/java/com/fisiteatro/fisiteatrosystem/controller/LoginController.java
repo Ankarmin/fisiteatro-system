@@ -70,7 +70,6 @@ public class LoginController implements Initializable {
         panelRegistrar.setVisible(event.getSource() == iniciarSesion_hyperlinkRegistrarse);
     }
 
-    //para mostrar contraseña al presionar el check box
     @FXML
     private void mostrarContrasena() {
         boolean mostrarIniciarSesion = iniciarSesion_mostrarContrasena.isSelected();

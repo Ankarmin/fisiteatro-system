@@ -1,7 +1,6 @@
 package com.fisiteatro.fisiteatrosystem.menu;
 
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
-import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
 import com.fisiteatro.fisiteatrosystem.datastructures.Nodo;
 import com.fisiteatro.fisiteatrosystem.datastructures.Pila;
 import com.fisiteatro.fisiteatrosystem.model.dao.AdministradorDAO;
@@ -45,7 +44,7 @@ public class MenuAdmin {
             opcion = scanner.next().charAt(0);
             scanner.nextLine();
 
-            switch(opcion) {
+            switch (opcion) {
                 case '0':
                     eventoDAO.verCatalogo();
                     break;
@@ -192,7 +191,7 @@ public class MenuAdmin {
                     ticketActual.getId(), ticketActual.getEvento().getNombre(), ticketActual.getEvento().getFecha(),
                     ticketActual.getEvento().getHora(), ticketActual.getCliente().getNombreCompleto());
             System.out.println("----------------------------------------------------------------------------------");
-            if(ticket == solicitudesTickets.getFondo()){
+            if (ticket == solicitudesTickets.getFondo()) {
                 System.out.println("No se encontraron más solicitudes en cola");
             } else {
                 System.out.println("Más solicitudes en cola...");
@@ -203,7 +202,7 @@ public class MenuAdmin {
                     "Si desea salir de la gestión de tickets, ingrese 'X': ");
             String response = scanner.nextLine().toUpperCase();
 
-            switch (response){
+            switch (response) {
                 case "S":
                     try {
                         // aumentaaa n uno la capacidad del evento y cambia el estado del asiento a true(disp)
@@ -249,9 +248,7 @@ public class MenuAdmin {
 
             // pasa al siguiente
             ticket = solicitudesTickets.pasarSiguiente(ticket);
-        }while (ticket != null);
-
-
+        } while (ticket != null);
 
 
         // q se muestre el frente de la cola y se vea si cola sig != null

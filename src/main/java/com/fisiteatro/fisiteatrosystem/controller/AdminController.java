@@ -1,11 +1,22 @@
 package com.fisiteatro.fisiteatrosystem.controller;
 
+import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
+import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,25 +35,25 @@ public class AdminController implements Initializable {
     private Button administrarEventos_bttnModificarEvento;
 
     @FXML
-    private TableColumn<?, ?> administrarEventos_columna_capacidad;
+    private TableColumn<Evento, Integer> administrarEventos_columna_capacidad;
 
     @FXML
-    private TableColumn<?, ?> administrarEventos_columna_fecha;
+    private TableColumn<Evento, String> administrarEventos_columna_fecha;
 
     @FXML
-    private TableColumn<?, ?> administrarEventos_columna_hora;
+    private TableColumn<Evento, String> administrarEventos_columna_hora;
 
     @FXML
-    private TableColumn<?, ?> administrarEventos_columna_id;
+    private TableColumn<Evento, Integer> administrarEventos_columna_id;
 
     @FXML
-    private TableColumn<?, ?> administrarEventos_columna_nombre;
+    private TableColumn<Evento, String> administrarEventos_columna_nombre;
 
     @FXML
-    private TableColumn<?, ?> administrarEventos_columna_precio;
+    private TableColumn<Evento, Float> administrarEventos_columna_precio;
 
     @FXML
-    private TableView<?> administrarEventos_tableViewEventos;
+    private TableView<Evento> administrarEventos_tableViewEventos;
 
     @FXML
     private TextField administrarEventos_textFieldBuscar;
@@ -66,25 +77,25 @@ public class AdminController implements Initializable {
     private Button eventos_bttnBuscar;
 
     @FXML
-    private TableColumn<?, ?> eventos_columna_capacidad;
+    private TableColumn<Evento, Integer> eventos_columna_capacidad;
 
     @FXML
-    private TableColumn<?, ?> eventos_columna_fecha;
+    private TableColumn<Evento, String> eventos_columna_fecha;
 
     @FXML
-    private TableColumn<?, ?> eventos_columna_hora;
+    private TableColumn<Evento, String> eventos_columna_hora;
 
     @FXML
-    private TableColumn<?, ?> eventos_columna_id;
+    private TableColumn<Evento, Integer> eventos_columna_id;
 
     @FXML
-    private TableColumn<?, ?> eventos_columna_nombre;
+    private TableColumn<Evento, String> eventos_columna_nombre;
 
     @FXML
-    private TableColumn<?, ?> eventos_columna_precio;
+    private TableColumn<Evento, Float> eventos_columna_precio;
 
     @FXML
-    private TableView<?> eventos_tableViewEventos;
+    private TableView<Evento> eventos_tableViewEventos;
 
     @FXML
     private TextField eventos_txtFieldBuscar;
@@ -154,11 +165,74 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        configurarColumnasEventos();
+        configurarColumnasAdministrarEventos();
+
+        cargarEventos();
+        cargarAdministrarEventos();
     }
 
     public void switchForm(ActionEvent event) {
         panelEventos.setVisible(event.getSource() == bttnEventos);
         panelAdministrarEventos.setVisible(event.getSource() == bttnAdministrarEventos);
         panelGestionarTickets.setVisible(event.getSource() == bttnGestionarTickets);
+    }
+
+    private void configurarColumnasEventos() {
+        eventos_columna_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        eventos_columna_nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        eventos_columna_fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        eventos_columna_hora.setCellValueFactory(new PropertyValueFactory<>("hora"));
+        eventos_columna_precio.setCellValueFactory(new PropertyValueFactory<>("precio"));
+        eventos_columna_capacidad.setCellValueFactory(new PropertyValueFactory<>("capacidad"));
+    }
+
+    private void configurarColumnasAdministrarEventos() {
+        administrarEventos_columna_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        administrarEventos_columna_nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        administrarEventos_columna_fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        administrarEventos_columna_hora.setCellValueFactory(new PropertyValueFactory<>("hora"));
+        administrarEventos_columna_precio.setCellValueFactory(new PropertyValueFactory<>("precio"));
+        administrarEventos_columna_capacidad.setCellValueFactory(new PropertyValueFactory<>("capacidad"));
+    }
+
+    private void cargarEventos() {
+        EventoDAO eventoDAO = new EventoDAO();
+        ObservableList<Evento> eventosList = FXCollections.observableList(eventoDAO.readAll());
+
+        eventos_tableViewEventos.setItems(eventosList);
+        eventos_tableViewEventos.refresh();
+    }
+
+    private void cargarAdministrarEventos() {
+        EventoDAO eventoDAO = new EventoDAO();
+        ObservableList<Evento> eventosList = FXCollections.observableList(eventoDAO.readAll());
+
+        administrarEventos_tableViewEventos.setItems(eventosList);
+        administrarEventos_tableViewEventos.refresh();
+    }
+
+    @FXML
+    private void cerrarSesion() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/fisiteatro/fisiteatrosystem/view/fxml/Login.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Fisiteatro");
+
+            Stage currentStage = (Stage) bttnCerrarSesion.getScene().getWindow();
+            currentStage.close();
+
+            stage.setOnCloseRequest(event -> {
+                Platform.exit();
+                System.exit(0);
+            });
+
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

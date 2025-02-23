@@ -120,7 +120,6 @@ public class AsientoDAO implements IAsientoDAO {
     }
 
 
-
     public void deleteFile(int idEvento) throws IOException {
         String FILENAME = PATH + idEvento + ".json";
         File file = new File(FILENAME);

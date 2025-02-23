@@ -40,7 +40,7 @@ public class Cola<T> {
         return dato;
     }
 
-    public void desencolar(){
+    public void desencolar() {
         if (frente == null) {
             throw new NoSuchElementException();
         }
@@ -65,16 +65,16 @@ public class Cola<T> {
         return frente;
     }
 
-    public Nodo<T> pasarSiguiente (Nodo<T> nodo) {
+    public Nodo<T> pasarSiguiente(Nodo<T> nodo) {
         nodo = nodo.siguiente;
         return nodo;
     }
 
-    public T getDato(Nodo<T> nodo){
+    public T getDato(Nodo<T> nodo) {
         return nodo.dato;
     }
 
-    public Nodo<T> getFondo(){
+    public Nodo<T> getFondo() {
         return fondo;
     }
 

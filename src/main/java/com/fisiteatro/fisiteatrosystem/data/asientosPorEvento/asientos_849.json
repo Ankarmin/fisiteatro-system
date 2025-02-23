@@ -1,186 +1,188 @@
 <<<<<<< HEAD:src/main/java/com/fisiteatro/fisiteatrosystem/data/asientosPorEvento/asientos_849.json
-[ {
-  "fila" : "A",
-  "numero" : 1,
-  "estado" : true
+[
+{
+"fila": "A",
+"numero": 1,
+"estado" : true
 }, {
-  "fila" : "A",
-  "numero" : 2,
-  "estado" : true
+"fila": "A",
+"numero" : 2,
+"estado": true
 }, {
-  "fila" : "B",
-  "numero" : 3,
-  "estado" : true
+"fila" : "B",
+"numero": 3,
+"estado": true
 }, {
-  "fila" : "C",
-  "numero" : 4,
-  "estado" : true
+"fila": "C",
+"numero": 4,
+"estado": true
 }, {
-  "fila" : "A",
-  "numero" : 5,
-  "estado" : false
+"fila": "A",
+"numero": 5,
+"estado": false
 }, {
-  "fila" : "C",
-  "numero" : 6,
-  "estado" : true
+"fila": "C",
+"numero": 6,
+"estado" : true
 }, {
-  "fila" : "B",
-  "numero" : 7,
-  "estado" : true
+"fila": "B",
+"numero" : 7,
+"estado": true
 }, {
-  "fila" : "C",
-  "numero" : 8,
-  "estado" : true
+"fila" : "C",
+"numero": 8,
+"estado": true
 }, {
-  "fila" : "D",
-  "numero" : 9,
-  "estado" : true
+"fila": "D",
+"numero": 9,
+"estado": true
 }, {
-  "fila" : "A",
-  "numero" : 10,
-  "estado" : true
+"fila": "A",
+"numero": 10,
+"estado": true
 }, {
-  "fila" : "D",
-  "numero" : 11,
-  "estado" : true
+"fila": "D",
+"numero": 11,
+"estado" : true
 }, {
-  "fila" : "D",
-  "numero" : 12,
-  "estado" : true
+"fila": "D",
+"numero" : 12,
+"estado": true
 }, {
-  "fila" : "C",
-  "numero" : 13,
-  "estado" : true
+"fila" : "C",
+"numero": 13,
+"estado": true
 }, {
-  "fila" : "D",
-  "numero" : 14,
-  "estado" : true
+"fila": "D",
+"numero": 14,
+"estado": true
 }, {
-  "fila" : "B",
-  "numero" : 15,
-  "estado" : true
+"fila": "B",
+"numero": 15,
+"estado": true
 }, {
-  "fila" : "D",
-  "numero" : 16,
-  "estado" : true
+"fila": "D",
+"numero": 16,
+"estado" : true
 }, {
-  "fila" : "E",
-  "numero" : 17,
-  "estado" : true
+"fila": "E",
+"numero" : 17,
+"estado": true
 }, {
-  "fila" : "C",
-  "numero" : 18,
-  "estado" : true
+"fila" : "C",
+"numero": 18,
+"estado": true
 }, {
-  "fila" : "D",
-  "numero" : 19,
-  "estado" : true
+"fila": "D",
+"numero": 19,
+"estado": true
 }, {
-  "fila" : "E",
-  "numero" : 20,
-  "estado" : true
-} ]
+"fila": "E",
+"numero": 20,
+"estado": true
+}
+]
 =======
 [
-  {
-    "fila": "A",
-    "numero": 1,
-    "estado": false
-  },
-  {
-    "fila": "A",
-    "numero": 2,
-    "estado": false
-  },
-  {
-    "fila": "B",
-    "numero": 3,
-    "estado": false
-  },
-  {
-    "fila": "C",
-    "numero": 4,
-    "estado": false
-  },
-  {
-    "fila": "A",
-    "numero": 5,
-    "estado": true
-  },
-  {
-    "fila": "C",
-    "numero": 6,
-    "estado": true
-  },
-  {
-    "fila": "B",
-    "numero": 7,
-    "estado": true
-  },
-  {
-    "fila": "C",
-    "numero": 8,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 9,
-    "estado": true
-  },
-  {
-    "fila": "A",
-    "numero": 10,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 11,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 12,
-    "estado": true
-  },
-  {
-    "fila": "C",
-    "numero": 13,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 14,
-    "estado": true
-  },
-  {
-    "fila": "B",
-    "numero": 15,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 16,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 17,
-    "estado": true
-  },
-  {
-    "fila": "C",
-    "numero": 18,
-    "estado": true
-  },
-  {
-    "fila": "D",
-    "numero": 19,
-    "estado": true
-  },
-  {
-    "fila": "E",
-    "numero": 20,
-    "estado": true
-  }
+{
+"fila": "A",
+"numero": 1,
+"estado": false
+},
+{
+"fila": "A",
+"numero": 2,
+"estado": false
+},
+{
+"fila": "B",
+"numero": 3,
+"estado": false
+},
+{
+"fila": "C",
+"numero": 4,
+"estado": false
+},
+{
+"fila": "A",
+"numero": 5,
+"estado": true
+},
+{
+"fila": "C",
+"numero": 6,
+"estado": true
+},
+{
+"fila": "B",
+"numero": 7,
+"estado": true
+},
+{
+"fila": "C",
+"numero": 8,
+"estado": true
+},
+{
+"fila": "D",
+"numero": 9,
+"estado": true
+},
+{
+"fila": "A",
+"numero": 10,
+"estado": true
+},
+{
+"fila": "D",
+"numero": 11,
+"estado": true
+},
+{
+"fila": "D",
+"numero": 12,
+"estado": true
+},
+{
+"fila": "C",
+"numero": 13,
+"estado": true
+},
+{
+"fila": "D",
+"numero": 14,
+"estado": true
+},
+{
+"fila": "B",
+"numero": 15,
+"estado": true
+},
+{
+"fila": "D",
+"numero": 16,
+"estado": true
+},
+{
+"fila": "E",
+"numero": 17,
+"estado": true
+},
+{
+"fila": "C",
+"numero": 18,
+"estado": true
+},
+{
+"fila": "D",
+"numero": 19,
+"estado": true
+},
+{
+"fila": "E",
+"numero": 20,
+"estado": true
+}
 ]
->>>>>>> master:src/main/java/com/fisiteatro/fisiteatrosystem/data/asientos_849.json
+>>>>>>> master: src/main/java/com/fisiteatro/fisiteatrosystem/data/asientos_849.json
