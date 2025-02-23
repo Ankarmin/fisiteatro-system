@@ -5,52 +5,52 @@
     "estado": false
   },
   {
-    "fila": "B",
+    "fila": "A",
     "numero": 2,
     "estado": false
   },
   {
-    "fila": "A",
+    "fila": "B",
     "numero": 3,
-    "estado": true
+    "estado": false
   },
   {
-    "fila": "B",
+    "fila": "C",
     "numero": 4,
     "estado": true
   },
   {
-    "fila": "C",
+    "fila": "A",
     "numero": 5,
     "estado": true
   },
   {
-    "fila": "A",
+    "fila": "C",
     "numero": 6,
     "estado": true
   },
   {
-    "fila": "C",
+    "fila": "B",
     "numero": 7,
     "estado": true
   },
   {
-    "fila": "D",
+    "fila": "C",
     "numero": 8,
     "estado": true
   },
   {
-    "fila": "B",
+    "fila": "D",
     "numero": 9,
     "estado": true
   },
   {
-    "fila": "D",
+    "fila": "A",
     "numero": 10,
     "estado": true
   },
   {
-    "fila": "C",
+    "fila": "D",
     "numero": 11,
     "estado": true
   },
@@ -60,42 +60,42 @@
     "estado": true
   },
   {
-    "fila": "A",
+    "fila": "C",
     "numero": 13,
     "estado": true
   },
   {
-    "fila": "C",
+    "fila": "D",
     "numero": 14,
     "estado": true
   },
   {
-    "fila": "D",
+    "fila": "B",
     "numero": 15,
     "estado": true
   },
   {
-    "fila": "C",
+    "fila": "D",
     "numero": 16,
     "estado": true
   },
   {
-    "fila": "D",
+    "fila": "E",
     "numero": 17,
     "estado": true
   },
   {
-    "fila": "E",
+    "fila": "C",
     "numero": 18,
     "estado": true
   },
   {
-    "fila": "B",
+    "fila": "D",
     "numero": 19,
     "estado": true
   },
   {
-    "fila": "D",
+    "fila": "E",
     "numero": 20,
     "estado": true
   },

@@ -91,9 +91,7 @@ public class MenuAdmin {
         int capacidad = scanner.nextInt();
         scanner.nextLine();
 
-        int id = eventoDAO.createId();
-
-        EventoDTO nuevoEventoDTO = new EventoDTO(id, nombre, fecha, hora, precio, capacidad);
+        EventoDTO nuevoEventoDTO = new EventoDTO(0, nombre, fecha, hora, precio, capacidad);
         try {
             eventoDAO.create(nuevoEventoDTO);
             // crear los asientos
@@ -113,11 +111,6 @@ public class MenuAdmin {
         System.out.print("Ingrese el ID del evento a modificar: ");
         int indice = scanner.nextInt();
         scanner.nextLine();
-
-        if (!eventoDAO.validarId(indice)) {
-            System.out.println("ID no válido.");
-            return;
-        }
 
         // el evento del indice se guarde en una variable y elegir q se quiere editar para no tener q llenar todos los campos
         EventoDTO eventoDTO = eventoDAO.getById(indice);
@@ -147,11 +140,6 @@ public class MenuAdmin {
         System.out.print("Ingrese el ID del evento a eliminar: ");
         int indice = scanner.nextInt();
         scanner.nextLine();
-
-        if (!eventoDAO.validarId(indice)) {
-            System.out.println("ID no válido.");
-            return;
-        }
 
         try {
             EventoDTO eventoDTO = eventoDAO.getById(indice);
@@ -210,7 +198,7 @@ public class MenuAdmin {
                         AsientoDAO asientoDAO = new AsientoDAO(eventoDTOActual.getId());
                         AsientoDTO asientoDTOActual = ticketDAO.getAsiento(ticketDTOActual.getAsiento().getNumero(), eventoDTOActual);
 
-                        eventoDAO.aumentarCapacidad(eventoDTOActual);
+                        // eventoDAO.aumentarCapacidad(eventoDTOActual);
                         // ETE NO CAMBIA EL ESTADO DEL ASIENTO -> NO LO PASA A TRUE
                         asientoDAO.updateDesocupado(asientoDTOActual, eventoDTOActual.getId());
 

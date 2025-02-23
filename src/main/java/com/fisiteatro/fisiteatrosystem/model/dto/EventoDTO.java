@@ -70,12 +70,6 @@ public class EventoDTO {
 
     @Override
     public String toString() {
-        return "Evento{" +
-                "nombre='" + nombre + '\'' +
-                ", fecha='" + fecha + '\'' +
-                ", hora='" + hora + '\'' +
-                ", precio=" + precio +
-                ", capacidad=" + capacidad +
-                '}';
+        return "Evento{" + "nombre='" + nombre + '\'' + ", fecha='" + fecha + '\'' + ", hora='" + hora + '\'' + ", precio=" + precio + ", capacidad=" + capacidad + '}';
     }
 }
