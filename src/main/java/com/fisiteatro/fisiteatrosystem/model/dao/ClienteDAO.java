@@ -33,13 +33,13 @@ public class ClienteDAO implements IClienteDAO {
         return clientes.toList();
     }
 
-    public ClienteDTO iniciarSesion(String dni, String contrasena) {
+    public boolean iniciarSesion(String dni, String contrasena) {
         for (ClienteDTO clienteDTO : clientes.toList()) {
             if (clienteDTO.getDni().equals(dni) && clienteDTO.getContrasena().equals(contrasena)) {
-                return clienteDTO;
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
     public void update(ClienteDTO clienteDTO) throws IOException {

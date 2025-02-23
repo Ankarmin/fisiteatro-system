@@ -22,7 +22,7 @@ public class ClienteService {
         return clienteDAO.readAll();
     }
 
-    public ClienteDTO iniciarSesion(String dni, String contrasena) {
+    public boolean iniciarSesion(String dni, String contrasena) {
         return clienteDAO.iniciarSesion(dni, contrasena);
     }
 

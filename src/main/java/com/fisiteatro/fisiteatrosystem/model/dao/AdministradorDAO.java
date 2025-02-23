@@ -61,10 +61,11 @@ public class AdministradorDAO implements IAdministradorDAO {
         saveToFile();
     }
 
-    public boolean verificarContrasenia(String contrasenia) {
-        if (!administradores.isEmpty()) {
-            AdministradorDTO administradorDTO = administradores.peek();
-            return administradorDTO.getContrasena().equals(contrasenia);
+    public boolean iniciarSesion(String dni, String contrasena) {
+        for (AdministradorDTO administradorDTO : administradores.toList()) {
+            if (administradorDTO.getDni().equals(dni) && administradorDTO.getContrasena().equals(contrasena)) {
+                return true;
+            }
         }
         return false;
     }
