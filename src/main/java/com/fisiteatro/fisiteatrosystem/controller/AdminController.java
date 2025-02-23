@@ -2,6 +2,7 @@ package com.fisiteatro.fisiteatrosystem.controller;
 
 import com.fisiteatro.fisiteatrosystem.model.dto.EventoDTO;
 import com.fisiteatro.fisiteatrosystem.model.dto.TicketDTO;
+import com.fisiteatro.fisiteatrosystem.service.AsientoService;
 import com.fisiteatro.fisiteatrosystem.service.EventoService;
 import com.fisiteatro.fisiteatrosystem.service.TicketService;
 import javafx.application.Platform;
@@ -252,6 +253,9 @@ public class AdminController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/fisiteatro/fisiteatrosystem/view/fxml/AdminCrearEvento.fxml"));
             Parent root = fxmlLoader.load();
 
+            AdminCrearEventoController adminCrearEventoController = fxmlLoader.getController();
+            adminCrearEventoController.setEventoService(eventoService);
+
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Crear Evento");
@@ -259,6 +263,8 @@ public class AdminController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.showAndWait();
+
+            cargarEventos();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -270,6 +276,11 @@ public class AdminController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/fisiteatro/fisiteatrosystem/view/fxml/AdminModificarEvento.fxml"));
             Parent root = fxmlLoader.load();
 
+            AdminModificarEventoController adminModificarEventoController = fxmlLoader.getController();
+            adminModificarEventoController.setEventoService(eventoService);
+            EventoDTO evento = administrarEventos_tableViewEventos.getSelectionModel().getSelectedItem();
+            adminModificarEventoController.setEventoDTO(evento);
+
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Modificar Evento");
@@ -277,6 +288,8 @@ public class AdminController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
 
             stage.showAndWait();
+
+            cargarEventos();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -284,6 +297,16 @@ public class AdminController implements Initializable {
 
     @FXML
     private void eliminarEvento() {
+        EventoDTO evento = administrarEventos_tableViewEventos.getSelectionModel().getSelectedItem();
+        try {
+            eventoService.deleteById(evento.getId());
 
+            AsientoService asientoService = new AsientoService(evento.getId());
+            asientoService.deleteFile(evento.getId());
+
+            cargarEventos();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

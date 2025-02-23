@@ -41,11 +41,11 @@ public class EventoService {
         eventoDAO.verCatalogo();
     }
 
-    public void reducirCapacidad(EventoDTO evento) throws IOException {
-        eventoDAO.reducirCapacidad(evento);
+    public void disminuirEnUno(int id) throws IOException {
+        eventoDAO.disminuirEnUno(id);
     }
 
-    public void aumentarCapacidad(EventoDTO evento) throws IOException {
-        eventoDAO.aumentarCapacidad(evento);
+    public void aumentarEnUno(int id) throws IOException {
+        eventoDAO.aumentarEnUno(id);
     }
 }

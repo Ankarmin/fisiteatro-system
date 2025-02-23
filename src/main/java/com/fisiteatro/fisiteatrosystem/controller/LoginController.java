@@ -50,9 +50,6 @@ public class LoginController implements Initializable {
     private TextField registrar_apellidos;
 
     @FXML
-    private Button registrar_bttnRegistrar;
-
-    @FXML
     private TextField registrar_dni;
 
     @FXML

@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class AsientoDAO implements IAsientoDAO {
     private static final String PATH = "src/main/java/com/fisiteatro/fisiteatrosystem/data/asientosPorEvento/asientos_";
-    private ArbolBinarioBusqueda<AsientoDTO> asientos;
+    private final ArbolBinarioBusqueda<AsientoDTO> asientos;
     private final Random random = new Random();
 
 
@@ -39,13 +39,21 @@ public class AsientoDAO implements IAsientoDAO {
 
     }
 
-    public void create(int capacidad, int idEvento) throws IOException {
-        ArbolBinarioBusqueda<AsientoDTO> arbolAsientos = new ArbolBinarioBusqueda<>();
+    public void create(int nuevaCapacidad, int idEvento) throws IOException {
+        List<AsientoDTO> asientosExistentes = readAll();
+        int capacidadActual = asientosExistentes.size();
 
-        insertarEnOrdenBalanceado(arbolAsientos, 1, capacidad, idEvento);
+        int asientosPorAgregar = nuevaCapacidad - capacidadActual;
 
-        asientos = arbolAsientos;
-        saveToFile(idEvento);
+        if (asientosPorAgregar > 0) {
+            for (int i = 1; i <= asientosPorAgregar; i++) {
+                int nuevoNumeroAsiento = capacidadActual + i;
+                String fila = determinarFila(nuevoNumeroAsiento, nuevaCapacidad);
+                AsientoDTO nuevoAsiento = new AsientoDTO(idEvento, fila, nuevoNumeroAsiento, true);
+                asientos.insertar(nuevoAsiento);
+            }
+            saveToFile(idEvento);
+        }
     }
 
     private void insertarEnOrdenBalanceado(ArbolBinarioBusqueda<AsientoDTO> arbol, int min, int max, int idEvento) {

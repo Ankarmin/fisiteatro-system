@@ -18,6 +18,7 @@ module com.fisiteatro.fisiteatrosystem {
     opens com.fisiteatro.fisiteatrosystem.util to javafx.fxml;
     opens com.fisiteatro.fisiteatrosystem.model.dao to com.fasterxml.jackson.databind;
     opens com.fisiteatro.fisiteatrosystem.model.dto to javafx.base, com.fasterxml.jackson.databind;
+    opens com.fisiteatro.fisiteatrosystem.service to javafx.base, com.fasterxml.jackson.databind;
 
     exports com.fisiteatro.fisiteatrosystem;
     exports com.fisiteatro.fisiteatrosystem.controller;

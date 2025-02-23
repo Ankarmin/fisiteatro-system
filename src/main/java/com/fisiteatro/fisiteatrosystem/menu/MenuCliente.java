@@ -1,7 +1,6 @@
 package com.fisiteatro.fisiteatrosystem.menu;
 
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
-import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
 import com.fisiteatro.fisiteatrosystem.model.dao.AsientoDAO;
 import com.fisiteatro.fisiteatrosystem.model.dao.ClienteDAO;
 import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
@@ -85,11 +84,6 @@ public class MenuCliente {
         int seleccion = scanner.nextInt();
         scanner.nextLine();
 
-        if (!eventoDAO.validarId(seleccion)) {
-            System.out.println("Selección inválida.");
-            return;
-        }
-
         EventoDTO eventoDTOSeleccionado = eventoDAO.getById(seleccion);
         if (eventoDTOSeleccionado.getCapacidad() <= 0) {
             System.out.println("El evento está agotado.");
@@ -120,7 +114,7 @@ public class MenuCliente {
         TicketDTO ticketDTO = new TicketDTO(idTicket, clienteDTO, asientoDTOSeleccionado, eventoDTOSeleccionado);
 
         try {
-            eventoDAO.reducirCapacidad(eventoDTOSeleccionado);
+            // eventoDAO.reducirCapacidad(eventoDTOSeleccionado);
             ticketDAO.create(ticketDTO); // se guardan todos en una pila
             System.out.println("Ticket generado con éxito. Número de asiento: " + asientoDTOSeleccionado.getNumero() + " - Fila: " + asientoDTOSeleccionado.getFila());
 

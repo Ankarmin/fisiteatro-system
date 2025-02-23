@@ -27,6 +27,7 @@ public class EventoDAO implements IEventoDAO {
     }
 
     public void create(EventoDTO eventoDTO) throws IOException {
+        eventoDTO.setId(createId());
         eventos.add(eventoDTO);
         saveToFile();
     }
@@ -36,32 +37,24 @@ public class EventoDAO implements IEventoDAO {
     }
 
     public void update(EventoDTO eventoDTO) throws IOException {
-        ListaEnlazada<EventoDTO> temp = new ListaEnlazada<>();
         for (EventoDTO current : eventos.toList()) {
-            if (current.getNombre().equals(eventoDTO.getNombre())) {
-                temp.add(eventoDTO);
-            } else {
-                temp.add(current);
+            if (current.getId() == eventoDTO.getId()) {
+                current.setNombre(eventoDTO.getNombre());
+                current.setFecha(eventoDTO.getFecha());
+                current.setHora(eventoDTO.getHora());
+                current.setPrecio(eventoDTO.getPrecio());
+                current.setCapacidad(eventoDTO.getCapacidad());
+                saveToFile();
+                return;
             }
         }
-        eventos = temp;
-        saveToFile();
     }
-
-//    public void update(int index, Evento evento) throws IOException{
-//        if(index >= 0 && index < eventos.toList().size()){
-//            eventos.set(index, evento);
-//            saveToFile();
-//        } else {
-//            throw new IndexOutOfBoundsException("Índice fuera de rango: " + (index + 1));
-//        }
-//    }
 
     public boolean validarIndex(int index) {
         return eventos.validarIndex(index);
     }
 
-    public int createId() {
+    private int createId() {
         Random random = new Random();
         int id;
         do {
@@ -70,7 +63,7 @@ public class EventoDAO implements IEventoDAO {
         return id;
     }
 
-    public boolean validarId(int id) {
+    private boolean validarId(int id) {
         for (EventoDTO eventoDTO : eventos.toList()) {
             if (id == eventoDTO.getId()) {
                 return true;
@@ -129,15 +122,13 @@ public class EventoDAO implements IEventoDAO {
         System.out.println("---------------------------------------------------------------------");
 
         for (EventoDTO eventoDTO : eventosLista) {
-            System.out.printf("%-5d %-20s %-12s %-8s %-10.2f %-10d%n",
-                    eventoDTO.getId(), eventoDTO.getNombre(), eventoDTO.getFecha(), eventoDTO.getHora(), eventoDTO.getPrecio(), eventoDTO.getCapacidad());
+            System.out.printf("%-5d %-20s %-12s %-8s %-10.2f %-10d%n", eventoDTO.getId(), eventoDTO.getNombre(), eventoDTO.getFecha(), eventoDTO.getHora(), eventoDTO.getPrecio(), eventoDTO.getCapacidad());
         }
     }
 
-    public void reducirCapacidad(EventoDTO eventoDTO) throws IOException {
-        List<EventoDTO> eventoDTOS = readAll();
-        for (EventoDTO e : eventoDTOS) {
-            if (e.equals(eventoDTO)) {  // Comparar por atributos
+    public void disminuirEnUno(int id) throws IOException {
+        for (EventoDTO e : eventos.toList()) {
+            if (e.getId() == id) {
                 e.setCapacidad(e.getCapacidad() - 1);
                 saveToFile();
                 return;
@@ -145,15 +136,13 @@ public class EventoDAO implements IEventoDAO {
         }
     }
 
-    public void aumentarCapacidad(EventoDTO eventoDTO) throws IOException {
-        List<EventoDTO> eventoDTOS = readAll();
-        for (EventoDTO e : eventoDTOS) {
-            if (e.equals(eventoDTO)) {
+    public void aumentarEnUno(int id) throws IOException {
+        for (EventoDTO e : eventos.toList()) {
+            if (e.getId() == id) {
                 e.setCapacidad(e.getCapacidad() + 1);
                 saveToFile();
                 return;
             }
         }
     }
-
 }
