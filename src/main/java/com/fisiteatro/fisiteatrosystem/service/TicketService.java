@@ -69,4 +69,12 @@ public class TicketService {
     public void saveSolicitudesTicketsJSON(Cola<TicketDTO> solicitudesTickets) throws IOException {
         ticketDAO.saveSolicitudesTicketsJSON(solicitudesTickets);
     }
+
+    public void aceptarSolicitud(TicketDTO ticket) throws IOException {
+        ticketDAO.aceptarSolicitud(ticket);
+    }
+
+    public TicketDTO eliminarTicket() throws IOException {
+        return ticketDAO.eliminarTicket();
+    }
 }

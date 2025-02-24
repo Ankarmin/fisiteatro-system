@@ -1,15 +1,15 @@
 [ {
-  "id" : 490,
-  "nombre" : "La era del Hielo",
-  "fecha" : "2025-10-10",
-  "hora" : "15:30",
-  "precio" : 100.0,
-  "capacidad" : 8
-}, {
-  "id" : 734,
-  "nombre" : "Romeo y Julieta",
+  "id" : 692,
+  "nombre" : "AAAAAAAAAA",
   "fecha" : "2025-10-10",
   "hora" : "10:30",
-  "precio" : 100.0,
-  "capacidad" : 6
+  "precio" : 10.0,
+  "capacidad" : 15
+}, {
+  "id" : 385,
+  "nombre" : "BBBBBBBBBBBB",
+  "fecha" : "2025-12-12",
+  "hora" : "10:30",
+  "precio" : 10.0,
+  "capacidad" : 20
 } ]

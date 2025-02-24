@@ -1,0 +1,61 @@
+[ {
+  "fila" : "D",
+  "numero" : 1,
+  "estado" : false
+}, {
+  "fila" : "C",
+  "numero" : 2,
+  "estado" : false
+}, {
+  "fila" : "D",
+  "numero" : 3,
+  "estado" : true
+}, {
+  "fila" : "B",
+  "numero" : 4,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 5,
+  "estado" : true
+}, {
+  "fila" : "C",
+  "numero" : 6,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 7,
+  "estado" : true
+}, {
+  "fila" : "A",
+  "numero" : 8,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 9,
+  "estado" : true
+}, {
+  "fila" : "C",
+  "numero" : 10,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 11,
+  "estado" : true
+}, {
+  "fila" : "B",
+  "numero" : 12,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 13,
+  "estado" : true
+}, {
+  "fila" : "C",
+  "numero" : 14,
+  "estado" : true
+}, {
+  "fila" : "D",
+  "numero" : 15,
+  "estado" : true
+} ]

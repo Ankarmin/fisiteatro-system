@@ -201,4 +201,22 @@ public class TicketDAO implements ITicketDAO {
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILE_PATH), tickets.toList());
     }
 
+    public void aceptarSolicitud(TicketDTO ticket) throws IOException {
+        Cola<TicketDTO> solicitudes = getSolicitudesTickets();
+        deleteSolicitud(solicitudes);
+
+        Pila<TicketDTO> ticketsEliminados = getTicketsEliminados(ticket.getEvento().getId());
+        addTicketEliminado(ticket, ticketsEliminados);
+    }
+
+    public TicketDTO eliminarTicket() throws IOException {
+        if (!tickets.isEmpty()) {
+            TicketDTO ticketEliminado = tickets.pop(); // Elimina y retorna el primer elemento de la pila (LIFO)
+            saveToFile();
+            return ticketEliminado;
+        } else {
+            System.out.println("No hay tickets para eliminar.");
+            return null;
+        }
+    }
 }
