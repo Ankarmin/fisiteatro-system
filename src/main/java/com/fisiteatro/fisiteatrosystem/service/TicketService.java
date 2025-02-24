@@ -61,4 +61,12 @@ public class TicketService {
     public void delete(String dni, String fila, int numero) throws IOException {
         ticketDAO.delete(dni, fila, numero);
     }
+
+    public void saveTicketsEliminadosJSON(Pila<TicketDTO> ticketsEliminados, int idEvento) throws IOException {
+        ticketDAO.saveTicketsEliminadosJSON(ticketsEliminados, idEvento);
+    }
+
+    public void saveSolicitudesTicketsJSON(Cola<TicketDTO> solicitudesTickets) throws IOException {
+        ticketDAO.saveSolicitudesTicketsJSON(solicitudesTickets);
+    }
 }

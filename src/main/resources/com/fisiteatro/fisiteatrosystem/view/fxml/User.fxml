@@ -73,7 +73,7 @@
                     <center>
                         <AnchorPane prefHeight="606.0" prefWidth="972.0" BorderPane.alignment="CENTER">
                             <children>
-                                <AnchorPane fx:id="panelEventos" layoutX="120.0" layoutY="130.0" prefHeight="660.8" prefWidth="971.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="panelEventos" layoutX="120.0" layoutY="130.0" prefHeight="660.8" prefWidth="971.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <AnchorPane layoutX="26.4" layoutY="79.0" prefHeight="489.0" prefWidth="915.0" stylesheets="@../css/UserDesign.css" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="79.0">
                                             <styleClass>
@@ -121,7 +121,7 @@
                                         <Button fx:id="eventos_bttnComprar" layoutX="438.0" layoutY="596.0" mnemonicParsing="false" onAction="#comprarTicket" styleClass="button-general" stylesheets="@../css/UserDesign.css" text="Comprar" AnchorPane.bottomAnchor="30.399999999999956" AnchorPane.leftAnchor="438.0" AnchorPane.rightAnchor="438.4000000000001" />
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="panelCompras" prefHeight="660.8" prefWidth="971.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="panelCompras" prefHeight="660.8" prefWidth="971.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <AnchorPane layoutX="27.0" layoutY="91.2" prefHeight="424.0" prefWidth="923.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="146.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="91.0">
                                             <styleClass>
@@ -153,7 +153,7 @@
                                         </Label>
                                         <TextField fx:id="compras_txtFieldBuscar" layoutX="163.0" layoutY="38.0" prefHeight="35.0" prefWidth="257.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" AnchorPane.leftAnchor="163.20000000000005" />
                                         <Button fx:id="compras_bttnBuscar" layoutX="439.0" layoutY="39.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="89.0" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Buscar" />
-                                        <Button fx:id="compras_bttnEliminar" layoutX="439.0" layoutY="555.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="89.0" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Eliminar" AnchorPane.bottomAnchor="71.39999999999995" AnchorPane.leftAnchor="439.0" AnchorPane.rightAnchor="442.4" />
+                                        <Button fx:id="compras_bttnEliminar" layoutX="439.0" layoutY="555.0" mnemonicParsing="false" onAction="#eliminarTicket" prefHeight="34.0" prefWidth="89.0" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Eliminar" AnchorPane.bottomAnchor="71.39999999999995" AnchorPane.leftAnchor="439.0" AnchorPane.rightAnchor="442.4" />
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane fx:id="panelHistorial" prefHeight="660.8" prefWidth="971.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

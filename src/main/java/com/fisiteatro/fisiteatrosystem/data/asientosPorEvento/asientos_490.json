@@ -21,63 +21,63 @@
 }, {
   "fila" : "C",
   "numero" : 6,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "B",
   "numero" : 7,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "C",
   "numero" : 8,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "D",
   "numero" : 9,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "A",
   "numero" : 10,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "D",
   "numero" : 11,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "D",
   "numero" : 12,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "C",
   "numero" : 13,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "D",
   "numero" : 14,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "B",
   "numero" : 15,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "D",
   "numero" : 16,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "E",
   "numero" : 17,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "C",
   "numero" : 18,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "D",
   "numero" : 19,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "E",
   "numero" : 20,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "E",
   "numero" : 21,

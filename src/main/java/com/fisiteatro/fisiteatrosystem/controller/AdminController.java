@@ -218,7 +218,7 @@ public class AdminController implements Initializable {
     }
 
     private void cargarSolicitudes() {
-        ObservableList<TicketDTO> ticketList = FXCollections.observableArrayList(ticketService.readAll());
+        ObservableList<TicketDTO> ticketList = FXCollections.observableArrayList(ticketService.getSolicitudesTickets().toList());
         gestionarTickets_tableViewSolicitudes.setItems(ticketList);
         gestionarTickets_tableViewSolicitudes.refresh();
     }

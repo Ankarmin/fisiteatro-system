@@ -16,6 +16,10 @@ public class TicketDTO {
         this.eventoDTO = eventoDTO;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

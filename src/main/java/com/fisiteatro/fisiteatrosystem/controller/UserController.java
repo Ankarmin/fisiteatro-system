@@ -1,14 +1,11 @@
 package com.fisiteatro.fisiteatrosystem.controller;
 
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
-import com.fisiteatro.fisiteatrosystem.model.dao.AsientoDAO;
-import com.fisiteatro.fisiteatrosystem.model.dao.ClienteDAO;
-import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
-import com.fisiteatro.fisiteatrosystem.model.dao.TicketDAO;
 import com.fisiteatro.fisiteatrosystem.model.dto.AsientoDTO;
 import com.fisiteatro.fisiteatrosystem.model.dto.ClienteDTO;
 import com.fisiteatro.fisiteatrosystem.model.dto.EventoDTO;
 import com.fisiteatro.fisiteatrosystem.model.dto.TicketDTO;
+import com.fisiteatro.fisiteatrosystem.service.AsientoService;
 import com.fisiteatro.fisiteatrosystem.service.EventoService;
 import com.fisiteatro.fisiteatrosystem.service.TicketService;
 import javafx.application.Platform;
@@ -181,9 +178,6 @@ public class UserController implements Initializable {
     @FXML
     private AnchorPane panelHistorial;
 
-    private EventoDTO eventoSeleccionadoComprar;
-    private TicketDTO ticketSeleccionadoBorrar;
-
     private TicketService ticketService;
     private EventoService eventoService;
 
@@ -192,11 +186,11 @@ public class UserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         configurarService();
+
         configurarColumnaEventos();
         configurarColumnaCompras();
 
         cargarEventos();
-        inicializarTablaEventos();
     }
 
     public void setClienteDTO(ClienteDTO clienteDTO) {
@@ -254,58 +248,39 @@ public class UserController implements Initializable {
         eventoService = new EventoService();
     }
 
-    private void inicializarTablaEventos() {
-        eventos_tableViewEventos.setRowFactory(tv -> {
-            TableRow<EventoDTO> row = new TableRow<>();
-
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 1  && !row.isEmpty()) {
-                    eventoSeleccionadoComprar = row.getItem();
-                    System.out.println("Evento seleccionado: " + eventoSeleccionadoComprar.getNombre());
-                }
-            });
-
-            return row;
-        });
-    }
-
     @FXML
     private void comprarTicket() {
+        EventoDTO eventoSeleccionadoComprar = eventos_tableViewEventos.getSelectionModel().getSelectedItem();
+
         if (eventoSeleccionadoComprar != null) {
             System.out.println("Comprando ticket para: " + eventoSeleccionadoComprar.getNombre());
 
-            if (eventoSeleccionadoComprar.getCapacidad() <= 0){
+            if (eventoSeleccionadoComprar.getCapacidad() <= 0) {
                 System.out.println("No hay asientos disponibles");
                 return;
             }
 
             // Obtener un asiento disponible
-            AsientoDAO asientoDAO = new AsientoDAO(eventoSeleccionadoComprar.getId());
-            AsientoDTO asientoDisponible = asientoDAO.obtenerPrimerAsientoDisponible();
+            AsientoService asiento = new AsientoService(eventoSeleccionadoComprar.getId());
+            AsientoDTO asientoDisponible = asiento.obtenerPrimerAsientoDisponible();
 
             if (asientoDisponible == null) {
                 System.out.println("No hay asientos disponibles.");
                 return;
             }
 
-            TicketDAO ticketDAO = new TicketDAO();
-            int idTicket = ticketDAO.createId();
-
-            // Lógica para registrar la compra (puedes modificar según tu estructura)
-            TicketDTO nuevoTicket = new TicketDTO(idTicket, clienteDTO, asientoDisponible, eventoSeleccionadoComprar);
+            TicketDTO nuevoTicket = new TicketDTO(0, clienteDTO, asientoDisponible, eventoSeleccionadoComprar);
 
             try {
-                EventoDAO eventoDAO = new EventoDAO();
-                eventoDAO.disminuirEnUno(eventoSeleccionadoComprar.getId());
+                eventoService.disminuirEnUno(eventoSeleccionadoComprar.getId());
 
                 ticketService.create(nuevoTicket);
-                // Marcar el asiento como ocupado y guardar cambios
-                asientoDAO.updateOcupado(asientoDisponible, eventoSeleccionadoComprar.getId());
+
+                asiento.updateOcupado(asientoDisponible, eventoSeleccionadoComprar.getId());
 
                 System.out.println("Compra realizada con éxito. Asiento asignado: " + asientoDisponible);
-                cargarCompras(); // Actualizar la tabla de compras
+                cargarCompras();
                 cargarEventos();
-                eventos_tableViewEventos.refresh();
             } catch (IOException e) {
                 System.err.println("Error al registrar la compra: " + e.getMessage());
             }
@@ -314,24 +289,29 @@ public class UserController implements Initializable {
         }
     }
 
-    private void inicializarTablaCompras() {
-        compras_tableViewCompras.setRowFactory(tv -> {
-            TableRow<EventoDTO> row = new TableRow<>();
-
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 1  && !row.isEmpty()) {
-                    ticketSeleccionadoBorrar = row.getItem();
-                    System.out.println("Evento seleccionado: " + ticketSeleccionadoBorrar.getEvento().getNombre());
-                }
-            });
-
-            return row;
-        });
-    }
-
     @FXML
     private void eliminarTicket() {
+        TicketDTO ticketSeleccionadoBorrar = compras_tableViewCompras.getSelectionModel().getSelectedItem();
 
+        if (ticketSeleccionadoBorrar != null) {
+            System.out.println("Eliminando ticket: " + ticketSeleccionadoBorrar.getId());
+            try {
+                // Eliminar el ticket de la estructura y del JSON
+                ticketService.delete(clienteDTO.getDni(), ticketSeleccionadoBorrar.getAsiento().getFila(), ticketSeleccionadoBorrar.getAsiento().getNumero());
+
+                // Agregar el ticket a las solicitudes de tickets tanto en la estructura como en el JSON
+                Cola<TicketDTO> solicitudesTickets = ticketService.getSolicitudesTickets();
+                solicitudesTickets.offer(ticketSeleccionadoBorrar);
+                ticketService.saveSolicitudesTicketsJSON(solicitudesTickets);
+
+                cargarCompras();
+                cargarEventos();
+            } catch (IOException e) {
+                System.err.println("Error al eliminar el ticket: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Seleccione un ticket antes de eliminar.");
+        }
     }
 
     @FXML

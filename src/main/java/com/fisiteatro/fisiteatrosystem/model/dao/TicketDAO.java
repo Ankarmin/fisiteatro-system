@@ -30,6 +30,7 @@ public class TicketDAO implements ITicketDAO {
     }
 
     public void create(TicketDTO ticketDTO) throws IOException {
+        ticketDTO.setId(createId());
         tickets.push(ticketDTO);
         saveToFile();
     }
@@ -43,7 +44,7 @@ public class TicketDAO implements ITicketDAO {
         return false;
     }
 
-    public int createId() {
+    private int createId() {
         Random rand = new Random();
         int id;
         do {
@@ -114,9 +115,11 @@ public class TicketDAO implements ITicketDAO {
 
     public void saveSolicitudesTicketsJSON(Cola<TicketDTO> solicitudesTickets) throws IOException {
         String FILENAME = "src/main/java/com/fisiteatro/fisiteatrosystem/data/solicitudesTickets.json";
+        File file = new File(FILENAME);
+        file.getParentFile().mkdirs();
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILENAME), solicitudesTickets.toList());
+        mapper.writerWithDefaultPrettyPrinter().writeValue(file, solicitudesTickets.toList());
     }
 
     public Pila<TicketDTO> getTicketsEliminados(int idEvento) {
@@ -152,9 +155,11 @@ public class TicketDAO implements ITicketDAO {
 
     public void saveTicketsEliminadosJSON(Pila<TicketDTO> ticketsEliminados, int idEvento) throws IOException {
         String FILENAME = PATH_ELIMINADOS + idEvento + ".json";
+        File file = new File(FILENAME);
+        file.getParentFile().mkdirs();
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILENAME), ticketsEliminados.toList());
+        mapper.writerWithDefaultPrettyPrinter().writeValue(file, ticketsEliminados.toList());
     }
 
     public void delete(String dni, String fila, int numero) throws IOException {

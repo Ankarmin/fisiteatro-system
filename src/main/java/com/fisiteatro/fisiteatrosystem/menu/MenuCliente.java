@@ -101,7 +101,6 @@ public class MenuCliente {
         }
 
         // aca se gener id y s mete en el constructor
-        int idTicket = ticketDAO.createId();
 
         // cambiar el estado del asiento
         try {
@@ -111,7 +110,7 @@ public class MenuCliente {
             System.out.println("Error al cambiar el estado del asiento: " + e.getMessage());
         }
 
-        TicketDTO ticketDTO = new TicketDTO(idTicket, clienteDTO, asientoDTOSeleccionado, eventoDTOSeleccionado);
+        TicketDTO ticketDTO = new TicketDTO(0, clienteDTO, asientoDTOSeleccionado, eventoDTOSeleccionado);
 
         try {
             // eventoDAO.reducirCapacidad(eventoDTOSeleccionado);
