@@ -56,24 +56,10 @@ public class ClienteDAO implements IClienteDAO {
         saveToFile();
     }
 
-    //se puede mejorar
-    public void delete(String dni) throws IOException {
-        Cola<ClienteDTO> temp = new Cola<>();
-        while (!clientes.isEmpty()) {
-            ClienteDTO current = clientes.poll();
-            if (!current.getDni().equals(dni)) {
-                temp.offer(current);
-            }
-        }
-        clientes = temp;
-        saveToFile();
-    }
-
     private void saveToFile() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILE_PATH), clientes.toList());
     }
-
 
     public ClienteDTO obtenerPorDni(String dni) {
         for (ClienteDTO clienteDTO : clientes.toList()) {
@@ -83,5 +69,4 @@ public class ClienteDAO implements IClienteDAO {
         }
         return null;
     }
-
 }

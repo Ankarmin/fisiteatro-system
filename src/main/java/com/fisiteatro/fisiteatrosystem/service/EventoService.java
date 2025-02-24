@@ -37,10 +37,6 @@ public class EventoService {
         return eventoDAO.getById(id);
     }
 
-    public void verCatalogo() {
-        eventoDAO.verCatalogo();
-    }
-
     public void disminuirEnUno(int id) throws IOException {
         eventoDAO.disminuirEnUno(id);
     }

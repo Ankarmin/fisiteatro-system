@@ -32,8 +32,4 @@ public class AdministradorService {
     public boolean iniciarSesion(String dni, String contrasena) {
         return administradorDAO.iniciarSesion(dni, contrasena);
     }
-
-    public AdministradorDTO cambiarContrasenia(String contrasenia) {
-        return administradorDAO.cambiarContrasenia(contrasenia);
-    }
 }

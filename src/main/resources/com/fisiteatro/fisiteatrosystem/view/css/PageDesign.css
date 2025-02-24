@@ -14,11 +14,11 @@
 }
 
 .text-field-1:focused {
-    -fx-border-color: linear-gradient(to bottom right,#5F0E17, #C01E2E);
+    -fx-border-color: linear-gradient(to bottom right, #5F0E17, #C01E2E);
     -fx-border-width: 2px;
 }
 
-.titulo{
+.titulo {
     -fx-text-fill: linear-gradient(to bottom right, #5F0E17, #C01E2E);
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0, 2, 2);

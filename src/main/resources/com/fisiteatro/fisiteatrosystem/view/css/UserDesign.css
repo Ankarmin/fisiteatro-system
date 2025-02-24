@@ -11,10 +11,10 @@
 }
 
 .gb-color-1 {
-    -fx-background-color: linear-gradient(to bottom right,#5F0E17, #C01E2E);
+    -fx-background-color: linear-gradient(to bottom right, #5F0E17, #C01E2E);
 }
 
-.titulo{
+.titulo {
     -fx-text-fill: #fff;
     -fx-font-weight: bold;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0, 2, 2);
@@ -85,7 +85,7 @@
 }
 
 .text {
-    -fx-border-color: linear-gradient(to bottom right,#5F0E17, #C01E2E);
+    -fx-border-color: linear-gradient(to bottom right, #5F0E17, #C01E2E);
     -fx-border-width: 0 0 0 2px;
     -fx-padding: 0 0 0 5px;
 }
@@ -93,11 +93,11 @@
 .table-view {
     -fx-padding: 0;
     -fx-border-radius: 8px;
-    -fx-border-color: linear-gradient(to bottom right,#5F0E17, #C01E2E);
+    -fx-border-color: linear-gradient(to bottom right, #5F0E17, #C01E2E);
 }
 
 .table-view .column-header-background {
-    -fx-background-color: linear-gradient(to bottom right,#5F0E17, #C01E2E);
+    -fx-background-color: linear-gradient(to bottom right, #5F0E17, #C01E2E);
     -fx-background-insets: 0 0 0 0;
     -fx-background-radius: 8px 8px 0 0;
 }
@@ -141,12 +141,12 @@
 }
 
 .text-field-1:focused {
-    -fx-border-color: linear-gradient(to bottom right,#5F0E17, #C01E2E);
+    -fx-border-color: linear-gradient(to bottom right, #5F0E17, #C01E2E);
     -fx-border-width: 1px;
 }
 
 .button-general {
-    -fx-background-color: linear-gradient(to bottom right,#5F0E17, #C01E2E);
+    -fx-background-color: linear-gradient(to bottom right, #5F0E17, #C01E2E);
     -fx-cursor: hand;
     -fx-text-fill: #fff;
     -fx-font-size: 18px;

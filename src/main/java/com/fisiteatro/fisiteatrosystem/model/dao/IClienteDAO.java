@@ -12,5 +12,5 @@ public interface IClienteDAO {
 
     void update(ClienteDTO clienteDTO) throws IOException;
 
-    void delete(String dni) throws IOException;
+
 }

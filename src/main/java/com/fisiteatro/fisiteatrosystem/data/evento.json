@@ -1,15 +1,18 @@
-[ {
-  "id" : 692,
-  "nombre" : "AAAAAAAAAA",
-  "fecha" : "2025-10-10",
-  "hora" : "10:30",
-  "precio" : 10.0,
-  "capacidad" : 15
-}, {
-  "id" : 385,
-  "nombre" : "BBBBBBBBBBBB",
-  "fecha" : "2025-12-12",
-  "hora" : "10:30",
-  "precio" : 10.0,
-  "capacidad" : 20
-} ]
+[
+  {
+    "id": 157,
+    "nombre": "ROMEO Y JULIETA",
+    "fecha": "2025-10-10",
+    "hora": "10:30",
+    "precio": 10.0,
+    "capacidad": 20
+  },
+  {
+    "id": 253,
+    "nombre": "ASDFSADFSDAFASD",
+    "fecha": "2025-10-10",
+    "hora": "10:30",
+    "precio": 10.0,
+    "capacidad": 30
+  }
+]

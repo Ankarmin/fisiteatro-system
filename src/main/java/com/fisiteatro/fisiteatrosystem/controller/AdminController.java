@@ -185,7 +185,6 @@ public class AdminController implements Initializable {
 
     @FXML
     private void switchForm(ActionEvent event) {
-        panelEventos.setVisible(event.getSource() == bttnEventos);
         panelAdministrarEventos.setVisible(event.getSource() == bttnAdministrarEventos);
         panelGestionarTickets.setVisible(event.getSource() == bttnGestionarTickets);
     }
@@ -331,7 +330,7 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void rechazarEliminacion(){
+    private void rechazarEliminacion() {
 
     }
 }

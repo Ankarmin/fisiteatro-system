@@ -12,10 +12,6 @@ public class AdministradorDAO implements IAdministradorDAO {
     private static final String FILE_PATH = "src/main/java/com/fisiteatro/fisiteatrosystem/data/administrador.json";
     private Cola<AdministradorDTO> administradores;
 
-//    public AdministradorDAO(Cola<Administrador> administradores) {
-//        this.administradores = administradores;
-//    }
-
     public AdministradorDAO() {
         this.administradores = new Cola<>();
         try {
@@ -68,12 +64,6 @@ public class AdministradorDAO implements IAdministradorDAO {
             }
         }
         return false;
-    }
-
-    public AdministradorDTO cambiarContrasenia(String contrasenia) {
-        AdministradorDTO administradorDTO = administradores.peek();
-        administradorDTO.setContrasena(contrasenia);
-        return administradorDTO;
     }
 
     private void saveToFile() throws IOException {

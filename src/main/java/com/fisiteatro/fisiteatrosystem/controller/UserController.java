@@ -260,7 +260,6 @@ public class UserController implements Initializable {
                 return;
             }
 
-            // Obtener un asiento disponible
             AsientoService asiento = new AsientoService(eventoSeleccionadoComprar.getId());
             AsientoDTO asientoDisponible = asiento.obtenerPrimerAsientoDisponible();
 

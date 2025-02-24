@@ -30,10 +30,6 @@ public class ClienteService {
         clienteDAO.update(cliente);
     }
 
-    public void delete(String dni) throws IOException {
-        clienteDAO.delete(dni);
-    }
-
     public ClienteDTO obtenerPorDni(String dni) {
         return clienteDAO.obtenerPorDni(dni);
     }

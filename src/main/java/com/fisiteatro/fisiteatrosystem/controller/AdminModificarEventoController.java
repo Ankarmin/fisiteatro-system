@@ -31,15 +31,14 @@ public class AdminModificarEventoController implements Initializable {
     private TextField modificarEvento_txtFieldHora;
 
     @FXML
-    private TextField modificarEvento_txtFieldId;
-
-    @FXML
     private TextField modificarEvento_txtFieldNombre;
 
     @FXML
     private TextField modificarEvento_txtFieldPrecio;
 
     private EventoService eventoService;
+
+    private int id;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,7 +49,7 @@ public class AdminModificarEventoController implements Initializable {
     }
 
     public void setEventoDTO(EventoDTO evento) {
-        modificarEvento_txtFieldId.setText(String.valueOf(evento.getId()));
+        id = evento.getId();
         modificarEvento_txtFieldNombre.setText(evento.getNombre());
         modificarEvento_txtFieldFecha.setText(evento.getFecha());
         modificarEvento_txtFieldHora.setText(evento.getHora());
@@ -60,7 +59,6 @@ public class AdminModificarEventoController implements Initializable {
 
     @FXML
     private void modificarEvento() throws IOException {
-        int id = Integer.parseInt(modificarEvento_txtFieldId.getText());
         String nombre = modificarEvento_txtFieldNombre.getText();
         String fecha = modificarEvento_txtFieldFecha.getText();
         String hora = modificarEvento_txtFieldHora.getText();

@@ -50,10 +50,6 @@ public class EventoDAO implements IEventoDAO {
         }
     }
 
-    public boolean validarIndex(int index) {
-        return eventos.validarIndex(index);
-    }
-
     private int createId() {
         Random random = new Random();
         int id;
@@ -108,22 +104,6 @@ public class EventoDAO implements IEventoDAO {
     private void saveToFile() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(FILE_PATH), eventos.toList());
-    }
-
-    public void verCatalogo() {
-        List<EventoDTO> eventosLista = this.eventos.toList();
-        if (eventosLista.isEmpty()) {
-            System.out.println("No hay eventos disponibles.");
-            return;
-        }
-
-        System.out.println("\n\t\t--- CATALOGO DE EVENTOS ---\n");
-        System.out.printf("%-5s %-20s %-12s %-8s %-10s %-10s%n", "ID", "Nombre", "Fecha", "Hora", "Precio", "Capacidad");
-        System.out.println("---------------------------------------------------------------------");
-
-        for (EventoDTO eventoDTO : eventosLista) {
-            System.out.printf("%-5d %-20s %-12s %-8s %-10.2f %-10d%n", eventoDTO.getId(), eventoDTO.getNombre(), eventoDTO.getFecha(), eventoDTO.getHora(), eventoDTO.getPrecio(), eventoDTO.getCapacidad());
-        }
     }
 
     public void disminuirEnUno(int id) throws IOException {
