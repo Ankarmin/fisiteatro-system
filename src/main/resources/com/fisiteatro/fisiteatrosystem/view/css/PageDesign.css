@@ -14,12 +14,18 @@
 }
 
 .text-field-1:focused {
-    -fx-border-color: linear-gradient(to bottom right, #0BDA51, #71BC78);
+    -fx-border-color: linear-gradient(to bottom right,#5F0E17, #C01E2E);
     -fx-border-width: 2px;
 }
 
+.titulo{
+    -fx-text-fill: linear-gradient(to bottom right, #5F0E17, #C01E2E);
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0, 2, 2);
+}
+
 .button-1 {
-    -fx-background-color: linear-gradient(to bottom right, #0BDA51, #71BC78);
+    -fx-background-color: linear-gradient(to bottom right, #5F0E17, #C01E2E);
     -fx-cursor: hand;
     -fx-text-fill: #fff;
     -fx-font-size: 18px;
@@ -27,5 +33,28 @@
 }
 
 .button-1:hover {
-    -fx-background-color: linear-gradient(to bottom right, #06500C, #71BC78);
+    -fx-background-color: linear-gradient(to bottom right, #471D20, #8C3941);
+}
+
+.check-box {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+}
+
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color: #730C2F;
+    -fx-border-width: 2px;
+    -fx-border-radius: 3px;
+    -fx-min-width: 18px;
+    -fx-min-height: 18px;
+}
+
+.check-box:selected .box {
+    -fx-background-color: linear-gradient(to bottom right, #730C2F, #901E1C);
+    -fx-border-color: #901E1C;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
 }

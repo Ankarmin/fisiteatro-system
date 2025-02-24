@@ -22,7 +22,7 @@
                             <children>
                                 <AnchorPane layoutX="58.0" layoutY="-83.0" prefHeight="34.0" prefWidth="242.0" stylesheets="@../css/UserDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <Label layoutX="55.0" layoutY="10.0" text="FISITEATRO">
+                                        <Label layoutX="55.0" layoutY="10.0" styleClass="titulo" stylesheets="@../css/UserDesign.css" text="FISITEATRO">
                                             <font>
                                                 <Font name="System Bold" size="24.0" />
                                             </font>
@@ -33,7 +33,7 @@
                                         <String fx:value="shadow" />
                                     </styleClass>
                                 </AnchorPane>
-                                <Label fx:id="lblPath" layoutX="264.0" layoutY="13.0" prefHeight="18.0" prefWidth="222.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Inicio" AnchorPane.leftAnchor="264.0" AnchorPane.topAnchor="13.0">
+                                <Label fx:id="lblPath" layoutX="264.0" layoutY="13.0" prefHeight="18.0" prefWidth="222.0" styleClass="text" stylesheets="@../css/UserDesign.css" text="Inicio" AnchorPane.leftAnchor="264.0" AnchorPane.topAnchor="13.0">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
@@ -48,21 +48,21 @@
                     <left>
                         <AnchorPane prefHeight="640.0" prefWidth="242.0" stylesheets="@../css/UserDesign.css" BorderPane.alignment="CENTER">
                             <children>
-                                <Label fx:id="lblNombreCuenta" layoutX="107.0" layoutY="145.0" stylesheets="@../css/AdminDesign.css" text="Nombre">
+                                <Label fx:id="lblNombreCuenta" layoutX="107.0" layoutY="145.0" stylesheets="@../css/AdminDesign.css" text="Nombre" textFill="WHITE">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="38.0" layoutY="145.0" text="Cuenta:">
+                                <Label layoutX="38.0" layoutY="145.0" text="Cuenta:" textFill="WHITE">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
                                 </Label>
-                                <Line endX="100.0" layoutX="120.0" layoutY="201.0" startX="-100.0" styleClass="shadow" />
-                                <Button fx:id="bttnEventos" layoutX="21.0" layoutY="235.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="46.0" prefWidth="200.0" styleClass="button-1" stylesheets="@../css/AdminDesign.css" text="Eventos" />
-                                <Button fx:id="bttnCompras" layoutX="21.0" layoutY="295.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="46.0" prefWidth="200.0" styleClass="button-1" stylesheets="@../css/AdminDesign.css" text="Compras" />
-                                <Button fx:id="bttnHistorial" layoutX="21.0" layoutY="358.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="46.0" prefWidth="200.0" styleClass="button-1" stylesheets="@../css/AdminDesign.css" text="Historial" />
-                                <Button fx:id="bttnCerrarSesion" layoutX="21.0" layoutY="422.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="46.0" prefWidth="200.0" styleClass="button-2" stylesheets="@../css/AdminDesign.css" text="Cerrar sesión" />
+                                <Line endX="100.0" layoutX="120.0" layoutY="201.0" startX="-100.0" stroke="WHITE" styleClass="shadow" />
+                                <Button fx:id="bttnEventos" layoutX="21.0" layoutY="235.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="46.0" prefWidth="200.0" styleClass="button-1" stylesheets="@../css/UserDesign.css" text="Eventos" />
+                                <Button fx:id="bttnCompras" layoutX="21.0" layoutY="295.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="46.0" prefWidth="200.0" styleClass="button-1" stylesheets="@../css/UserDesign.css" text="Compras" />
+                                <Button fx:id="bttnHistorial" layoutX="21.0" layoutY="358.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="46.0" prefWidth="200.0" styleClass="button-1" stylesheets="@../css/UserDesign.css" text="Historial" />
+                                <Button fx:id="bttnCerrarSesion" layoutX="21.0" layoutY="422.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="46.0" prefWidth="200.0" styleClass="button-2" stylesheets="@../css/UserDesign.css" text="Cerrar sesión" />
                             </children>
                             <styleClass>
                                 <String fx:value="gb-color-1" />
@@ -73,7 +73,7 @@
                     <center>
                         <AnchorPane prefHeight="606.0" prefWidth="972.0" BorderPane.alignment="CENTER">
                             <children>
-                                <AnchorPane fx:id="panelEventos" layoutX="120.0" layoutY="130.0" prefHeight="660.8" prefWidth="971.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="panelEventos" layoutX="120.0" layoutY="130.0" prefHeight="660.8" prefWidth="971.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <AnchorPane layoutX="26.4" layoutY="79.0" prefHeight="489.0" prefWidth="915.0" stylesheets="@../css/UserDesign.css" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="79.0">
                                             <styleClass>
@@ -121,7 +121,7 @@
                                         <Button fx:id="eventos_bttnComprar" layoutX="438.0" layoutY="596.0" mnemonicParsing="false" onAction="#comprarTicket" styleClass="button-general" stylesheets="@../css/UserDesign.css" text="Comprar" AnchorPane.bottomAnchor="30.399999999999956" AnchorPane.leftAnchor="438.0" AnchorPane.rightAnchor="438.4000000000001" />
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="panelCompras" prefHeight="660.8" prefWidth="971.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="panelCompras" prefHeight="660.8" prefWidth="971.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <AnchorPane layoutX="27.0" layoutY="91.2" prefHeight="424.0" prefWidth="923.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="146.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="91.0">
                                             <styleClass>
@@ -129,7 +129,7 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                             <children>
-                                                <TableView fx:id="compras_tableViewCompras" layoutX="43.0" layoutY="36.0" prefHeight="401.0" prefWidth="923.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <TableView fx:id="compras_tableViewCompras" layoutX="43.0" layoutY="36.0" prefHeight="401.0" prefWidth="923.0" stylesheets="@../css/UserDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                     <columns>
                                                         <TableColumn fx:id="compras_columna_nroTicket" prefWidth="75.0" text="N° TICKET" />
                                                         <TableColumn fx:id="compras_columna_dniCliente" prefWidth="75.0" text="DNI CLIENTE" />
@@ -151,9 +151,9 @@
                                                 <Font size="18.0" />
                                             </font>
                                         </Label>
-                                        <TextField fx:id="compras_txtFieldBuscar" layoutX="163.0" layoutY="38.0" prefHeight="35.0" prefWidth="257.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" AnchorPane.leftAnchor="163.20000000000005" />
-                                        <Button fx:id="compras_bttnBuscar" layoutX="439.0" layoutY="39.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="89.0" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Buscar" />
-                                        <Button fx:id="compras_bttnEliminar" layoutX="439.0" layoutY="555.0" mnemonicParsing="false" onAction="#eliminarTicket" prefHeight="34.0" prefWidth="89.0" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Eliminar" AnchorPane.bottomAnchor="71.39999999999995" AnchorPane.leftAnchor="439.0" AnchorPane.rightAnchor="442.4" />
+                                        <TextField fx:id="compras_txtFieldBuscar" layoutX="163.0" layoutY="38.0" prefHeight="35.0" prefWidth="257.0" styleClass="text-field-1" stylesheets="@../css/UserDesign.css" AnchorPane.leftAnchor="163.20000000000005" />
+                                        <Button fx:id="compras_bttnBuscar" layoutX="439.0" layoutY="39.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="89.0" styleClass="button-general" stylesheets="@../css/UserDesign.css" text="Buscar" />
+                                        <Button fx:id="compras_bttnEliminar" layoutX="439.0" layoutY="555.0" mnemonicParsing="false" onAction="#eliminarTicket" prefHeight="34.0" prefWidth="89.0" styleClass="button-general" stylesheets="@../css/UserDesign.css" text="Eliminar" AnchorPane.bottomAnchor="71.39999999999995" AnchorPane.leftAnchor="439.0" AnchorPane.rightAnchor="442.4" />
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane fx:id="panelHistorial" prefHeight="660.8" prefWidth="971.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -169,7 +169,7 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                             <children>
-                                                <TableView fx:id="historialCompras_tablevVewCompras" layoutX="43.0" layoutY="36.0" prefHeight="401.0" prefWidth="923.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <TableView fx:id="historialCompras_tablevVewCompras" layoutX="43.0" layoutY="36.0" prefHeight="401.0" prefWidth="923.0" stylesheets="@../css/UserDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                     <columns>
                                                         <TableColumn fx:id="historialCompras_columna_nroTicket" prefWidth="75.0" text="N° TICKET" />
                                                         <TableColumn fx:id="historialCompras_columna_dniCliente" prefWidth="75.0" text="DNI CLIENTE" />
@@ -197,7 +197,7 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                             <children>
-                                                <TableView fx:id="historialEliminados_tableViewEliminados" layoutX="43.0" layoutY="36.0" prefHeight="401.0" prefWidth="923.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <TableView fx:id="historialEliminados_tableViewEliminados" layoutX="43.0" layoutY="36.0" prefHeight="401.0" prefWidth="923.0" stylesheets="@../css/UserDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                     <columns>
                                                         <TableColumn fx:id="historialEliminados_columna_nroTicket" prefWidth="75.0" text="N° TICKET" />
                                                         <TableColumn fx:id="historialEliminados_columna_dniCliente" prefWidth="75.0" text="DNI CLIENTE" />
