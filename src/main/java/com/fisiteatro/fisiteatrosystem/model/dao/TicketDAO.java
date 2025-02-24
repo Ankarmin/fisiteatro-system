@@ -202,15 +202,21 @@ public class TicketDAO implements ITicketDAO {
     }
 
     public void aceptarSolicitud(TicketDTO ticket) throws IOException {
-        tickets.push(ticket);
-
         Cola<TicketDTO> solicitudes = getSolicitudesTickets();
-
         deleteSolicitud(solicitudes);
-
-        saveToFile();
 
         Pila<TicketDTO> ticketsEliminados = getTicketsEliminados(ticket.getEvento().getId());
         addTicketEliminado(ticket, ticketsEliminados);
+    }
+
+    public TicketDTO eliminarTicket() throws IOException {
+        if (!tickets.isEmpty()) {
+            TicketDTO ticketEliminado = tickets.pop(); // Elimina y retorna el primer elemento de la pila (LIFO)
+            saveToFile();
+            return ticketEliminado;
+        } else {
+            System.out.println("No hay tickets para eliminar.");
+            return null;
+        }
     }
 }

@@ -291,26 +291,20 @@ public class UserController implements Initializable {
 
     @FXML
     private void eliminarTicket() {
-        TicketDTO ticketSeleccionadoBorrar = compras_tableViewCompras.getSelectionModel().getSelectedItem();
+        try {
+            TicketDTO ticketEliminado = ticketService.eliminarTicket();
 
-        if (ticketSeleccionadoBorrar != null) {
-            System.out.println("Eliminando ticket: " + ticketSeleccionadoBorrar.getId());
-            try {
-                // Eliminar el ticket de la estructura y del JSON
-                ticketService.delete(clienteDTO.getDni(), ticketSeleccionadoBorrar.getAsiento().getFila(), ticketSeleccionadoBorrar.getAsiento().getNumero());
+            Cola<TicketDTO> solicitudesTickets = ticketService.getSolicitudesTickets();
 
-                // Agregar el ticket a las solicitudes de tickets tanto en la estructura como en el JSON
-                Cola<TicketDTO> solicitudesTickets = ticketService.getSolicitudesTickets();
-                solicitudesTickets.offer(ticketSeleccionadoBorrar);
+            if (ticketEliminado != null) {
+                solicitudesTickets.offer(ticketEliminado);
                 ticketService.saveSolicitudesTicketsJSON(solicitudesTickets);
-
-                cargarCompras();
-                cargarEventos();
-            } catch (IOException e) {
-                System.err.println("Error al eliminar el ticket: " + e.getMessage());
             }
-        } else {
-            System.out.println("Seleccione un ticket antes de eliminar.");
+
+            cargarCompras();
+            cargarEventos();
+        } catch (IOException e) {
+            System.err.println("Error al eliminar el ticket: " + e.getMessage());
         }
     }
 

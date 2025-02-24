@@ -1,5 +1,6 @@
 package com.fisiteatro.fisiteatrosystem.controller;
 
+import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
 import com.fisiteatro.fisiteatrosystem.model.dto.EventoDTO;
 import com.fisiteatro.fisiteatrosystem.model.dto.TicketDTO;
 import com.fisiteatro.fisiteatrosystem.service.AsientoService;
@@ -312,10 +313,18 @@ public class AdminController implements Initializable {
 
     @FXML
     private void aceptarEliminacion() {
-        TicketDTO ticket = gestionarTickets_tableViewSolicitudes.getSelectionModel().getSelectedItem();
         try {
-            ticketService.aceptarSolicitud(ticket);
-            cargarSolicitudes();
+            Cola<TicketDTO> solicitudesTickets = ticketService.getSolicitudesTickets();
+            TicketDTO ticket = solicitudesTickets.poll();
+            if (ticket != null) {
+                ticketService.aceptarSolicitud(ticket);
+                eventoService.aumentarEnUno(ticket.getEvento().getId());
+                ticketService.saveSolicitudesTicketsJSON(solicitudesTickets);
+                cargarSolicitudes();
+                cargarEventos();
+            } else {
+                System.out.println("No hay solicitudes de eliminación.");
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

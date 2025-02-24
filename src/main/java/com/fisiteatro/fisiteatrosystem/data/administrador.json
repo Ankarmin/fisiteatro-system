@@ -16,5 +16,11 @@
     "apellidos": "de la cruz",
     "dni": "00000001",
     "contrasena": "password"
+  },
+  {
+    "nombres": "lucia",
+    "apellidos": "de la cruz",
+    "dni": "admin",
+    "contrasena": "admin"
   }
 ]
