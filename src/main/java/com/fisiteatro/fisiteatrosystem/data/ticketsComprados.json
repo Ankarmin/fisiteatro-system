@@ -1,165 +1,81 @@
 [ {
-  "id" : 3585,
-  "evento" : {
-    "id" : 490,
-    "nombre" : "La era del Hielo",
-    "fecha" : "2025-10-10",
-    "hora" : "15:30",
-    "precio" : 100.0,
-    "capacidad" : 8
-  },
+  "id" : 8944,
   "cliente" : {
     "nombres" : "CHRISTIAN",
     "apellidos" : "ARANCIVIA",
     "dni" : "987654321",
     "contrasena" : "ASDASDASD"
   },
-  "asiento" : {
-    "fila" : "D",
-    "numero" : 16,
-    "estado" : false
-  }
-}, {
-  "id" : 2658,
   "evento" : {
-    "id" : 490,
-    "nombre" : "La era del Hielo",
-    "fecha" : "2025-10-10",
-    "hora" : "15:30",
-    "precio" : 100.0,
-    "capacidad" : 8
-  },
-  "cliente" : {
-    "nombres" : "CHRISTIAN",
-    "apellidos" : "ARANCIVIA",
-    "dni" : "987654321",
-    "contrasena" : "ASDASDASD"
-  },
-  "asiento" : {
-    "fila" : "B",
-    "numero" : 15,
-    "estado" : false
-  }
-}, {
-  "id" : 6278,
-  "evento" : {
-    "id" : 490,
-    "nombre" : "La era del Hielo",
-    "fecha" : "2025-10-10",
-    "hora" : "15:30",
-    "precio" : 100.0,
-    "capacidad" : 8
-  },
-  "cliente" : {
-    "nombres" : "CHRISTIAN",
-    "apellidos" : "ARANCIVIA",
-    "dni" : "987654321",
-    "contrasena" : "ASDASDASD"
-  },
-  "asiento" : {
-    "fila" : "D",
-    "numero" : 14,
-    "estado" : false
-  }
-}, {
-  "id" : 1015,
-  "evento" : {
-    "id" : 490,
-    "nombre" : "La era del Hielo",
-    "fecha" : "2025-10-10",
-    "hora" : "15:30",
-    "precio" : 100.0,
-    "capacidad" : 8
-  },
-  "cliente" : {
-    "nombres" : "CHRISTIAN",
-    "apellidos" : "ARANCIVIA",
-    "dni" : "987654321",
-    "contrasena" : "ASDASDASD"
-  },
-  "asiento" : {
-    "fila" : "C",
-    "numero" : 13,
-    "estado" : false
-  }
-}, {
-  "id" : 6275,
-  "evento" : {
-    "id" : 490,
-    "nombre" : "La era del Hielo",
-    "fecha" : "2025-10-10",
-    "hora" : "15:30",
-    "precio" : 100.0,
-    "capacidad" : 8
-  },
-  "cliente" : {
-    "nombres" : "CHRISTIAN",
-    "apellidos" : "ARANCIVIA",
-    "dni" : "987654321",
-    "contrasena" : "ASDASDASD"
-  },
-  "asiento" : {
-    "fila" : "D",
-    "numero" : 12,
-    "estado" : false
-  }
-}, {
-  "id" : 8225,
-  "evento" : {
-    "id" : 734,
+    "id" : 688,
     "nombre" : "Romeo y Julieta",
     "fecha" : "2025-10-10",
     "hora" : "10:30",
-    "precio" : 100.0,
-    "capacidad" : 6
+    "precio" : 20.0,
+    "capacidad" : 8
   },
+  "asiento" : {
+    "fila" : "B",
+    "numero" : 1,
+    "estado" : false
+  }
+}, {
+  "id" : 8944,
   "cliente" : {
     "nombres" : "CHRISTIAN",
     "apellidos" : "ARANCIVIA",
     "dni" : "987654321",
     "contrasena" : "ASDASDASD"
   },
-  "asiento" : {
-    "fila" : "D",
-    "numero" : 4,
-    "estado" : false
-  }
-}, {
-  "id" : 8295,
   "evento" : {
-    "id" : 548,
-    "nombre" : "Peter Pan",
-    "fecha" : "2025-10-15",
-    "hora" : "18:30",
-    "precio" : 60.0,
-    "capacidad" : 97
-  },
-  "cliente" : {
-    "nombres" : "lucia",
-    "apellidos" : "de la cruz",
-    "dni" : "12345678",
-    "contrasena" : "lucia123"
+    "id" : 688,
+    "nombre" : "Romeo y Julieta",
+    "fecha" : "2025-10-10",
+    "hora" : "10:30",
+    "precio" : 20.0,
+    "capacidad" : 9
   },
   "asiento" : {
     "fila" : "B",
-    "numero" : 4,
-    "estado" : false
+    "numero" : 1,
+    "estado" : true
   }
 }, {
-  "id" : 7662,
-  "evento" : {
-    "id" : 548,
-    "nombre" : "Peter Pan",
-    "fecha" : "2025-10-15",
-    "hora" : "18:30",
-    "precio" : 60.0,
-    "capacidad" : 97
-  },
+  "id" : 5637,
   "cliente" : {
-    "nombres" : "lucia",
-    "apellidos" : "de la cruz",
-    "dni" : "12345678",
-    "contrasena" : "lucia123"
+    "nombres" : "CHRISTIAN",
+    "apellidos" : "ARANCIVIA",
+    "dni" : "987654321",
+    "contrasena" : "ASDASDASD"
+  },
+  "evento" : {
+    "id" : 318,
+    "nombre" : "La era del hielo",
+    "fecha" : "2025-10-12",
+    "hora" : "13:40",
+    "precio" : 20.0,
+    "capacidad" : 9
+  },
+  "asiento" : {
+    "fila" : "B",
+    "numero" : 2,
+    "estado" : true
+  }
+}, {
+  "id" : 2719,
+  "cliente" : {
+    "nombres" : "CHRISTIAN",
+    "apellidos" : "ARANCIVIA",
+    "dni" : "987654321",
+    "contrasena" : "ASDASDASD"
+  },
+  "evento" : {
+    "id" : 688,
+    "nombre" : "Romeo y Julieta",
+    "fecha" : "2025-10-10",
+    "hora" : "10:30",
+    "precio" : 20.0,
+    "capacidad" : 8
   },
   "asiento" : {
     "fila" : "A",
@@ -167,24 +83,24 @@
     "estado" : false
   }
 }, {
-  "id" : 3985,
-  "evento" : {
-    "id" : 849,
-    "nombre" : "GAAAAAAAAA",
-    "fecha" : "2004-11-25",
-    "hora" : "23:43",
-    "precio" : 0.0,
-    "capacidad" : 14
-  },
+  "id" : 4147,
   "cliente" : {
-    "nombres" : "pelado",
-    "apellidos" : "arredondo",
-    "dni" : "87654321",
-    "contrasena" : "peladin"
+    "nombres" : "CHRISTIAN",
+    "apellidos" : "ARANCIVIA",
+    "dni" : "987654321",
+    "contrasena" : "ASDASDASD"
+  },
+  "evento" : {
+    "id" : 688,
+    "nombre" : "Romeo y Julieta",
+    "fecha" : "2025-10-10",
+    "hora" : "10:30",
+    "precio" : 20.0,
+    "capacidad" : 8
   },
   "asiento" : {
-    "fila" : "A",
-    "numero" : 5,
+    "fila" : "C",
+    "numero" : 2,
     "estado" : false
   }
 } ]

@@ -309,4 +309,20 @@ public class AdminController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+    @FXML
+    private void aceptarEliminacion() {
+        TicketDTO ticket = gestionarTickets_tableViewSolicitudes.getSelectionModel().getSelectedItem();
+        try {
+            ticketService.aceptarSolicitud(ticket);
+            cargarSolicitudes();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    private void rechazarEliminacion(){
+
+    }
 }
