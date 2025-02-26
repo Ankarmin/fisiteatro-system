@@ -110,7 +110,7 @@
                                                     </font>
                                                 </Label>
                                                 <TextField fx:id="eventos_txtFieldBuscar" layoutX="144.0" layoutY="24.0" prefHeight="34.0" prefWidth="270.0" styleClass="text-field-1" stylesheets="@../css/UserDesign.css" />
-                                                <Button fx:id="eventos_bttnBuscar" layoutX="438.0" layoutY="24.0" mnemonicParsing="false" styleClass="button-general" stylesheets="@../css/UserDesign.css" text="Buscar" />
+                                                <Button fx:id="eventos_bttnBuscar" layoutX="438.0" layoutY="24.0" mnemonicParsing="false" onAction="#buscarEvento" styleClass="button-general" stylesheets="@../css/UserDesign.css" text="Buscar" />
                                             </children>
                                         </AnchorPane>
                                         <Label layoutX="26.0" layoutY="25.0" styleClass="text" stylesheets="@../css/UserDesign.css" text="Eventos disponibles">
@@ -123,7 +123,7 @@
                                 </AnchorPane>
                                 <AnchorPane fx:id="panelCompras" prefHeight="660.8" prefWidth="971.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <AnchorPane layoutX="27.0" layoutY="91.2" prefHeight="424.0" prefWidth="923.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="146.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="91.0">
+                                        <AnchorPane layoutX="27.0" layoutY="30.4" prefHeight="530.0" prefWidth="923.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="30.0">
                                             <styleClass>
                                                 <String fx:value="white-bg" />
                                                 <String fx:value="shadow" />
@@ -145,14 +145,7 @@
                                                 </TableView>
                                             </children>
                                         </AnchorPane>
-                                        <Label layoutX="27.0" layoutY="42.0" text="Buscar por ID">
-                                            <font>
-                                                <Font size="18.0" />
-                                            </font>
-                                        </Label>
-                                        <TextField fx:id="compras_txtFieldBuscar" layoutX="163.0" layoutY="38.0" prefHeight="35.0" prefWidth="257.0" styleClass="text-field-1" stylesheets="@../css/UserDesign.css" AnchorPane.leftAnchor="163.20000000000005" />
-                                        <Button fx:id="compras_bttnBuscar" layoutX="439.0" layoutY="39.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="89.0" styleClass="button-general" stylesheets="@../css/UserDesign.css" text="Buscar" />
-                                        <Button fx:id="compras_bttnEliminar" layoutX="439.0" layoutY="555.0" mnemonicParsing="false" onAction="#eliminarTicket" prefHeight="34.0" prefWidth="89.0" styleClass="button-general" stylesheets="@../css/UserDesign.css" text="Eliminar" AnchorPane.bottomAnchor="71.39999999999995" AnchorPane.leftAnchor="439.0" AnchorPane.rightAnchor="442.4" />
+                                        <Button fx:id="compras_bttnEliminar" layoutX="444.0" layoutY="578.0" mnemonicParsing="false" onAction="#eliminarTicket" prefHeight="34.0" prefWidth="89.0" styleClass="button-general" stylesheets="@../css/UserDesign.css" text="Eliminar" AnchorPane.bottomAnchor="48.39999999999998" AnchorPane.leftAnchor="444.0" AnchorPane.rightAnchor="437.6" />
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane fx:id="panelHistorial" prefHeight="660.8" prefWidth="971.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
