@@ -167,7 +167,7 @@ public class AdminController implements Initializable {
     private AnchorPane panelGestionarTickets;
 
     @FXML
-    private AnchorPane pnlInventarios;
+    private AnchorPane panelReportes;
 
     private EventoService eventoService;
     private TicketService ticketService;
@@ -187,6 +187,7 @@ public class AdminController implements Initializable {
     private void switchForm(ActionEvent event) {
         panelAdministrarEventos.setVisible(event.getSource() == bttnAdministrarEventos);
         panelGestionarTickets.setVisible(event.getSource() == bttnGestionarTickets);
+        panelReportes.setVisible(event.getSource() == bttnInventarios);
     }
 
     private void configurarServices() {

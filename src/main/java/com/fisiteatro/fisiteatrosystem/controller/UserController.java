@@ -50,9 +50,6 @@ public class UserController implements Initializable {
     private Button compras_bttnEliminar;
 
     @FXML
-    private TableColumn<TicketDTO, String> compras_columna_dniCliente;
-
-    @FXML
     private TableColumn<TicketDTO, String> compras_columna_evento;
 
     @FXML
@@ -78,9 +75,6 @@ public class UserController implements Initializable {
 
     @FXML
     private TableView<TicketDTO> compras_tableViewCompras;
-
-    @FXML
-    private TextField compras_txtFieldBuscar;
 
     @FXML
     private Button eventos_bttnBuscar;
@@ -215,7 +209,6 @@ public class UserController implements Initializable {
 
     private void configurarColumnaCompras() {
         compras_columna_nroTicket.setCellValueFactory(new PropertyValueFactory<>("id"));
-        compras_columna_dniCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getDni()));
 
         compras_columna_evento.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getNombre()));
 
