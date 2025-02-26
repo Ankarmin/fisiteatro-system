@@ -330,4 +330,12 @@ public class UserController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+    @FXML
+    private void buscarEvento() {
+        String busqueda = eventos_txtFieldBuscar.getText();
+        ObservableList<EventoDTO> eventoList = FXCollections.observableArrayList(eventoService.buscarEvento(busqueda));
+        eventos_tableViewEventos.setItems(eventoList);
+        eventos_tableViewEventos.refresh();
+    }
 }
