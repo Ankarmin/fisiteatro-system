@@ -44,4 +44,8 @@ public class EventoService {
     public void aumentarEnUno(int id) throws IOException {
         eventoDAO.aumentarEnUno(id);
     }
+
+    public List<EventoDTO> buscarEvento(String busqueda) {
+        return eventoDAO.buscarEvento(busqueda);
+    }
 }

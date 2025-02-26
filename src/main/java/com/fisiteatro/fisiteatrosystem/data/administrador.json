@@ -1,25 +1,7 @@
 [
   {
-    "nombres": "DA",
-    "apellidos": "Cliente",
-    "dni": "00000000",
-    "contrasena": "admin"
-  },
-  {
-    "nombres": "DA",
-    "apellidos": "Cliente",
-    "dni": "00000002",
-    "contrasena": "newpass"
-  },
-  {
-    "nombres": "lucia",
-    "apellidos": "de la cruz",
-    "dni": "00000001",
-    "contrasena": "password"
-  },
-  {
-    "nombres": "lucia",
-    "apellidos": "de la cruz",
+    "nombres": "admin",
+    "apellidos": "admin",
     "dni": "admin",
     "contrasena": "admin"
   }

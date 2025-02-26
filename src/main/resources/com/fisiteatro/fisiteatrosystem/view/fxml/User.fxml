@@ -149,8 +149,9 @@
                                                            prefHeight="34.0" prefWidth="270.0" styleClass="text-field-1"
                                                            stylesheets="@../css/UserDesign.css"/>
                                                 <Button fx:id="eventos_bttnBuscar" layoutX="438.0" layoutY="24.0"
-                                                        mnemonicParsing="false" styleClass="button-general"
-                                                        stylesheets="@../css/UserDesign.css" text="Buscar"/>
+                                                        mnemonicParsing="false" onAction="#buscarEvento"
+                                                        styleClass="button-general" stylesheets="@../css/UserDesign.css"
+                                                        text="Buscar"/>
                                             </children>
                                         </AnchorPane>
                                         <Label layoutX="26.0" layoutY="25.0" styleClass="text"
