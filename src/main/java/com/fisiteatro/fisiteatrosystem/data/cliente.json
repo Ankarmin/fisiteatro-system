@@ -1,8 +1,11 @@
-[
-  {
-    "nombres": "David Sebastian",
-    "apellidos": "Piñarreta Rojas",
-    "dni": "73426177",
-    "contrasena": "tumamacalata"
-  }
-]
+[ {
+  "nombres" : "David Sebastian",
+  "apellidos" : "Piñarreta Rojas",
+  "dni" : "73426177",
+  "contrasena" : "tumamacalata"
+}, {
+  "nombres" : "achli",
+  "apellidos" : "bayona",
+  "dni" : "73065779",
+  "contrasena" : "ola123"
+} ]
