@@ -2,6 +2,7 @@ package com.fisiteatro.fisiteatrosystem.menu;
 
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
 import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
+import com.fisiteatro.fisiteatrosystem.datastructures.Pila;
 import com.fisiteatro.fisiteatrosystem.model.dao.AsientoDAO;
 import com.fisiteatro.fisiteatrosystem.model.dao.ClienteDAO;
 import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
@@ -11,6 +12,7 @@ import com.fisiteatro.fisiteatrosystem.model.dto.Cliente;
 import com.fisiteatro.fisiteatrosystem.model.dto.Evento;
 import com.fisiteatro.fisiteatrosystem.model.dto.Ticket;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -96,27 +98,66 @@ public class MenuCliente {
             return;
         }
 
-        // se le asigna un numero d asiento nodo
-        AsientoDAO asientoDAO = new AsientoDAO(eventoSeleccionado.getId());
-        Asiento asientoSeleccionado = asientoDAO.obtenerPrimerAsientoDisponible();
+        // Declaración de variables para su uso fuera del if-else
+        int idTicket;
+        Asiento asientoSeleccionado;
 
+        // PRIMERO REVISAR SI HAY TICKETS ELIMINADOS PARA EL EVENTO
+        // revisar si existe el archivo, q exista y q tenga lineas escritas IF ELSE
+        int idEventoSeleccionado = eventoSeleccionado.getId();
+        String PATH = "src/main/java/com/fisiteatro/fisiteatrosystem/data/ticketsEliminadosPorEvento/eliminados_";
+        File archivo = new  File(PATH + idEventoSeleccionado + ".json");
+
+        if (archivo.exists() && archivo.length() > 0) {
+            // en el arbol ya sale como false, en la pila solo se hace pop y se guarda, y se crea en ticketscomprados
+            // parecido a lo de cola a pila en solicitudes por parte del admin
+
+            // acceder a la pila con tickets eliminados del evento
+            Pila<Ticket> pilaEliminados = ticketDAO.getTicketsEliminados(idEventoSeleccionado);
+
+            // obtener el ticket para reusar los datos
+            Ticket ticketReemitido = pilaEliminados.peek();
+
+            // sacamos los datos del ticket para pasarlo al constructor
+            idTicket = ticketReemitido.getId();
+            asientoSeleccionado = ticketReemitido.getAsiento();
+            asientoSeleccionado.setEstado(false);
+
+            // se elimina de la pila
+            try {
+                ticketDAO.deleteTicketEliminado(ticketReemitido, pilaEliminados);
+                System.out.println("se borro de la pila eliminados");
+            } catch (IOException e) {
+                System.out.println("no se borro de la pila eliminados. " + e.getMessage());
+            }
+
+        } else {
+            // SI NO HAY TICKETS ELIMINADOS PARA EL EVENTO, QUE SE ASIGNE DESDE EL ÁRBOL
+
+            // se le asigna un numero d asiento nodo
+            AsientoDAO asientoDAO = new AsientoDAO(eventoSeleccionado.getId());
+            asientoSeleccionado = asientoDAO.obtenerPrimerAsientoDisponible();
+
+            // aca se gener id y s mete en el constructor
+            idTicket = ticketDAO.createId();
+
+            // cambiar el estado del asiento en el arbol
+            try {
+                asientoDAO.updateOcupado(asientoSeleccionado, eventoSeleccionado.getId());
+                System.out.println("asiento en false");
+            } catch (IOException e) {
+                System.out.println("Error al cambiar el estado del asiento: " + e.getMessage());
+            }
+        }
+
+        // se mantiene fuera para reemplazar los datos del cliente en el ticket
         Cliente cliente = new ClienteDAO(new Cola<>()).obtenerPorDni(clienteDni);
         if (cliente == null) {
             System.out.println("Error: Cliente no encontrado.");
             return;
         }
 
-        // aca se gener id y s mete en el constructor
-        int idTicket = ticketDAO.createId();
-
-        // cambiar el estado del asiento
-        try {
-            asientoDAO.updateOcupado(asientoSeleccionado, eventoSeleccionado.getId());
-            System.out.println("asiento en false");
-        } catch (IOException e) {
-            System.out.println("Error al cambiar el estado del asiento: " + e.getMessage());
-        }
-
+        // se queda
         Ticket ticket = new Ticket(idTicket, cliente, asientoSeleccionado, eventoSeleccionado);
 
         try {

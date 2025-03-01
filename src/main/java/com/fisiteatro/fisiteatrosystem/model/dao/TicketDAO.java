@@ -138,6 +138,11 @@ public class TicketDAO implements ITicketDAO {
         saveTicketsEliminadosJSON(pila, ticket.getEvento().getId());
     }
 
+    public void deleteTicketEliminado(Ticket ticket, Pila <Ticket> pila) throws IOException {
+        pila.pop();
+        saveTicketsEliminadosJSON(pila, ticket.getEvento().getId());
+    }
+
     public Asiento getAsiento(int numAsiento, Evento evento){
         AsientoDAO asientoDAO = new AsientoDAO(evento.getId());
         for(Asiento asiento: asientoDAO.readAll()){

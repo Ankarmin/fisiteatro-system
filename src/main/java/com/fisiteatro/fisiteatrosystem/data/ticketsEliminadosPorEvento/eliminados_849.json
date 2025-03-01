@@ -1,14 +1,14 @@
 [ {
-  "id" : 2510,
+  "id" : 4508,
   "cliente" : {
-    "nombres" : "maria",
-    "apellidos" : "gomez",
-    "dni" : "23456789",
-    "contrasena" : "maria123"
+    "nombres" : "lucia",
+    "apellidos" : "de la cruz",
+    "dni" : "12345678",
+    "contrasena" : "lucia123"
   },
   "asiento" : {
-    "fila" : "C",
-    "numero" : 4,
+    "fila" : "A",
+    "numero" : 2,
     "estado" : true
   },
   "evento" : {
@@ -17,7 +17,7 @@
     "fecha" : "2004-11-25",
     "hora" : "23:43",
     "precio" : 0.0,
-    "capacidad" : 17
+    "capacidad" : 19
   }
 }, {
   "id" : 1140,
@@ -41,28 +41,7 @@
     "capacidad" : 20
   }
 }, {
-  "id" : 4508,
-  "cliente" : {
-    "nombres" : "lucia",
-    "apellidos" : "de la cruz",
-    "dni" : "12345678",
-    "contrasena" : "lucia123"
-  },
-  "asiento" : {
-    "fila" : "A",
-    "numero" : 2,
-    "estado" : true
-  },
-  "evento" : {
-    "id" : 849,
-    "nombre" : "GAAAAAAAAA",
-    "fecha" : "2004-11-25",
-    "hora" : "23:43",
-    "precio" : 0.0,
-    "capacidad" : 19
-  }
-}, {
-  "id" : 6733,
+  "id" : 2510,
   "cliente" : {
     "nombres" : "maria",
     "apellidos" : "gomez",
@@ -70,8 +49,8 @@
     "contrasena" : "maria123"
   },
   "asiento" : {
-    "fila" : "B",
-    "numero" : 3,
+    "fila" : "C",
+    "numero" : 4,
     "estado" : true
   },
   "evento" : {
@@ -81,26 +60,5 @@
     "hora" : "23:43",
     "precio" : 0.0,
     "capacidad" : 17
-  }
-}, {
-  "id" : 3282,
-  "cliente" : {
-    "nombres" : "pelado",
-    "apellidos" : "arredondo",
-    "dni" : "87654321",
-    "contrasena" : "peladin"
-  },
-  "asiento" : {
-    "fila" : "C",
-    "numero" : 6,
-    "estado" : true
-  },
-  "evento" : {
-    "id" : 849,
-    "nombre" : "GAAAAAAAAA",
-    "fecha" : "2004-11-25",
-    "hora" : "23:43",
-    "precio" : 0.0,
-    "capacidad" : 15
   }
 } ]
