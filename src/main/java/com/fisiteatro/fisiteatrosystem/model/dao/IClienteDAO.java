@@ -1,16 +1,16 @@
 package com.fisiteatro.fisiteatrosystem.model.dao;
 
-import com.fisiteatro.fisiteatrosystem.model.dto.Cliente;
+import com.fisiteatro.fisiteatrosystem.model.dto.ClienteDTO;
 
 import java.io.IOException;
 import java.util.List;
 
 public interface IClienteDAO {
-    void create(Cliente cliente) throws IOException;
+    void create(ClienteDTO clienteDTO) throws IOException;
 
-    List<Cliente> readAll();
+    List<ClienteDTO> readAll();
 
-    void update(Cliente cliente) throws IOException;
+    void update(ClienteDTO clienteDTO) throws IOException;
 
-    void delete(String dni) throws IOException;
+
 }

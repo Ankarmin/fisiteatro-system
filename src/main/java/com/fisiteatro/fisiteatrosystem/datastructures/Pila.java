@@ -30,13 +30,6 @@ public class Pila<T> {
         return dato;
     }
 
-    public T peek() {
-        if (cima == null) {
-            throw new EmptyStackException();
-        }
-        return cima.dato;
-    }
-
     public boolean isEmpty() {
         return cima == null;
     }
@@ -61,14 +54,6 @@ public class Pila<T> {
         T[] datos = mapper.readValue(file, clazz);
         for (int i = datos.length - 1; i >= 0; i--) {
             push(datos[i]);
-        }
-    }
-
-    public void imprimir() {
-        Nodo<T> actual = cima;
-        while (actual != null) {
-            System.out.println(actual.dato);
-            actual = actual.siguiente;
         }
     }
 }

@@ -1,11 +1,11 @@
 package com.fisiteatro.fisiteatrosystem.model.dto;
 
-public class Cliente extends Usuario {
+public class ClienteDTO extends UsuarioDTO {
 
-    public Cliente() {
+    public ClienteDTO() {
     }
 
-    public Cliente(String nombres, String apellidos, String dni, String contrasena) {
+    public ClienteDTO(String nombres, String apellidos, String dni, String contrasena) {
         super(nombres, apellidos, dni, contrasena);
     }
 

@@ -2,7 +2,7 @@ package com.fisiteatro.fisiteatrosystem.model.dao;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
-import com.fisiteatro.fisiteatrosystem.model.dto.Administrador;
+import com.fisiteatro.fisiteatrosystem.model.dto.AdministradorDTO;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,37 +10,33 @@ import java.util.List;
 
 public class AdministradorDAO implements IAdministradorDAO {
     private static final String FILE_PATH = "src/main/java/com/fisiteatro/fisiteatrosystem/data/administrador.json";
-    private Cola<Administrador> administradores;
-
-//    public AdministradorDAO(Cola<Administrador> administradores) {
-//        this.administradores = administradores;
-//    }
+    private Cola<AdministradorDTO> administradores;
 
     public AdministradorDAO() {
         this.administradores = new Cola<>();
         try {
-            administradores.cargarDesdeJson(FILE_PATH, Administrador[].class);
+            administradores.cargarDesdeJson(FILE_PATH, AdministradorDTO[].class);
             System.out.println("Administradores cargados correctamente desde JSON.");
         } catch (IOException e) {
             System.out.println("Error al leer el archivo JSON: " + e.getMessage());
         }
     }
 
-    public void create(Administrador administrador) throws IOException {
-        administradores.offer(administrador);
+    public void create(AdministradorDTO administradorDTO) throws IOException {
+        administradores.offer(administradorDTO);
         saveToFile();
     }
 
-    public List<Administrador> readAll() {
+    public List<AdministradorDTO> readAll() {
         return administradores.toList();
     }
 
-    public void update(Administrador administrador) throws IOException {
-        Cola<Administrador> temp = new Cola<>();
+    public void update(AdministradorDTO administradorDTO) throws IOException {
+        Cola<AdministradorDTO> temp = new Cola<>();
         while (!administradores.isEmpty()) {
-            Administrador current = administradores.poll();
-            if (current.getDni().equals(administrador.getDni())) {
-                temp.offer(administrador);
+            AdministradorDTO current = administradores.poll();
+            if (current.getDni().equals(administradorDTO.getDni())) {
+                temp.offer(administradorDTO);
             } else {
                 temp.offer(current);
             }
@@ -50,9 +46,9 @@ public class AdministradorDAO implements IAdministradorDAO {
     }
 
     public void delete(String dni) throws IOException {
-        Cola<Administrador> temp = new Cola<>();
+        Cola<AdministradorDTO> temp = new Cola<>();
         while (!administradores.isEmpty()) {
-            Administrador current = administradores.poll();
+            AdministradorDTO current = administradores.poll();
             if (!current.getDni().equals(dni)) {
                 temp.offer(current);
             }
@@ -61,18 +57,13 @@ public class AdministradorDAO implements IAdministradorDAO {
         saveToFile();
     }
 
-    public boolean verificarContrasenia(String contrasenia) {
-        if (!administradores.isEmpty()) {
-            Administrador administrador = administradores.peek();
-            return administrador.getContrasena().equals(contrasenia);
+    public boolean iniciarSesion(String dni, String contrasena) {
+        for (AdministradorDTO administradorDTO : administradores.toList()) {
+            if (administradorDTO.getDni().equals(dni) && administradorDTO.getContrasena().equals(contrasena)) {
+                return true;
+            }
         }
         return false;
-    }
-
-    public Administrador cambiarContrasenia(String contrasenia) {
-        Administrador administrador = administradores.peek();
-        administrador.setContrasena(contrasenia);
-        return administrador;
     }
 
     private void saveToFile() throws IOException {

@@ -33,10 +33,6 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> {
         return nodo;
     }
 
-    public boolean buscar(T dato) {
-        return buscarRecursivo(raiz, dato);
-    }
-
     private boolean buscarRecursivo(Nodo<T> nodo, T dato) {
         if (nodo == null) {
             return false;
@@ -45,37 +41,6 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> {
             return true;
         }
         return dato.compareTo(nodo.dato) < 0 ? buscarRecursivo(nodo.izquierdo, dato) : buscarRecursivo(nodo.derecho, dato);
-    }
-
-    public void eliminar(T dato) {
-        raiz = eliminarRecursivo(raiz, dato);
-    }
-
-    private Nodo<T> eliminarRecursivo(Nodo<T> nodo, T dato) {
-        if (nodo == null) {
-            return null;
-        }
-        if (dato.compareTo(nodo.dato) < 0) {
-            nodo.izquierdo = eliminarRecursivo(nodo.izquierdo, dato);
-        } else if (dato.compareTo(nodo.dato) > 0) {
-            nodo.derecho = eliminarRecursivo(nodo.derecho, dato);
-        } else {
-            if (nodo.izquierdo == null) {
-                return nodo.derecho;
-            } else if (nodo.derecho == null) {
-                return nodo.izquierdo;
-            }
-            nodo.dato = encontrarMinimo(nodo.derecho).dato;
-            nodo.derecho = eliminarRecursivo(nodo.derecho, nodo.dato);
-        }
-        return nodo;
-    }
-
-    private Nodo<T> encontrarMinimo(Nodo<T> nodo) {
-        while (nodo.izquierdo != null) {
-            nodo = nodo.izquierdo;
-        }
-        return nodo;
     }
 
     public void cargarDesdeJson(String filePath, Class<T[]> clazz) throws IOException {
@@ -114,5 +79,4 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> {
     public Nodo<T> getDerecho(Nodo<T> nodo) {
         return (nodo != null) ? nodo.derecho : null;
     }
-
 }

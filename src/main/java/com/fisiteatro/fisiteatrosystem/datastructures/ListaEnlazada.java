@@ -27,23 +27,6 @@ public class ListaEnlazada<T> {
         }
     }
 
-    public void set(int posicion, T nuevoDato) {
-        if (posicion < 0) {
-            throw new IndexOutOfBoundsException("Posición inválida");
-        }
-        Nodo<T> actual = cabeza;
-        for (int i = 0; i < posicion; i++) {
-            if (actual == null) {
-                throw new IndexOutOfBoundsException("Posición inválida");
-            }
-            actual = actual.siguiente;
-        }
-        if (actual == null) {
-            throw new IndexOutOfBoundsException("Posición inválida");
-        }
-        actual.dato = nuevoDato;
-    }
-
     public List<T> toList() {
         List<T> list = new ArrayList<>();
         Nodo<T> actual = cabeza;
@@ -65,34 +48,6 @@ public class ListaEnlazada<T> {
         for (T dato : datos) {
             add(dato);
         }
-    }
-
-    public void imprimir() {
-        Nodo<T> actual = cabeza;
-        while (actual != null) {
-            System.out.println(actual.dato);
-            actual = actual.siguiente;
-        }
-    }
-
-    public T get(int index) {
-        if (index < 0) {
-            throw new IndexOutOfBoundsException("Posición inválida");
-        }
-
-        Nodo<T> actual = cabeza;
-        for (int i = 0; i < index; i++) {
-            if (actual == null) {
-                throw new IndexOutOfBoundsException("Posición inválida");
-            }
-            actual = actual.siguiente;
-        }
-
-        if (actual == null) {
-            throw new IndexOutOfBoundsException("Posición inválida");
-        }
-
-        return actual.dato;
     }
 
     public void remove(int posicion) throws IOException {
@@ -121,15 +76,5 @@ public class ListaEnlazada<T> {
             throw new IndexOutOfBoundsException("Posición inválida");
         }
         actual.siguiente = actual.siguiente.siguiente;
-    }
-
-    public boolean validarIndex(int index) {
-        Nodo<T> current = cabeza;
-        int n = 0;
-        while (current != null) {
-            n++;
-            current = current.siguiente;
-        }
-        return index >= 0 && index < n;
     }
 }

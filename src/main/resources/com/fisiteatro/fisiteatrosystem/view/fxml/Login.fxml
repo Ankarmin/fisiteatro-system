@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
+           prefWidth="450.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.fisiteatro.fisiteatrosystem.controller.LoginController">
+    <children>
+        <AnchorPane fx:id="panelIniciarSesion" prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <AnchorPane layoutX="125.0" layoutY="119.0" prefHeight="700.0" prefWidth="450.0" styleClass="white-gb"
+                            stylesheets="@../css/PageDesign.css" AnchorPane.bottomAnchor="0.0"
+                            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <Label layoutX="121.0" layoutY="183.0" styleClass="titulo" stylesheets="@../css/PageDesign.css"
+                               text="Ingresar cuenta">
+                            <font>
+                                <Font name="Tahoma" size="26.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="iniciarSesion_txtFieldNombreUsuario" layoutX="64.0" layoutY="272.0"
+                                   prefHeight="42.0" prefWidth="322.0" promptText="Nombre de usuario"
+                                   stylesheets="@../css/PageDesign.css">
+                            <font>
+                                <Font name="Tahoma" size="14.0"/>
+                            </font>
+                            <styleClass>
+                                <String fx:value="text-field-1"/>
+                                <String fx:value="white-gb"/>
+                            </styleClass>
+                        </TextField>
+                        <PasswordField fx:id="iniciarSesion_passwordFieldContrasena" layoutX="65.0" layoutY="337.0"
+                                       prefHeight="42.0" prefWidth="322.0" promptText="Contraseña"
+                                       stylesheets="@../css/PageDesign.css">
+                            <styleClass>
+                                <String fx:value="white-gb"/>
+                                <String fx:value="text-field-1"/>
+                            </styleClass>
+                            <font>
+                                <Font name="Tahoma" size="14.0"/>
+                            </font>
+                        </PasswordField>
+                        <TextField fx:id="iniciarSesion_txtFieldContrasena" layoutX="65.0" layoutY="337.0"
+                                   prefHeight="42.0" prefWidth="322.0" promptText="Contraseña"
+                                   stylesheets="@../css/PageDesign.css" visible="false">
+                            <styleClass>
+                                <String fx:value="text-field-1"/>
+                                <String fx:value="white-gb"/>
+                            </styleClass>
+                            <font>
+                                <Font name="Tahoma" size="14.0"/>
+                            </font>
+                        </TextField>
+                        <CheckBox fx:id="iniciarSesion_mostrarContrasena" layoutX="64.0" layoutY="391.0"
+                                  mnemonicParsing="false" onAction="#mostrarContrasena" text="Mostrar contraseña">
+                            <font>
+                                <Font name="Tahoma" size="14.0"/>
+                            </font>
+                        </CheckBox>
+                        <Button fx:id="iniciarSesion_bttnIngresar" layoutX="65.0" layoutY="451.0"
+                                mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="51.0" prefWidth="322.0"
+                                stylesheets="@../css/PageDesign.css" text="Ingresar">
+                            <font>
+                                <Font name="Tahoma Bold" size="18.0"/>
+                            </font>
+                            <styleClass>
+                                <String fx:value="button-1"/>
+                                <String fx:value="radius"/>
+                            </styleClass>
+                        </Button>
+                        <Label layoutX="65.0" layoutY="528.0" text="¿No tienes una cuenta?">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Label>
+                        <Hyperlink fx:id="iniciarSesion_hyperlinkRegistrarse" layoutX="260.0" layoutY="524.0"
+                                   onAction="#switchForm" text="Registrate">
+                            <font>
+                                <Font size="18.0"/>
+                            </font>
+                        </Hyperlink>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="panelRegistrar" prefHeight="200.0" prefWidth="200.0" styleClass="white-gb"
+                    stylesheets="@../css/PageDesign.css" visible="false">
+            <children>
+                <Label layoutX="126.0" layoutY="168.0" styleClass="titulo" stylesheets="@../css/PageDesign.css"
+                       text="Registrar cuenta">
+                    <font>
+                        <Font name="Tahoma" size="26.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="62.0" layoutY="260.0" text="Nombres">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="62.0" layoutY="321.0" text="Apellidos">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="62.0" layoutY="380.0" text="DNI">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="62.0" layoutY="440.0" text="Contraseña">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <TextField fx:id="registrar_nombres" layoutX="162.0" layoutY="256.0" prefHeight="26.0" prefWidth="254.0"
+                           styleClass="text-field-1" stylesheets="@../css/PageDesign.css"/>
+                <TextField fx:id="registrar_apellidos" layoutX="162.0" layoutY="317.0" prefHeight="26.0"
+                           prefWidth="254.0" styleClass="text-field-1" stylesheets="@../css/PageDesign.css"/>
+                <TextField fx:id="registrar_dni" layoutX="162.0" layoutY="376.0" prefHeight="26.0" prefWidth="254.0"
+                           styleClass="text-field-1" stylesheets="@../css/PageDesign.css"/>
+                <TextField fx:id="registrar_txtField_contrasena" layoutX="162.0" layoutY="436.0" prefHeight="26.0"
+                           prefWidth="254.0" styleClass="text-field-1" stylesheets="@../css/PageDesign.css"/>
+                <PasswordField fx:id="registrar_password_contrasena" layoutX="162.0" layoutY="436.0" prefHeight="36.0"
+                               prefWidth="254.0" styleClass="text-field-1" stylesheets="@../css/PageDesign.css"/>
+                <CheckBox fx:id="registrar_mostrarContrasena" layoutX="160.0" layoutY="485.0" mnemonicParsing="false"
+                          onAction="#mostrarContrasena" text="Mostrar contraseña">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </CheckBox>
+                <Button fx:id="registrar_bttnRegistrar" layoutX="107.0" layoutY="541.0" mnemonicParsing="false"
+                        onAction="#registrarCliente" prefHeight="42.0" prefWidth="254.0" styleClass="button-1"
+                        stylesheets="@../css/PageDesign.css" text="Registrar"/>
+                <Label layoutX="79.0" layoutY="609.0" text="¿Ya tienes una cuenta?">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <Hyperlink fx:id="registrar_hyperlink_iniciarSesion" layoutX="264.0" layoutY="605.0"
+                           onAction="#switchForm" text="Iniciar sesión">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Hyperlink>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>

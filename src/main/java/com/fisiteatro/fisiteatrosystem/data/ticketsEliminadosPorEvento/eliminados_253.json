@@ -1,0 +1,46 @@
+[
+  {
+    "id": 3684,
+    "asiento": {
+      "fila": "D",
+      "numero": 1,
+      "estado": true
+    },
+    "evento": {
+      "id": 253,
+      "nombre": "ASDFSADFSDAFASD",
+      "fecha": "2025-10-10",
+      "hora": "10:30",
+      "precio": 10.0,
+      "capacidad": 29
+    },
+    "cliente": {
+      "nombres": "David Sebastian",
+      "apellidos": "Piñarreta Rojas",
+      "dni": "73426177",
+      "contrasena": "tumamacalata"
+    }
+  },
+  {
+    "id": 7665,
+    "asiento": {
+      "fila": "C",
+      "numero": 2,
+      "estado": true
+    },
+    "evento": {
+      "id": 253,
+      "nombre": "ASDFSADFSDAFASD",
+      "fecha": "2025-10-10",
+      "hora": "10:30",
+      "precio": 10.0,
+      "capacidad": 29
+    },
+    "cliente": {
+      "nombres": "David Sebastian",
+      "apellidos": "Piñarreta Rojas",
+      "dni": "73426177",
+      "contrasena": "tumamacalata"
+    }
+  }
+]
