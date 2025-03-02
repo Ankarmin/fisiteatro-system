@@ -25,6 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -255,12 +256,41 @@ public class UserController implements Initializable {
                 return;
             }
 
+            AsientoDTO asientoDisponible = null;
             AsientoService asiento = new AsientoService(eventoSeleccionadoComprar.getId());
-            AsientoDTO asientoDisponible = asiento.obtenerPrimerAsientoDisponible();
 
-            if (asientoDisponible == null) {
-                System.out.println("No hay asientos disponibles.");
-                return;
+            int idEventoSeleccionado = eventoSeleccionadoComprar.getId();
+            String PATH = "src/main/java/com/fisiteatro/fisiteatrosystem/data/ticketsEliminadosPorEvento/eliminados_" + idEventoSeleccionado + ".json";
+            File archivo = new File(PATH);
+
+            if (archivo.exists() && archivo.length() > 3) {
+                TicketDTO ticketPorReemitir = null;
+                try {
+                    ticketPorReemitir = ticketService.reemitirTicket(idEventoSeleccionado);
+                } catch (IOException e) {
+                    System.err.println("Error al obtener ticket por reemitir: " + e.getMessage());
+                }
+
+                asientoDisponible = ticketPorReemitir.getAsiento();
+
+                try {
+                    asiento.updateOcupado(asientoDisponible, idEventoSeleccionado);
+                } catch (IOException e) {
+                    System.err.println("Error al intentar cambiar el estado del asiento: " + e.getMessage());
+                }
+            } else {
+                asientoDisponible = asiento.obtenerPrimerAsientoDisponible();
+
+                if (asientoDisponible == null) {
+                    System.out.println("No hay asientos disponibles.");
+                    return;
+                }
+
+                try {
+                    asiento.updateOcupado(asientoDisponible, eventoSeleccionadoComprar.getId());
+                } catch (IOException e) {
+                    System.err.println("Error al intentar cambiar el estado del asiento: " + e.getMessage());
+                }
             }
 
             TicketDTO nuevoTicket = new TicketDTO(0, clienteDTO, asientoDisponible, eventoSeleccionadoComprar);
@@ -269,8 +299,6 @@ public class UserController implements Initializable {
                 eventoService.disminuirEnUno(eventoSeleccionadoComprar.getId());
 
                 ticketService.create(nuevoTicket);
-
-                asiento.updateOcupado(asientoDisponible, eventoSeleccionadoComprar.getId());
 
                 System.out.println("Compra realizada con éxito. Asiento asignado: " + asientoDisponible);
                 cargarCompras();
@@ -286,13 +314,16 @@ public class UserController implements Initializable {
     @FXML
     private void eliminarTicket() {
         try {
-            TicketDTO ticketEliminado = ticketService.eliminarTicket();
+            TicketDTO ticketEliminado = compras_tableViewCompras.getSelectionModel().getSelectedItem();
 
             Cola<TicketDTO> solicitudesTickets = ticketService.getSolicitudesTickets();
 
             if (ticketEliminado != null) {
                 solicitudesTickets.offer(ticketEliminado);
                 ticketService.saveSolicitudesTicketsJSON(solicitudesTickets);
+                ticketService.deleteById(ticketEliminado.getId());
+            } else {
+                System.out.println("Seleccione ticket para solicitar su eliminación.");
             }
 
             cargarCompras();

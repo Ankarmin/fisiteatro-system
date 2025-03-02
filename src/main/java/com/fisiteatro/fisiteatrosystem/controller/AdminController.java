@@ -334,7 +334,20 @@ public class AdminController implements Initializable {
 
     @FXML
     private void rechazarEliminacion() {
-
+        try {
+            Cola<TicketDTO> solicitudesTickets = ticketService.getSolicitudesTickets();
+            TicketDTO ticket = solicitudesTickets.poll();
+            if (ticket != null) {
+                ticketService.rechazarSolicitud(ticket);
+                ticketService.saveSolicitudesTicketsJSON(solicitudesTickets);
+                cargarSolicitudes();
+                cargarEventos();
+            } else {
+                System.out.println("No hay solicitudes de eliminación.");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     @FXML
     private void buscarEvento() {
