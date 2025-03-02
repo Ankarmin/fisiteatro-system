@@ -1,0 +1,29 @@
+[ {
+  "id" : 535,
+  "nombre" : "ROMEO Y JULIETA",
+  "fecha" : "2025-03-25",
+  "hora" : "17.30",
+  "precio" : 20.0,
+  "capacidad" : 30
+}, {
+  "id" : 520,
+  "nombre" : "ROCK FEST",
+  "fecha" : "2025-04-15",
+  "hora" : "20:00",
+  "precio" : 50.0,
+  "capacidad" : 100
+}, {
+  "id" : 243,
+  "nombre" : "EL FANTASMA DE LA OPERA",
+  "fecha" : "2025-07-05",
+  "hora" : "20:30",
+  "precio" : 25.0,
+  "capacidad" : 30
+}, {
+  "id" : 755,
+  "nombre" : "LOS MISERABLES",
+  "fecha" : "2025-09-15",
+  "hora" : "19:00",
+  "precio" : 35.0,
+  "capacidad" : 40
+} ]
