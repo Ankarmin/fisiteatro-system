@@ -2,7 +2,9 @@ package com.fisiteatro.fisiteatrosystem.model.dao;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
+import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
 import com.fisiteatro.fisiteatrosystem.datastructures.Pila;
+import com.fisiteatro.fisiteatrosystem.model.dto.EventoDTO;
 import com.fisiteatro.fisiteatrosystem.model.dto.TicketDTO;
 
 import java.io.File;
@@ -120,6 +122,15 @@ public class TicketDAO implements ITicketDAO {
         return ticketsEliminados;
     }
 
+    public TicketDTO reemitirTicket(int idEvento) throws IOException {
+        Pila<TicketDTO> pilaTicketsEliminados = getTicketsEliminados(idEvento);
+        TicketDTO ticket = pilaTicketsEliminados.pop();
+
+        saveTicketsEliminadosJSON(pilaTicketsEliminados, idEvento);
+
+        return ticket;
+    }
+
     public void addTicketEliminado(TicketDTO ticketDTO, Pila<TicketDTO> pila) throws IOException {
         ticketDTO.getEvento().setCapacidad(ticketDTO.getEvento().getCapacidad() + 1);
         ticketDTO.getAsiento().setEstado(true);
@@ -167,14 +178,28 @@ public class TicketDAO implements ITicketDAO {
         addTicketEliminado(ticket, ticketsEliminados);
     }
 
-    public TicketDTO eliminarTicket() throws IOException {
-        if (!tickets.isEmpty()) {
-            TicketDTO ticketEliminado = tickets.pop(); // Elimina y retorna el primer elemento de la pila (LIFO)
-            saveToFile();
-            return ticketEliminado;
-        } else {
-            System.out.println("No hay tickets para eliminar.");
-            return null;
+    public void rechazarSolicitud(TicketDTO ticket) throws IOException {
+        Cola<TicketDTO> solicitudes = getSolicitudesTickets();
+        deleteSolicitud(solicitudes);
+
+        tickets.push(ticket);
+        saveToFile();
+    }
+
+    public void deleteById(int id) throws IOException {
+        Pila<TicketDTO> temp = new Pila<>();
+
+        while (!tickets.isEmpty()) {
+            TicketDTO current = tickets.pop();
+            if (current.getId() != id) {
+                temp.push(current);
+            }
         }
+
+        while (!temp.isEmpty()) {
+            tickets.push(temp.pop());
+        }
+
+        saveToFile();
     }
 }
