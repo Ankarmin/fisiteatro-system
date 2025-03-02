@@ -93,7 +93,7 @@
                                                     </font>
                                                 </Label>
                                                 <TextField fx:id="administrarEventos_textFieldBuscar" layoutX="129.0" layoutY="10.0" prefHeight="34.0" prefWidth="270.0" styleClass="text-field-1" stylesheets="@../css/AdminDesign.css" />
-                                                <Button fx:id="administrarEventos_bttnBuscar" layoutX="414.0" layoutY="10.0" mnemonicParsing="false" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Buscar" />
+                                                <Button fx:id="administrarEventos_bttnBuscar" layoutX="414.0" layoutY="10.0" mnemonicParsing="false" onAction="#buscarEvento" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Buscar" />
                                                 <AnchorPane layoutX="14.0" layoutY="56.0" prefHeight="402.0" prefWidth="915.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="17.600000000000023" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.400000000000091" AnchorPane.topAnchor="56.0">
                                                     <styleClass>
                                                         <String fx:value="radius" />

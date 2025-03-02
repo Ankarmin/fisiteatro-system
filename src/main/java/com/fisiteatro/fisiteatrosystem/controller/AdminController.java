@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
@@ -332,6 +334,24 @@ public class AdminController implements Initializable {
 
     @FXML
     private void rechazarEliminacion() {
+
+    }
+    @FXML
+    private void buscarEvento() {
+        String busqueda = administrarEventos_textFieldBuscar.getText().trim();
+        List<EventoDTO> eventosEncontrados;
+        if (busqueda.isEmpty()) {
+            eventosEncontrados = eventoService.readAll();
+        } else {
+            eventosEncontrados = eventoService.buscarEvento(busqueda);
+        }
+        if (eventosEncontrados == null) {
+            eventosEncontrados = new ArrayList<>();
+        }
+
+        ObservableList<EventoDTO> eventoList = FXCollections.observableArrayList(eventosEncontrados);
+        administrarEventos_tableViewEventos.setItems(eventoList);
+        administrarEventos_tableViewEventos.refresh();
 
     }
 }

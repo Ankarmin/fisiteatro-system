@@ -28,6 +28,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.List;
+import java.util.ArrayList;
 
 public class UserController implements Initializable {
 
@@ -326,9 +328,21 @@ public class UserController implements Initializable {
 
     @FXML
     private void buscarEvento() {
-        String busqueda = eventos_txtFieldBuscar.getText();
-        ObservableList<EventoDTO> eventoList = FXCollections.observableArrayList(eventoService.buscarEvento(busqueda));
+        String busqueda = eventos_txtFieldBuscar.getText().trim();
+        List<EventoDTO> eventosEncontrados;
+        if (busqueda.isEmpty()) {
+            eventosEncontrados = eventoService.readAll();
+        } else {
+            eventosEncontrados = eventoService.buscarEvento(busqueda);
+        }
+
+        if (eventosEncontrados == null) {
+            eventosEncontrados = new ArrayList<>();
+        }
+
+        ObservableList<EventoDTO> eventoList = FXCollections.observableArrayList(eventosEncontrados);
         eventos_tableViewEventos.setItems(eventoList);
         eventos_tableViewEventos.refresh();
+
     }
 }
