@@ -349,6 +349,7 @@ public class AdminController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
     @FXML
     private void buscarEvento() {
         String busqueda = administrarEventos_textFieldBuscar.getText().trim();
