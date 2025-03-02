@@ -73,7 +73,7 @@
                     <center>
                         <AnchorPane prefHeight="606.0" prefWidth="972.0" BorderPane.alignment="CENTER">
                             <children>
-                                <AnchorPane fx:id="panelAdministrarEventos" prefHeight="660.8" prefWidth="971.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="panelAdministrarEventos" prefHeight="660.8" prefWidth="971.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <Label layoutX="14.0" layoutY="22.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Lista de evento">
                                             <font>
@@ -155,7 +155,7 @@
                                         <Button fx:id="gestionarTickets_bttnRechazarEliminacion" layoutX="586.0" layoutY="572.0" mnemonicParsing="false" onAction="#rechazarEliminacion" styleClass="button-general" stylesheets="@../css/AdminDesign.css" text="Rechazar eliminación" AnchorPane.bottomAnchor="54.39999999999998" AnchorPane.rightAnchor="188.4000000000001" />
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="panelReportes" layoutX="133.0" layoutY="184.0" prefHeight="660.8" prefWidth="971.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="panelReportes" layoutX="133.0" layoutY="184.0" prefHeight="660.8" prefWidth="971.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <Label layoutX="22.0" layoutY="23.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Historial de compras">
                                             <font>
@@ -176,8 +176,7 @@
                                                         <TableColumn fx:id="reportes_historial_fecha" prefWidth="75.0" text="FECHA" />
                                                         <TableColumn fx:id="reportes_historial_hora" prefWidth="75.0" text="HORA" />
                                                         <TableColumn fx:id="reportes_historial_precio" prefWidth="75.0" text="PRECIO" />
-                                                        <TableColumn fx:id="reportes_historial_nroAsiento" prefWidth="75.0" text="N° ASIENTO" />
-                                          <TableColumn fx:id="reportes_historial_filaAsiento" prefWidth="75.0" text="FILA ASIENTO" />
+                                                        <TableColumn fx:id="reportes_historial_cliente" prefWidth="75.0" text="CLIENTE" />
                                                     </columns>
                                                     <columnResizePolicy>
                                                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -185,34 +184,53 @@
                                                 </TableView>
                                             </children>
                                         </AnchorPane>
-                              <Label layoutX="22.0" layoutY="345.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Tickets eliminados" AnchorPane.bottomAnchor="288.59999999999997" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="796.0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <AnchorPane layoutX="22.0" layoutY="386.0" prefHeight="248.0" prefWidth="930.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="26.799999999999955" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="18.799999999999955">
-                                 <styleClass>
-                                    <String fx:value="white-bg" />
-                                    <String fx:value="shadow" />
-                                    <String fx:value="radius" />
-                                 </styleClass>
-                                 <children>
-                                    <TableView fx:id="reportes_historial_tableViewEliminados" layoutX="159.0" layoutY="100.0" prefHeight="242.0" prefWidth="930.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <columns>
-                                          <TableColumn fx:id="reportes_eliminados_nroTicket" prefWidth="75.0" text="N° TICKET" />
-                                          <TableColumn fx:id="reportes_eliminados_evento" prefWidth="75.0" text="EVENTO" />
-                                          <TableColumn fx:id="reportes_eliminados_fecha" prefWidth="75.0" text="FECHA" />
-                                          <TableColumn fx:id="reportes_eliminados_hora" prefWidth="75.0" text="HORA" />
-                                          <TableColumn fx:id="reportes_eliminados_precio" prefWidth="75.0" text="PRECIO" />
-                                          <TableColumn fx:id="reportes_eliminados_nroAsiento" prefWidth="75.0" text="N° ASIENTO" />
-                                          <TableColumn fx:id="reportes_eliminados_filaAsiento" prefWidth="75.0" text="FILA ASIENTO" />
-                                       </columns>
-                                       <columnResizePolicy>
-                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                       </columnResizePolicy>
-                                    </TableView>
-                                 </children>
-                              </AnchorPane>
+                                        <Label layoutX="22.0" layoutY="345.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Tickets eliminados" AnchorPane.bottomAnchor="288.59999999999997" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="796.0">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Label>
+                                        <AnchorPane layoutX="22.0" layoutY="386.0" prefHeight="248.0" prefWidth="930.0" stylesheets="@../css/AdminDesign.css" AnchorPane.bottomAnchor="26.799999999999955" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="18.799999999999955">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                                <String fx:value="radius" />
+                                            </styleClass>
+                                            <children>
+                                                <TableView fx:id="reportes_historial_tableViewEliminados" layoutX="159.0" layoutY="100.0" prefHeight="242.0" prefWidth="930.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="reportes_eliminados_nroTicket" prefWidth="75.0" text="N° TICKET" />
+                                                        <TableColumn fx:id="reportes_eliminados_evento" prefWidth="75.0" text="EVENTO" />
+                                                        <TableColumn fx:id="reportes_eliminados_fecha" prefWidth="75.0" text="FECHA" />
+                                                        <TableColumn fx:id="reportes_eliminados_hora" prefWidth="75.0" text="HORA" />
+                                                        <TableColumn fx:id="reportes_eliminados_precio" prefWidth="75.0" text="PRECIO" />
+                                                        <TableColumn fx:id="reportes_eliminados_cliente" prefWidth="75.0" text="CLIENTE" />
+                                                    </columns>
+                                                    <columnResizePolicy>
+                                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                    </columnResizePolicy>
+                                                </TableView>
+                                            </children>
+                                        </AnchorPane>
+                                        <Label fx:id="lblTotalTicketsVendidos" layoutX="893.0" layoutY="23.0" stylesheets="@../css/AdminDesign.css" text="1000">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="lblTotalTicketsEliminados" layoutX="893.0" layoutY="345.0" stylesheets="@../css/AdminDesign.css" text="1000">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Label>
+                                        <Label layoutX="639.0" layoutY="23.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Total tickets vendidos:">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Label>
+                                        <Label layoutX="639.0" layoutY="345.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Total tickets eliminados:">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                        </Label>
                                     </children>
                                 </AnchorPane>
                             </children>

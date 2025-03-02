@@ -8,6 +8,7 @@ import com.fisiteatro.fisiteatrosystem.service.AsientoService;
 import com.fisiteatro.fisiteatrosystem.service.EventoService;
 import com.fisiteatro.fisiteatrosystem.service.TicketService;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -134,28 +135,55 @@ public class AdminController implements Initializable {
     private TableView<TicketDTO> gestionarTickets_tableViewSolicitudes;
 
     @FXML
-    private TableColumn<?, ?> inventarios_columna_cantidadAumentada;
+    private TableColumn<TicketDTO, Integer> reportes_historial_nroTickets;
 
     @FXML
-    private TableColumn<?, ?> inventarios_columna_categoriaProducto;
+    private TableColumn<TicketDTO, String> reportes_historial_evento;
 
     @FXML
-    private TableColumn<?, ?> inventarios_columna_fecha;
+    private TableColumn<TicketDTO, String> reportes_historial_fecha;
 
     @FXML
-    private TableColumn<?, ?> inventarios_columna_idProducto;
+    private TableColumn<TicketDTO, String> reportes_historial_hora;
 
     @FXML
-    private TableColumn<?, ?> inventarios_columna_nombreProducto;
+    private TableColumn<TicketDTO, Float> reportes_historial_precio;
 
     @FXML
-    private TableColumn<?, ?> inventarios_columna_sede;
+    private TableColumn<TicketDTO, String> reportes_historial_cliente;
 
     @FXML
-    private TableView<?> inventarios_tableView;
+    private TableView<TicketDTO> reportes_historial_tableViewHistorial;
+
+    @FXML
+    private TableColumn<TicketDTO, Integer> reportes_eliminados_nroTicket;
+
+    @FXML
+    private TableColumn<TicketDTO, String> reportes_eliminados_evento;
+
+    @FXML
+    private TableColumn<TicketDTO, String> reportes_eliminados_fecha;
+
+    @FXML
+    private TableColumn<TicketDTO, String> reportes_eliminados_hora;
+
+    @FXML
+    private TableColumn<TicketDTO, Float> reportes_eliminados_precio;
+
+    @FXML
+    private TableColumn<TicketDTO, String> reportes_eliminados_cliente;
+
+    @FXML
+    private TableView<TicketDTO> reportes_historial_tableViewEliminados;
 
     @FXML
     private Label lblNombreCuenta;
+
+    @FXML
+    private Label lblTotalTicketsEliminados;
+
+    @FXML
+    private Label lblTotalTicketsVendidos;
 
     @FXML
     private Label lblPath;
@@ -181,9 +209,11 @@ public class AdminController implements Initializable {
 
         configurarColumnasEventos();
         configurarColumnasGestionarTickets();
+        configurarColumnasReportes();
 
         cargarEventos();
         cargarSolicitudes();
+        cargarReportes();
     }
 
     @FXML
@@ -215,6 +245,23 @@ public class AdminController implements Initializable {
         gestionarTickets_columna_cliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getNombreCompleto()));
     }
 
+    private  void configurarColumnasReportes() {
+        reportes_historial_nroTickets.setCellValueFactory(new PropertyValueFactory<>("id"));
+        reportes_historial_evento.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getNombre()));
+        reportes_historial_fecha.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getFecha()));
+        reportes_historial_hora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getHora()));
+        reportes_historial_precio.setCellValueFactory(cellData -> new SimpleObjectProperty(cellData.getValue().getEvento().getPrecio()));
+        reportes_historial_cliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getNombreCompleto()));
+
+        reportes_eliminados_nroTicket.setCellValueFactory(new PropertyValueFactory<>("id"));
+        reportes_eliminados_evento.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getNombre()));
+        reportes_eliminados_fecha.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getFecha()));
+        reportes_eliminados_hora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getHora()));
+        reportes_eliminados_precio.setCellValueFactory(cellData -> new SimpleObjectProperty(cellData.getValue().getEvento().getPrecio()));
+        reportes_eliminados_cliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getNombreCompleto()));
+
+    }
+
     private void cargarEventos() {
         ObservableList<EventoDTO> eventosList = FXCollections.observableArrayList(eventoService.readAll());
         administrarEventos_tableViewEventos.setItems(eventosList);
@@ -225,6 +272,19 @@ public class AdminController implements Initializable {
         ObservableList<TicketDTO> ticketList = FXCollections.observableArrayList(ticketService.getSolicitudesTickets().toList());
         gestionarTickets_tableViewSolicitudes.setItems(ticketList);
         gestionarTickets_tableViewSolicitudes.refresh();
+    }
+
+    private void cargarReportes() {
+        lblTotalTicketsVendidos.setText(String.valueOf(ticketService.totalTicketsVendidos()));
+        lblTotalTicketsEliminados.setText(String.valueOf(ticketService.totalTicketsEliminados()));
+
+        ObservableList<TicketDTO> vendidosList = FXCollections.observableArrayList(ticketService.getTicketsComprados().toList());
+        reportes_historial_tableViewHistorial.setItems(vendidosList);
+        reportes_historial_tableViewHistorial.refresh();
+
+        ObservableList<TicketDTO> eliminadosList = FXCollections.observableArrayList(ticketService.getHistorialTicketsEliminados().toList());
+        reportes_historial_tableViewEliminados.setItems(eliminadosList);
+        reportes_historial_tableViewEliminados.refresh();
     }
 
     @FXML
@@ -325,6 +385,7 @@ public class AdminController implements Initializable {
                 ticketService.saveSolicitudesTicketsJSON(solicitudesTickets);
                 cargarSolicitudes();
                 cargarEventos();
+                cargarReportes();
             } else {
                 System.out.println("No hay solicitudes de eliminación.");
             }
@@ -343,6 +404,7 @@ public class AdminController implements Initializable {
                 ticketService.saveSolicitudesTicketsJSON(solicitudesTickets);
                 cargarSolicitudes();
                 cargarEventos();
+                cargarReportes();
             } else {
                 System.out.println("No hay solicitudes de eliminación.");
             }

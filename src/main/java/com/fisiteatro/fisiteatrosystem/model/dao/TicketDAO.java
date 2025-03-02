@@ -107,6 +107,10 @@ public class TicketDAO implements ITicketDAO {
         return solicitudesTickets;
     }
 
+    public Pila<TicketDTO> getTicketsComprados() {
+        return this.tickets;
+    }
+
     public Pila<TicketDTO> getHistorialTicketsEliminados() {
         String FILENAME = "src/main/java/com/fisiteatro/fisiteatrosystem/data/historialTicketsEliminados.json";
         Pila<TicketDTO> historialTicketsEliminados = new Pila<>();
@@ -236,5 +240,16 @@ public class TicketDAO implements ITicketDAO {
         }
 
         saveToFile();
+    }
+
+    public int totalTicketsVendidos () {
+        List<TicketDTO> ticketsVendidos = tickets.toList();
+
+        return ticketsVendidos.size();
+    }
+
+    public int totalTicketsEliminados () {
+        List<TicketDTO> ticketsEliminados = getHistorialTicketsEliminados().toList();
+        return ticketsEliminados.size();
     }
 }
