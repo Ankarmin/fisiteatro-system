@@ -128,8 +128,13 @@ public class EventoDAO implements IEventoDAO {
     }
 
     public List<EventoDTO> buscarEvento(String busqueda){
-        // ListaEnlazada<TicketDTO> tickets = new ListaEnlazada<>();
-        // return tickets.toList();
-        return null;
+        ListaEnlazada<EventoDTO> temporal = new ListaEnlazada<>();
+        for (EventoDTO evento : eventos.toList()) {
+            if (String.valueOf(evento.getId()).contains(busqueda) ||
+                    evento.getNombre().toLowerCase().contains(busqueda.toLowerCase())) {
+                temporal.add(evento);
+            }
+        }
+        return temporal.toList();
     }
 }

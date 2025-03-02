@@ -29,6 +29,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.List;
+import java.util.ArrayList;
 
 public class UserController implements Initializable {
 
@@ -49,9 +51,6 @@ public class UserController implements Initializable {
 
     @FXML
     private Button compras_bttnEliminar;
-
-    @FXML
-    private TableColumn<TicketDTO, String> compras_columna_dniCliente;
 
     @FXML
     private TableColumn<TicketDTO, String> compras_columna_evento;
@@ -79,9 +78,6 @@ public class UserController implements Initializable {
 
     @FXML
     private TableView<TicketDTO> compras_tableViewCompras;
-
-    @FXML
-    private TextField compras_txtFieldBuscar;
 
     @FXML
     private Button eventos_bttnBuscar;
@@ -216,7 +212,6 @@ public class UserController implements Initializable {
 
     private void configurarColumnaCompras() {
         compras_columna_nroTicket.setCellValueFactory(new PropertyValueFactory<>("id"));
-        compras_columna_dniCliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getDni()));
 
         compras_columna_evento.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getNombre()));
 
@@ -364,9 +359,21 @@ public class UserController implements Initializable {
 
     @FXML
     private void buscarEvento() {
-        String busqueda = eventos_txtFieldBuscar.getText();
-        ObservableList<EventoDTO> eventoList = FXCollections.observableArrayList(eventoService.buscarEvento(busqueda));
+        String busqueda = eventos_txtFieldBuscar.getText().trim();
+        List<EventoDTO> eventosEncontrados;
+        if (busqueda.isEmpty()) {
+            eventosEncontrados = eventoService.readAll();
+        } else {
+            eventosEncontrados = eventoService.buscarEvento(busqueda);
+        }
+
+        if (eventosEncontrados == null) {
+            eventosEncontrados = new ArrayList<>();
+        }
+
+        ObservableList<EventoDTO> eventoList = FXCollections.observableArrayList(eventosEncontrados);
         eventos_tableViewEventos.setItems(eventoList);
         eventos_tableViewEventos.refresh();
+
     }
 }

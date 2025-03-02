@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
@@ -167,7 +169,7 @@ public class AdminController implements Initializable {
     private AnchorPane panelGestionarTickets;
 
     @FXML
-    private AnchorPane pnlInventarios;
+    private AnchorPane panelReportes;
 
     private EventoService eventoService;
     private TicketService ticketService;
@@ -187,6 +189,7 @@ public class AdminController implements Initializable {
     private void switchForm(ActionEvent event) {
         panelAdministrarEventos.setVisible(event.getSource() == bttnAdministrarEventos);
         panelGestionarTickets.setVisible(event.getSource() == bttnGestionarTickets);
+        panelReportes.setVisible(event.getSource() == bttnInventarios);
     }
 
     private void configurarServices() {
@@ -345,5 +348,23 @@ public class AdminController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    @FXML
+    private void buscarEvento() {
+        String busqueda = administrarEventos_textFieldBuscar.getText().trim();
+        List<EventoDTO> eventosEncontrados;
+        if (busqueda.isEmpty()) {
+            eventosEncontrados = eventoService.readAll();
+        } else {
+            eventosEncontrados = eventoService.buscarEvento(busqueda);
+        }
+        if (eventosEncontrados == null) {
+            eventosEncontrados = new ArrayList<>();
+        }
+
+        ObservableList<EventoDTO> eventoList = FXCollections.observableArrayList(eventosEncontrados);
+        administrarEventos_tableViewEventos.setItems(eventoList);
+        administrarEventos_tableViewEventos.refresh();
+
     }
 }
