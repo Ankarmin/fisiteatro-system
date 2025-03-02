@@ -28,9 +28,9 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class UserController implements Initializable {
 
@@ -193,7 +193,7 @@ public class UserController implements Initializable {
 
     public void setClienteDTO(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
-        lblNombreCuenta.setText(clienteDTO.getNombreCompleto());
+        lblNombreCuenta.setText(clienteDTO.getDni());
         cargarCompras();
         cargarHistorial();
     }
@@ -400,6 +400,5 @@ public class UserController implements Initializable {
         ObservableList<EventoDTO> eventoList = FXCollections.observableArrayList(eventosEncontrados);
         eventos_tableViewEventos.setItems(eventoList);
         eventos_tableViewEventos.refresh();
-
     }
 }
