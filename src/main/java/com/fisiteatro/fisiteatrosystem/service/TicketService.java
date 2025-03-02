@@ -31,8 +31,20 @@ public class TicketService {
         return ticketDAO.getTicketsPorDNI(dni);
     }
 
+    public Pila<TicketDTO> getHistorialTicketsEliminados() {
+        return ticketDAO.getHistorialTicketsEliminados();
+    }
+
+    public Pila<TicketDTO> getHistorialEliminadosPorDNI(String dni) {
+        return ticketDAO.getHistorialEliminadosPorDNI(dni);
+    }
+
     public Cola<TicketDTO> getSolicitudesTickets() {
         return ticketDAO.getSolicitudesTickets();
+    }
+
+    public Pila<TicketDTO> getTicketsComprados() {
+        return ticketDAO.getTicketsComprados();
     }
 
     public void delete(String dni, String fila, int numero) throws IOException {
@@ -55,7 +67,15 @@ public class TicketService {
         ticketDAO.deleteById(id);
     }
 
-    public TicketDTO reemitirTicket (int idEvento) throws IOException {
+    public TicketDTO reemitirTicket(int idEvento) throws IOException {
         return ticketDAO.reemitirTicket(idEvento);
+    }
+
+    public int totalTicketsVendidos() {
+        return ticketDAO.totalTicketsVendidos();
+    }
+
+    public int totalTicketsEliminados() {
+        return ticketDAO.totalTicketsEliminados();
     }
 }

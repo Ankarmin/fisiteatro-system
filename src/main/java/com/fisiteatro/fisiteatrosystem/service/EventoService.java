@@ -2,8 +2,6 @@ package com.fisiteatro.fisiteatrosystem.service;
 
 import com.fisiteatro.fisiteatrosystem.model.dao.EventoDAO;
 import com.fisiteatro.fisiteatrosystem.model.dto.EventoDTO;
-import java.util.ArrayList;
-
 
 import java.io.IOException;
 import java.util.List;
