@@ -1,7 +1,6 @@
 package com.fisiteatro.fisiteatrosystem.controller;
 
 import com.fisiteatro.fisiteatrosystem.datastructures.Cola;
-import com.fisiteatro.fisiteatrosystem.datastructures.Pila;
 import com.fisiteatro.fisiteatrosystem.model.dto.EventoDTO;
 import com.fisiteatro.fisiteatrosystem.model.dto.TicketDTO;
 import com.fisiteatro.fisiteatrosystem.service.AsientoService;
@@ -245,7 +244,7 @@ public class AdminController implements Initializable {
         gestionarTickets_columna_cliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getNombreCompleto()));
     }
 
-    private  void configurarColumnasReportes() {
+    private void configurarColumnasReportes() {
         reportes_historial_nroTickets.setCellValueFactory(new PropertyValueFactory<>("id"));
         reportes_historial_evento.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getNombre()));
         reportes_historial_fecha.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getFecha()));
@@ -259,7 +258,6 @@ public class AdminController implements Initializable {
         reportes_eliminados_hora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getHora()));
         reportes_eliminados_precio.setCellValueFactory(cellData -> new SimpleObjectProperty(cellData.getValue().getEvento().getPrecio()));
         reportes_eliminados_cliente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getNombreCompleto()));
-
     }
 
     private void cargarEventos() {
@@ -429,6 +427,5 @@ public class AdminController implements Initializable {
         ObservableList<EventoDTO> eventoList = FXCollections.observableArrayList(eventosEncontrados);
         administrarEventos_tableViewEventos.setItems(eventoList);
         administrarEventos_tableViewEventos.refresh();
-
     }
 }

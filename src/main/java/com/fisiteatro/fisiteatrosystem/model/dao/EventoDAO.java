@@ -3,7 +3,6 @@ package com.fisiteatro.fisiteatrosystem.model.dao;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fisiteatro.fisiteatrosystem.datastructures.ListaEnlazada;
 import com.fisiteatro.fisiteatrosystem.model.dto.EventoDTO;
-import com.fisiteatro.fisiteatrosystem.model.dto.TicketDTO;
 
 import java.io.File;
 import java.io.IOException;
@@ -127,7 +126,7 @@ public class EventoDAO implements IEventoDAO {
         }
     }
 
-    public List<EventoDTO> buscarEvento(String busqueda){
+    public List<EventoDTO> buscarEvento(String busqueda) {
         ListaEnlazada<EventoDTO> temporal = new ListaEnlazada<>();
         for (EventoDTO evento : eventos.toList()) {
             if (String.valueOf(evento.getId()).contains(busqueda) ||

@@ -67,15 +67,15 @@ public class TicketService {
         ticketDAO.deleteById(id);
     }
 
-    public TicketDTO reemitirTicket (int idEvento) throws IOException {
+    public TicketDTO reemitirTicket(int idEvento) throws IOException {
         return ticketDAO.reemitirTicket(idEvento);
     }
 
-    public int totalTicketsVendidos () {
+    public int totalTicketsVendidos() {
         return ticketDAO.totalTicketsVendidos();
     }
 
-    public int totalTicketsEliminados () {
+    public int totalTicketsEliminados() {
         return ticketDAO.totalTicketsEliminados();
     }
 }
