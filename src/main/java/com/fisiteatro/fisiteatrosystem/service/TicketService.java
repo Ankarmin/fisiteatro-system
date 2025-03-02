@@ -47,7 +47,15 @@ public class TicketService {
         ticketDAO.aceptarSolicitud(ticket);
     }
 
-    public TicketDTO eliminarTicket() throws IOException {
-        return ticketDAO.eliminarTicket();
+    public void rechazarSolicitud(TicketDTO ticket) throws IOException {
+        ticketDAO.rechazarSolicitud(ticket);
+    }
+
+    public void deleteById(int id) throws IOException {
+        ticketDAO.deleteById(id);
+    }
+
+    public TicketDTO reemitirTicket (int idEvento) throws IOException {
+        return ticketDAO.reemitirTicket(idEvento);
     }
 }
