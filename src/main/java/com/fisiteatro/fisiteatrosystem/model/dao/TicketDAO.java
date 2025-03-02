@@ -84,6 +84,17 @@ public class TicketDAO implements ITicketDAO {
         return ticketsCliente;
     }
 
+    public Pila<TicketDTO> getHistorialEliminadosPorDNI(String dni) {
+        Pila<TicketDTO> historialCliente = new Pila<>();
+        Pila<TicketDTO> historialEliminados = getHistorialTicketsEliminados();
+        for(TicketDTO ticketDTO : historialEliminados.toList()) {
+            if (ticketDTO.getCliente().getDni().equals(dni)) {
+                historialCliente.push(ticketDTO);
+            }
+        }
+        return historialCliente;
+    }
+
     public Cola<TicketDTO> getSolicitudesTickets() {
         String FILENAME = "src/main/java/com/fisiteatro/fisiteatrosystem/data/solicitudesTickets.json";
         Cola<TicketDTO> solicitudesTickets = new Cola<>();
@@ -94,6 +105,17 @@ public class TicketDAO implements ITicketDAO {
             System.out.println("Error al cargar solicitudes d tickets: " + e.getMessage());
         }
         return solicitudesTickets;
+    }
+
+    public Pila<TicketDTO> getHistorialTicketsEliminados() {
+        String FILENAME = "src/main/java/com/fisiteatro/fisiteatrosystem/data/historialTicketsEliminados.json";
+        Pila<TicketDTO> historialTicketsEliminados = new Pila<>();
+        try {
+            historialTicketsEliminados.cargarDesdeJson(FILENAME, TicketDTO[].class);
+        }catch (IOException e) {
+            System.out.println("Error al cargar historial de tickets: " + e.getMessage());
+        }
+        return historialTicketsEliminados;
     }
 
     public void deleteSolicitud(Cola<TicketDTO> solicitudes) throws IOException {
@@ -108,6 +130,15 @@ public class TicketDAO implements ITicketDAO {
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.writerWithDefaultPrettyPrinter().writeValue(file, solicitudesTickets.toList());
+    }
+
+    public void saveHistorialEliminados(Pila<TicketDTO> historialEliminados) throws IOException {
+        String FILENAME = "src/main/java/com/fisiteatro/fisiteatrosystem/data/historialTicketsEliminados.json";
+        File file = new File(FILENAME);
+        file.getParentFile().mkdirs();
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writerWithDefaultPrettyPrinter().writeValue(file, historialEliminados.toList());
     }
 
     public Pila<TicketDTO> getTicketsEliminados(int idEvento) {
@@ -137,6 +168,10 @@ public class TicketDAO implements ITicketDAO {
 
         pila.push(ticketDTO);
         saveTicketsEliminadosJSON(pila, ticketDTO.getEvento().getId());
+
+        Pila<TicketDTO> historialEliminados = getHistorialTicketsEliminados();
+        historialEliminados.push(ticketDTO);
+        saveHistorialEliminados(historialEliminados);
     }
 
     public void saveTicketsEliminadosJSON(Pila<TicketDTO> ticketsEliminados, int idEvento) throws IOException {

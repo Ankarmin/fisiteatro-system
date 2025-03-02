@@ -31,6 +31,10 @@ public class TicketService {
         return ticketDAO.getTicketsPorDNI(dni);
     }
 
+    public Pila<TicketDTO> getHistorialEliminadosPorDNI(String dni) {
+        return ticketDAO.getHistorialEliminadosPorDNI(dni);
+    }
+
     public Cola<TicketDTO> getSolicitudesTickets() {
         return ticketDAO.getSolicitudesTickets();
     }

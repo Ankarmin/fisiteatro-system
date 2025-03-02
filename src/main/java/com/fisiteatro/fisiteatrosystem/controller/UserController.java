@@ -62,9 +62,6 @@ public class UserController implements Initializable {
     private TableColumn<TicketDTO, String> compras_columna_filaAsiento;
 
     @FXML
-    private TableColumn<TicketDTO, String> compras_columna_filaAsiento1;
-
-    @FXML
     private TableColumn<TicketDTO, String> compras_columna_hora;
 
     @FXML
@@ -113,52 +110,55 @@ public class UserController implements Initializable {
     private TableColumn<?, ?> historialCompras_columna_dniCliente;
 
     @FXML
-    private TableColumn<?, ?> historialCompras_columna_evento;
+    private TableColumn<TicketDTO, String> historialCompras_columna_evento;
 
     @FXML
-    private TableColumn<?, ?> historialCompras_columna_fecha;
+    private TableColumn<TicketDTO, String> historialCompras_columna_fecha;
 
     @FXML
-    private TableColumn<?, ?> historialCompras_columna_hora;
+    private TableColumn<TicketDTO, String> historialCompras_columna_hora;
 
     @FXML
-    private TableColumn<?, ?> historialCompras_columna_nroAsiento;
+    private TableColumn<TicketDTO, Integer> historialCompras_columna_nroAsiento;
 
     @FXML
-    private TableColumn<?, ?> historialCompras_columna_nroTicket;
+    private TableColumn<TicketDTO, String> historialCompras_columna_filaAsiento;
 
     @FXML
-    private TableColumn<?, ?> historialCompras_columna_precio;
+    private TableColumn<TicketDTO, Integer> historialCompras_columna_nroTicket;
 
     @FXML
-    private TableView<?> historialCompras_tablevVewCompras;
+    private TableColumn<TicketDTO, Float> historialCompras_columna_precio;
+
+    @FXML
+    private TableView<TicketDTO> historialCompras_tablevVewCompras;
 
     @FXML
     private TableColumn<?, ?> historialEliminados_columna_dniCliente;
 
     @FXML
-    private TableColumn<?, ?> historialEliminados_columna_evento;
+    private TableColumn<TicketDTO, String> historialEliminados_columna_evento;
 
     @FXML
-    private TableColumn<?, ?> historialEliminados_columna_fecha;
+    private TableColumn<TicketDTO, String> historialEliminados_columna_fecha;
 
     @FXML
-    private TableColumn<?, ?> historialEliminados_columna_filaAsiento;
+    private TableColumn<TicketDTO, String> historialEliminados_columna_filaAsiento;
 
     @FXML
-    private TableColumn<?, ?> historialEliminados_columna_hora;
+    private TableColumn<TicketDTO, String> historialEliminados_columna_hora;
 
     @FXML
-    private TableColumn<?, ?> historialEliminados_columna_nroAsiento;
+    private TableColumn<TicketDTO, Integer> historialEliminados_columna_nroAsiento;
 
     @FXML
-    private TableColumn<?, ?> historialEliminados_columna_nroTicket;
+    private TableColumn<TicketDTO, Integer> historialEliminados_columna_nroTicket;
 
     @FXML
-    private TableColumn<?, ?> historialEliminados_columna_precio;
+    private TableColumn<TicketDTO, Float> historialEliminados_columna_precio;
 
     @FXML
-    private TableView<?> historialEliminados_tableViewEliminados;
+    private TableView<TicketDTO> historialEliminados_tableViewEliminados;
 
     @FXML
     private Label lblNombreCuenta;
@@ -186,13 +186,16 @@ public class UserController implements Initializable {
 
         configurarColumnaEventos();
         configurarColumnaCompras();
+        configurarColumnaHistorial();
 
         cargarEventos();
     }
 
     public void setClienteDTO(ClienteDTO clienteDTO) {
         this.clienteDTO = clienteDTO;
+        lblNombreCuenta.setText(clienteDTO.getNombreCompleto());
         cargarCompras();
+        cargarHistorial();
     }
 
     public void switchForm(ActionEvent event) {
@@ -212,19 +215,30 @@ public class UserController implements Initializable {
 
     private void configurarColumnaCompras() {
         compras_columna_nroTicket.setCellValueFactory(new PropertyValueFactory<>("id"));
-
         compras_columna_evento.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getNombre()));
-
         compras_columna_fecha.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getFecha()));
-
         compras_columna_hora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getHora()));
-
         compras_columna_precio.setCellValueFactory(cellData -> new SimpleObjectProperty(cellData.getValue().getEvento().getPrecio()));
-
         compras_columna_nroAsiento.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAsiento().getNumero()).asObject());
-
         compras_columna_filaAsiento.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAsiento().getFila()));
+    }
 
+    private void configurarColumnaHistorial() {
+        historialCompras_columna_nroTicket.setCellValueFactory(new PropertyValueFactory<>("id"));
+        historialCompras_columna_evento.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getNombre()));
+        historialCompras_columna_fecha.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getFecha()));
+        historialCompras_columna_hora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getHora()));
+        historialCompras_columna_precio.setCellValueFactory(cellData -> new SimpleObjectProperty(cellData.getValue().getEvento().getPrecio()));
+        historialCompras_columna_nroAsiento.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAsiento().getNumero()).asObject());
+        historialCompras_columna_filaAsiento.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAsiento().getFila()));
+
+        historialEliminados_columna_nroTicket.setCellValueFactory(new PropertyValueFactory<>("id"));
+        historialEliminados_columna_evento.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getNombre()));
+        historialEliminados_columna_fecha.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getFecha()));
+        historialEliminados_columna_hora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEvento().getHora()));
+        historialEliminados_columna_precio.setCellValueFactory(cellData -> new SimpleObjectProperty(cellData.getValue().getEvento().getPrecio()));
+        historialEliminados_columna_nroAsiento.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getAsiento().getNumero()).asObject());
+        historialEliminados_columna_filaAsiento.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAsiento().getFila()));
     }
 
     private void cargarCompras() {
@@ -237,6 +251,16 @@ public class UserController implements Initializable {
         ObservableList<EventoDTO> eventoList = FXCollections.observableArrayList(eventoService.readAll());
         eventos_tableViewEventos.setItems(eventoList);
         eventos_tableViewEventos.refresh();
+    }
+
+    private void cargarHistorial() {
+        ObservableList<TicketDTO> ticketList = FXCollections.observableArrayList(ticketService.getTicketsPorDNI(clienteDTO.getDni()).toList());
+        historialCompras_tablevVewCompras.setItems(ticketList);
+        historialCompras_tablevVewCompras.refresh();
+
+        ObservableList<TicketDTO> historialList = FXCollections.observableArrayList(ticketService.getHistorialEliminadosPorDNI(clienteDTO.getDni()).toList());
+        historialEliminados_tableViewEliminados.setItems(historialList);
+        historialEliminados_tableViewEliminados.refresh();
     }
 
     private void configurarService() {
@@ -303,6 +327,7 @@ public class UserController implements Initializable {
                 System.out.println("Compra realizada con éxito. Asiento asignado: " + asientoDisponible);
                 cargarCompras();
                 cargarEventos();
+                cargarHistorial();
             } catch (IOException e) {
                 System.err.println("Error al registrar la compra: " + e.getMessage());
             }
@@ -328,6 +353,7 @@ public class UserController implements Initializable {
 
             cargarCompras();
             cargarEventos();
+            cargarHistorial();
         } catch (IOException e) {
             System.err.println("Error al eliminar el ticket: " + e.getMessage());
         }
