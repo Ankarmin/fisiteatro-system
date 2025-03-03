@@ -6,6 +6,9 @@ public class TicketDTO {
     private AsientoDTO asientoDTO;
     private EventoDTO eventoDTO;
 
+    public TicketDTO() {
+    }
+
     public TicketDTO(int id, ClienteDTO clienteDTO, AsientoDTO asientoDTO, EventoDTO eventoDTO) {
         this.id = id;
         this.clienteDTO = clienteDTO;

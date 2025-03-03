@@ -46,7 +46,7 @@ public class AsientoDAO implements IAsientoDAO {
             for (int i = 1; i <= asientosPorAgregar; i++) {
                 int nuevoNumeroAsiento = capacidadActual + i;
                 String fila = determinarFila(nuevoNumeroAsiento, nuevaCapacidad);
-                AsientoDTO nuevoAsiento = new AsientoDTO(idEvento, fila, nuevoNumeroAsiento, true);
+                AsientoDTO nuevoAsiento = new AsientoDTO(fila, nuevoNumeroAsiento, true);
                 asientos.insertar(nuevoAsiento);
             }
             saveToFile(idEvento);

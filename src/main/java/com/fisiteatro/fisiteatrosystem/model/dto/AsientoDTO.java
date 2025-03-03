@@ -1,13 +1,14 @@
 package com.fisiteatro.fisiteatrosystem.model.dto;
 
 public class AsientoDTO implements Comparable<AsientoDTO> {
-    private final int idEvento;
     private String fila;
     private int numero;
     private boolean estado;
 
-    public AsientoDTO(int idEvento, String fila, int numero, boolean estado) {
-        this.idEvento = idEvento;
+    public AsientoDTO() {
+    }
+
+    public AsientoDTO(String fila, int numero, boolean estado) {
         this.fila = fila;
         this.numero = numero;
         this.estado = estado;
