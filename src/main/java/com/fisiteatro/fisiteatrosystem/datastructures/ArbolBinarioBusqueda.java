@@ -33,16 +33,6 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> {
         return nodo;
     }
 
-    private boolean buscarRecursivo(Nodo<T> nodo, T dato) {
-        if (nodo == null) {
-            return false;
-        }
-        if (dato.compareTo(nodo.dato) == 0) {
-            return true;
-        }
-        return dato.compareTo(nodo.dato) < 0 ? buscarRecursivo(nodo.izquierdo, dato) : buscarRecursivo(nodo.derecho, dato);
-    }
-
     public void cargarDesdeJson(String filePath, Class<T[]> clazz) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         File file = new File(filePath);

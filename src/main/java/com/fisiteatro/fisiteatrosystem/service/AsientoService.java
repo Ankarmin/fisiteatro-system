@@ -25,10 +25,6 @@ public class AsientoService {
         asientoDAO.updateOcupado(asiento, idEvento);
     }
 
-    public void updateDesocupado(AsientoDTO asiento, int idEvento) throws IOException {
-        asientoDAO.updateDesocupado(asiento, idEvento);
-    }
-
     public void deleteFile(int idEvento) throws IOException {
         asientoDAO.deleteFile(idEvento);
     }

@@ -55,7 +55,6 @@ public class ListaEnlazada<T> {
             throw new IndexOutOfBoundsException("Posición inválida");
         }
 
-        // eliminar primer nodo
         if (posicion == 0) {
             if (cabeza == null) {
                 throw new IndexOutOfBoundsException("La lista está vacía");

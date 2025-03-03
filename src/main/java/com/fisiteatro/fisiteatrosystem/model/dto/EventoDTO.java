@@ -8,9 +8,6 @@ public class EventoDTO {
     private float precio;
     private int capacidad;
 
-    public EventoDTO() {
-    }
-
     public EventoDTO(int id, String nombre, String fecha, String hora, float precio, int capacidad) {
         this.id = id;
         this.nombre = nombre;

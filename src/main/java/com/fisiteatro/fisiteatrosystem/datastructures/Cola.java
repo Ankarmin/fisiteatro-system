@@ -50,13 +50,6 @@ public class Cola<T> {
         }
     }
 
-    public T peek() {
-        if (frente == null) {
-            throw new NoSuchElementException();
-        }
-        return frente.dato;
-    }
-
     public boolean isEmpty() {
         return frente == null;
     }

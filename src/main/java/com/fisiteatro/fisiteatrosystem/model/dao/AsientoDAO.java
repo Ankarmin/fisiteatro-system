@@ -16,7 +16,6 @@ public class AsientoDAO implements IAsientoDAO {
     private final ArbolBinarioBusqueda<AsientoDTO> asientos;
     private final Random random = new Random();
 
-
     public AsientoDAO(int idEvento) {
         this.asientos = new ArbolBinarioBusqueda<>();
         String FILENAME = PATH + idEvento + ".json";
@@ -86,12 +85,6 @@ public class AsientoDAO implements IAsientoDAO {
 
     public void updateOcupado(AsientoDTO asientoDTO, int idEvento) throws IOException {
         asientoDTO.setEstado(false);
-        saveToFile(idEvento);
-    }
-
-    public void updateDesocupado(AsientoDTO asientoDTO, int idEvento) throws IOException {
-        System.out.println("Dirección de memoria de asientoEnLista: " + System.identityHashCode(asientoDTO));
-        asientoDTO.setEstado(true);
         saveToFile(idEvento);
     }
 
