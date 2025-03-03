@@ -211,22 +211,22 @@
                                                 </TableView>
                                             </children>
                                         </AnchorPane>
-                                        <Label fx:id="lblTotalTicketsVendidos" layoutX="893.0" layoutY="23.0" stylesheets="@../css/AdminDesign.css" text="1000" AnchorPane.rightAnchor="39.0">
+                                        <Label fx:id="lblTotalTicketsVendidos" layoutX="893.0" layoutY="23.0" stylesheets="@../css/AdminDesign.css" text="1000">
                                             <font>
                                                 <Font size="18.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="lblTotalTicketsEliminados" layoutX="892.0" layoutY="344.0" stylesheets="@../css/AdminDesign.css" text="1000" AnchorPane.bottomAnchor="289.59999999999997" AnchorPane.rightAnchor="40.0">
+                                        <Label fx:id="lblTotalTicketsEliminados" layoutX="893.0" layoutY="345.0" stylesheets="@../css/AdminDesign.css" text="1000">
                                             <font>
                                                 <Font size="18.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="639.0" layoutY="23.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Total tickets vendidos:" AnchorPane.rightAnchor="148.20000000000005">
+                                        <Label layoutX="639.0" layoutY="23.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Total tickets vendidos:">
                                             <font>
                                                 <Font size="18.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="639.0" layoutY="344.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Total tickets eliminados:" AnchorPane.bottomAnchor="289.59999999999997" AnchorPane.rightAnchor="134.60000000000002">
+                                        <Label layoutX="639.0" layoutY="345.0" styleClass="text" stylesheets="@../css/AdminDesign.css" text="Total tickets eliminados:">
                                             <font>
                                                 <Font size="18.0" />
                                             </font>

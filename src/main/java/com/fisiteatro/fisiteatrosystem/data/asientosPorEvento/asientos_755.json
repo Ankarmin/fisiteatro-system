@@ -1,7 +1,7 @@
 [ {
   "fila" : "E",
   "numero" : 1,
-  "estado" : true
+  "estado" : false
 }, {
   "fila" : "D",
   "numero" : 2,
